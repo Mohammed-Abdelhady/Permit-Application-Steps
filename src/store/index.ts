@@ -1,15 +1,15 @@
 // Store
-export { store } from "./store";
-export type { RootState, AppDispatch } from "./store";
+export { store } from './store';
+export type { RootState, AppDispatch } from './store';
 
 // Hooks
-export { useAppDispatch, useAppSelector } from "./hooks";
+export { useAppDispatch, useAppSelector } from './hooks';
 
 // Provider
-export { ReduxProvider } from "./ReduxProvider";
+export { ReduxProvider } from './ReduxProvider';
 
 // Slices
-export * from "./slices/permitSlice";
+export * from './slices/permitSlice';
 
 // API
-export * from "./api/baseApi";
+export * from './api/baseApi';

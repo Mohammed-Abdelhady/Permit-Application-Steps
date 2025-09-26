@@ -1,30 +1,30 @@
 {
-    "title": "React Hook Form + Yup",
-    "form": {
-        "name": "Name",
-        "namePlaceholder": "Enter your name",
-        "email": "Email",
-        "emailPlaceholder": "Enter your email",
-        "age": "Age",
-        "agePlaceholder": "Enter your age",
-        "submit": "Submit Form",
-        "submitting": "Submitting...",
-        "trySubmitting": "Try submitting the form with validation!"
-    },
-    "validation": {
-        "nameRequired": "Name is required",
-        "nameMinLength": "Name must be at least 2 characters",
-        "emailRequired": "Email is required",
-        "emailInvalid": "Invalid email format",
-        "ageRequired": "Age is required",
-        "agePositive": "Age must be positive",
-        "ageInteger": "Age must be an integer",
-        "ageMinimum": "Must be at least 18 years old"
-    },
-    "success": {
-        "hello": "Hello {{name}}! Your email is {{email}} and you are {{age}} years old."
-    },
-    "language": {
-        "switch": "العربية"
-    }
+  "title": "React Hook Form + Yup",
+  "form": {
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "age": "Age",
+    "agePlaceholder": "Enter your age",
+    "submit": "Submit Form",
+    "submitting": "Submitting...",
+    "trySubmitting": "Try submitting the form with validation!"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "nameMinLength": "Name must be at least 2 characters",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "ageRequired": "Age is required",
+    "agePositive": "Age must be positive",
+    "ageInteger": "Age must be an integer",
+    "ageMinimum": "Must be at least 18 years old"
+  },
+  "success": {
+    "hello": "Hello {{name}}! Your email is {{email}} and you are {{age}} years old."
+  },
+  "language": {
+    "switch": "العربية"
+  }
 }
