@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Get the commit message
+commit_message=$(cat "$1")
+
+# Conventional commit pattern
+conventional_pattern="^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,50}"
+
+if ! echo "$commit_message" | grep -qE "$conventional_pattern"; then
+  echo "❌ Invalid commit message format!"
+  echo ""
+  echo "Commit message should follow conventional commits:"
+  echo "  feat: add new feature"
+  echo "  fix: fix a bug"
+  echo "  docs: update documentation"
+  echo "  style: formatting changes"
+  echo "  refactor: code refactoring"
+  echo "  test: add tests"
+  echo "  chore: maintenance tasks"
+  echo ""
+  echo "Your message: $commit_message"
+  exit 1
+fi
+
+echo "✅ Commit message format is valid"
