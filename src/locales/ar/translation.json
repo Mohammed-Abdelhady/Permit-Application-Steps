@@ -1,0 +1,30 @@
+{
+    "title": "نموذج React Hook + Yup",
+    "form": {
+        "name": "الاسم",
+        "namePlaceholder": "أدخل اسمك",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "أدخل بريدك الإلكتروني",
+        "age": "العمر",
+        "agePlaceholder": "أدخل عمرك",
+        "submit": "إرسال النموذج",
+        "submitting": "جارٍ الإرسال...",
+        "trySubmitting": "جرب إرسال النموذج مع التحقق من صحة البيانات!"
+    },
+    "validation": {
+        "nameRequired": "الاسم مطلوب",
+        "nameMinLength": "يجب أن يكون الاسم على الأقل حرفين",
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "emailInvalid": "تنسيق البريد الإلكتروني غير صحيح",
+        "ageRequired": "العمر مطلوب",
+        "agePositive": "يجب أن يكون العمر إيجابياً",
+        "ageInteger": "يجب أن يكون العمر عدداً صحيحاً",
+        "ageMinimum": "يجب أن يكون العمر 18 سنة على الأقل"
+    },
+    "success": {
+        "hello": "مرحباً {{name}}! بريدك الإلكتروني هو {{email}} وعمرك {{age}} سنة."
+    },
+    "language": {
+        "switch": "English"
+    }
+}
