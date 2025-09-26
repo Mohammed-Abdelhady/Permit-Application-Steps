@@ -56,7 +56,7 @@ function App() {
 
     return (
         <div
-            className={`min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 ${isRTL ? "rtl" : "ltr"}`}
+            className={`min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 ${isRTL ? "rtl" : "ltr"} bg-black`}
             dir={isRTL ? "rtl" : "ltr"}>
             <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
                 <div className="p-8">
