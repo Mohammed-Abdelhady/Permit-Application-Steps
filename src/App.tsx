@@ -62,33 +62,33 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 ${isRTL ? 'rtl' : 'ltr'} bg-black`}
+      className={`flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 ${isRTL ? 'rtl' : 'ltr'} bg-black`}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-lg">
         <div className="p-8">
           {/* Language Toggle Button */}
-          <div className="flex justify-end mb-4">
+          <div className="mb-4 flex justify-end">
             <button
               onClick={toggleLanguage}
-              className="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+              className="rounded-lg bg-gray-100 px-4 py-2 text-sm transition-colors duration-200 hover:bg-gray-200"
             >
               {t('language.switch')}
             </button>
           </div>
 
-          <div className="flex justify-center space-x-4 mb-6">
+          <div className="mb-6 flex justify-center space-x-4">
             <a
               href="https://vite.dev"
               target="_blank"
-              className="hover:opacity-75 transition-opacity"
+              className="transition-opacity hover:opacity-75"
             >
               <img src={viteLogo} className="h-12 w-12" alt="Vite logo" />
             </a>
             <a
               href="https://react.dev"
               target="_blank"
-              className="hover:opacity-75 transition-opacity"
+              className="transition-opacity hover:opacity-75"
             >
               <img
                 src={reactLogo}
@@ -98,7 +98,7 @@ function App() {
             </a>
           </div>
 
-          <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          <h1 className="mb-6 text-center text-2xl font-bold text-gray-800">
             {t('title')}
           </h1>
 
@@ -106,7 +106,7 @@ function App() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="mb-1 block text-sm font-medium text-gray-700"
               >
                 {t('form.name')}
               </label>
@@ -114,7 +114,7 @@ function App() {
                 {...register('name')}
                 type="text"
                 id="name"
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                className={`w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none ${
                   errors.name ? 'border-red-500' : 'border-gray-300'
                 } ${isRTL ? 'text-right' : 'text-left'}`}
                 placeholder={t('form.namePlaceholder')}
@@ -129,7 +129,7 @@ function App() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="mb-1 block text-sm font-medium text-gray-700"
               >
                 {t('form.email')}
               </label>
@@ -137,7 +137,7 @@ function App() {
                 {...register('email')}
                 type="email"
                 id="email"
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                className={`w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none ${
                   errors.email ? 'border-red-500' : 'border-gray-300'
                 } ${isRTL ? 'text-right' : 'text-left'}`}
                 placeholder={t('form.emailPlaceholder')}
@@ -152,7 +152,7 @@ function App() {
             <div>
               <label
                 htmlFor="age"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="mb-1 block text-sm font-medium text-gray-700"
               >
                 {t('form.age')}
               </label>
@@ -160,7 +160,7 @@ function App() {
                 {...register('age')}
                 type="number"
                 id="age"
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                className={`w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none ${
                   errors.age ? 'border-red-500' : 'border-gray-300'
                 } ${isRTL ? 'text-right' : 'text-left'}`}
                 placeholder={t('form.agePlaceholder')}
@@ -175,10 +175,10 @@ function App() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-3 px-4 rounded-lg font-medium transition-colors duration-200 ${
+              className={`w-full rounded-lg px-4 py-3 font-medium transition-colors duration-200 ${
                 isSubmitting
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                  ? 'cursor-not-allowed bg-gray-400'
+                  : 'bg-indigo-600 text-white hover:bg-indigo-700'
               }`}
             >
               {isSubmitting ? t('form.submitting') : t('form.submit')}
