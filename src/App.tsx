@@ -10,6 +10,7 @@ import {
   PersonalInformationPage,
   FamilyFinancialInfoPage,
   SituationDescriptionPage,
+  PermitSubmissionSuccessPage,
 } from './pages';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                 element={<FamilyFinancialInfoPage />}
               />
               <Route path="situation" element={<SituationDescriptionPage />} />
+              <Route path="success" element={<PermitSubmissionSuccessPage />} />
             </Route>
           </Routes>
           <ToastContainer />

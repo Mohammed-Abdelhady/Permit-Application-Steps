@@ -354,7 +354,8 @@
     "searchOptions": "Search options",
     "noResultsFound": "No results found",
     "noOptionsAvailable": "No options available",
-    "clear": "Clear selection"
+    "clear": "Clear selection",
+    "back_to_home": "Back to Home"
   },
   "validation": {
     "nameRequired": "Full name is required",
@@ -419,10 +420,16 @@
     "form_submitted": "Form submitted successfully!",
     "personal_info_saved": "Personal information saved successfully!",
     "family_financial_saved": "Family and financial information saved successfully!",
-    "situation_description_saved": "Situation description saved successfully!"
+    "situation_description_saved": "Situation description saved successfully!",
+    "permit_submitted": "Permit Application Submitted Successfully!",
+    "permit_submitted_description": "Your permit application has been received and is now under review. You will be notified about the status via email."
   },
   "permit": {
     "title": "Permit Application",
+    "application_id": "Application ID",
+    "submission_date": "Submission Date",
+    "application_summary": "Application Summary",
+    "new_application": "New Application",
     "steps": {
       "personal": "Personal Information",
       "familyFinancial": "Family and Financial Info",

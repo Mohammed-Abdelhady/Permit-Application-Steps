@@ -354,7 +354,8 @@
     "searchOptions": "البحث في الخيارات",
     "noResultsFound": "لم يتم العثور على نتائج",
     "noOptionsAvailable": "لا توجد خيارات متاحة",
-    "clear": "مسح التحديد"
+    "clear": "مسح التحديد",
+    "back_to_home": "العودة للرئيسية"
   },
   "validation": {
     "nameRequired": "الاسم الكامل مطلوب",
@@ -419,10 +420,16 @@
     "form_submitted": "تم إرسال النموذج بنجاح!",
     "personal_info_saved": "تم حفظ المعلومات الشخصية بنجاح!",
     "family_financial_saved": "تم حفظ المعلومات العائلية والمالية بنجاح!",
-    "situation_description_saved": "تم حفظ وصف الوضع بنجاح!"
+    "situation_description_saved": "تم حفظ وصف الوضع بنجاح!",
+    "permit_submitted": "تم تقديم طلب الرخصة بنجاح!",
+    "permit_submitted_description": "تم استلام طلب الرخصة الخاص بك وهو الآن قيد المراجعة. سيتم إشعارك بالحالة عبر البريد الإلكتروني."
   },
   "permit": {
     "title": "طلب تصريح",
+    "application_id": "رقم الطلب",
+    "submission_date": "تاريخ التقديم",
+    "application_summary": "ملخص الطلب",
+    "new_application": "طلب جديد",
     "steps": {
       "personal": "المعلومات الشخصية",
       "familyFinancial": "المعلومات العائلية والمالية",

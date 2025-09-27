@@ -42,7 +42,7 @@ const SituationDescriptionPage = () => {
       toast.success('success.form_submitted');
       setDirection('forward');
       scrollToTop();
-      navigate('/');
+      navigate('/permit/success');
     } catch (error) {
       console.error('Form submission error:', error);
       toast.error('form.errors.saveFailed', 'form.errors.tryAgain');
