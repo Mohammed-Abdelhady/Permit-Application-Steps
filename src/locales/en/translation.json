@@ -374,6 +374,11 @@
     "loading": "Loading...",
     "back_to_home": "Back to Home"
   },
+  "refreshWarning": {
+    "title": "Unsaved Changes",
+    "message": "You have unsaved changes. Are you sure you want to leave?",
+    "description": "Your form data will be lost if you leave this page."
+  },
   "validation": {
     "nameRequired": "Full name is required",
     "nameMinLength": "Name must be at least 2 characters",

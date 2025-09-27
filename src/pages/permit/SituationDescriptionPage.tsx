@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PermitPageLayout, SituationDescriptionForm } from '../../components';
-import { usePermitSteps, useToast } from '../../hooks';
+import { usePermitSteps, useToast, useRefreshWarning } from '../../hooks';
 import { useNavigation } from '../../contexts';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { saveSituationDescription } from '../../store/slices/permitSlice';
@@ -38,6 +38,9 @@ const SituationDescriptionPage = () => {
     submitForm: () => Promise<boolean>;
     isValid: boolean;
   }>(null);
+
+  // Enable refresh warning for unsaved form data
+  useRefreshWarning();
 
   const handleFormSubmit = async (data: SituationDescriptionFormData) => {
     setIsSubmitting(true);

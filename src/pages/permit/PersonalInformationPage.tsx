@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PermitPageLayout, PersonalInformationForm } from '../../components';
-import { usePermitSteps, useToast } from '../../hooks';
+import { usePermitSteps, useToast, useRefreshWarning } from '../../hooks';
 import { useNavigation } from '../../contexts';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { savePersonalInformation } from '../../store/slices/permitSlice';
@@ -27,6 +27,9 @@ const PersonalInformationPage = () => {
     submitForm: () => Promise<boolean>;
     isValid: boolean;
   }>(null);
+
+  // Enable refresh warning for unsaved form data
+  useRefreshWarning();
 
   const handleFormSubmit = async (data: PersonalInformationFormData) => {
     setIsSubmitting(true);
