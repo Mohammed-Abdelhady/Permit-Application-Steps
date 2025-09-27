@@ -13,3 +13,4 @@ export { default as ToastContainer } from './shared/ToastContainer';
 // Export form components
 export { default as PersonalInformationForm } from './forms/PersonalInformationForm';
 export { default as FamilyFinancialForm } from './forms/FamilyFinancialForm';
+export { default as SituationDescriptionForm } from './forms/SituationDescriptionForm';

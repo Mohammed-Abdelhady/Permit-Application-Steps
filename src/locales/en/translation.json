@@ -7,7 +7,10 @@
       "contact": "Contact Information",
       "family": "Family Information",
       "employment": "Employment Information",
-      "housing": "Housing Information"
+      "housing": "Housing Information",
+      "financialSituation": "Financial Situation",
+      "employmentCircumstances": "Employment Circumstances",
+      "applicationReason": "Application Reason"
     },
     "fields": {
       "name": "Full Name",
@@ -24,7 +27,10 @@
       "dependents": "Number of Dependents",
       "employmentStatus": "Employment Status",
       "monthlyIncome": "Monthly Income",
-      "housingStatus": "Housing Status"
+      "housingStatus": "Housing Status",
+      "currentFinancialSituation": "Current Financial Situation",
+      "employmentCircumstances": "Employment Circumstances",
+      "reasonForApplying": "Reason for Applying"
     },
     "placeholders": {
       "name": "Enter your full name",
@@ -40,7 +46,10 @@
       "dependents": "Enter number of dependents",
       "employmentStatus": "Select your employment status",
       "monthlyIncome": "Enter your monthly income",
-      "housingStatus": "Select your housing status"
+      "housingStatus": "Select your housing status",
+      "currentFinancialSituation": "Describe your current financial situation including debts, savings, and financial obligations",
+      "employmentCircumstances": "Explain your employment circumstances including job stability, contract type, and recent changes",
+      "reasonForApplying": "Provide a detailed explanation of why you are applying for this permit"
     },
     "gender": {
       "male": "Male",
@@ -394,13 +403,23 @@
     "monthlyIncomeMinValue": "Monthly income cannot be negative",
     "monthlyIncomeMaxValue": "Monthly income cannot exceed 1,000,000",
     "housingStatusRequired": "Housing status is required",
-    "housingStatusValid": "Please select a valid housing status"
+    "housingStatusValid": "Please select a valid housing status",
+    "financialSituationRequired": "Current financial situation is required",
+    "financialSituationMinLength": "Financial situation must be at least 50 characters",
+    "financialSituationMaxLength": "Financial situation must not exceed 1,000 characters",
+    "employmentCircumstancesRequired": "Employment circumstances are required",
+    "employmentCircumstancesMinLength": "Employment circumstances must be at least 50 characters",
+    "employmentCircumstancesMaxLength": "Employment circumstances must not exceed 1,000 characters",
+    "reasonForApplyingRequired": "Reason for applying is required",
+    "reasonForApplyingMinLength": "Reason for applying must be at least 100 characters",
+    "reasonForApplyingMaxLength": "Reason for applying must not exceed 2,000 characters"
   },
   "success": {
     "hello": "Hello {{name}}! Your email {{email}} and age {{age}} have been submitted successfully.",
     "form_submitted": "Form submitted successfully!",
     "personal_info_saved": "Personal information saved successfully!",
-    "family_financial_saved": "Family and financial information saved successfully!"
+    "family_financial_saved": "Family and financial information saved successfully!",
+    "situation_description_saved": "Situation description saved successfully!"
   },
   "permit": {
     "title": "Permit Application",

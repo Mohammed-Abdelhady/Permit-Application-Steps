@@ -7,7 +7,10 @@
       "contact": "معلومات الاتصال",
       "family": "المعلومات العائلية",
       "employment": "معلومات العمل",
-      "housing": "معلومات السكن"
+      "housing": "معلومات السكن",
+      "financialSituation": "الوضع المالي",
+      "employmentCircumstances": "ظروف العمل",
+      "applicationReason": "سبب التقديم"
     },
     "fields": {
       "name": "الاسم الكامل",
@@ -24,7 +27,10 @@
       "dependents": "عدد الأشخاص المعالين",
       "employmentStatus": "حالة العمل",
       "monthlyIncome": "الدخل الشهري",
-      "housingStatus": "حالة السكن"
+      "housingStatus": "حالة السكن",
+      "currentFinancialSituation": "الوضع المالي الحالي",
+      "employmentCircumstances": "ظروف العمل",
+      "reasonForApplying": "سبب التقديم"
     },
     "placeholders": {
       "name": "أدخل اسمك الكامل",
@@ -40,7 +46,10 @@
       "dependents": "أدخل عدد الأشخاص المعالين",
       "employmentStatus": "اختر حالة العمل",
       "monthlyIncome": "أدخل الدخل الشهري",
-      "housingStatus": "اختر حالة السكن"
+      "housingStatus": "اختر حالة السكن",
+      "currentFinancialSituation": "اوصف وضعك المالي الحالي بما في ذلك الديون والمدخرات والالتزامات المالية",
+      "employmentCircumstances": "اشرح ظروف عملك بما في ذلك استقرار الوظيفة ونوع العقد والتغييرات الأخيرة",
+      "reasonForApplying": "قدم شرحاً مفصلاً لسبب تقديمك لطلب هذا التصريح"
     },
     "gender": {
       "male": "ذكر",
@@ -394,13 +403,23 @@
     "monthlyIncomeMinValue": "الدخل الشهري لا يمكن أن يكون سالباً",
     "monthlyIncomeMaxValue": "الدخل الشهري لا يمكن أن يتجاوز 1,000,000",
     "housingStatusRequired": "حالة السكن مطلوبة",
-    "housingStatusValid": "يرجى اختيار حالة سكن صحيحة"
+    "housingStatusValid": "يرجى اختيار حالة سكن صحيحة",
+    "financialSituationRequired": "الوضع المالي الحالي مطلوب",
+    "financialSituationMinLength": "الوضع المالي يجب أن يكون على الأقل 50 حرفاً",
+    "financialSituationMaxLength": "الوضع المالي يجب ألا يتجاوز 1,000 حرف",
+    "employmentCircumstancesRequired": "ظروف العمل مطلوبة",
+    "employmentCircumstancesMinLength": "ظروف العمل يجب أن تكون على الأقل 50 حرفاً",
+    "employmentCircumstancesMaxLength": "ظروف العمل يجب ألا تتجاوز 1,000 حرف",
+    "reasonForApplyingRequired": "سبب التقديم مطلوب",
+    "reasonForApplyingMinLength": "سبب التقديم يجب أن يكون على الأقل 100 حرف",
+    "reasonForApplyingMaxLength": "سبب التقديم يجب ألا يتجاوز 2,000 حرف"
   },
   "success": {
     "hello": "مرحبا {{name}}! تم إرسال بريدك الإلكتروني {{email}} وعمرك {{age}} بنجاح.",
     "form_submitted": "تم إرسال النموذج بنجاح!",
     "personal_info_saved": "تم حفظ المعلومات الشخصية بنجاح!",
-    "family_financial_saved": "تم حفظ المعلومات العائلية والمالية بنجاح!"
+    "family_financial_saved": "تم حفظ المعلومات العائلية والمالية بنجاح!",
+    "situation_description_saved": "تم حفظ وصف الوضع بنجاح!"
   },
   "permit": {
     "title": "طلب تصريح",

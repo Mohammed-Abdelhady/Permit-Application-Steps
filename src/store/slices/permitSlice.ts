@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type {
   PersonalInformationFormData,
   FamilyFinancialFormData,
+  SituationDescriptionFormData,
 } from '../../schemas';
 
 export interface Permit {
@@ -21,6 +22,7 @@ interface PermitState {
   // Form data for permit application
   personalInformation: PersonalInformationFormData | null;
   familyFinancial: FamilyFinancialFormData | null;
+  situationDescription: SituationDescriptionFormData | null;
 }
 
 const initialState: PermitState = {
@@ -29,6 +31,7 @@ const initialState: PermitState = {
   error: null,
   personalInformation: null,
   familyFinancial: null,
+  situationDescription: null,
 };
 
 const permitSlice = createSlice({
@@ -66,9 +69,19 @@ const permitSlice = createSlice({
     clearFamilyFinancial: state => {
       state.familyFinancial = null;
     },
+    saveSituationDescription: (
+      state,
+      action: PayloadAction<SituationDescriptionFormData>
+    ) => {
+      state.situationDescription = action.payload;
+    },
+    clearSituationDescription: state => {
+      state.situationDescription = null;
+    },
     clearAllFormData: state => {
       state.personalInformation = null;
       state.familyFinancial = null;
+      state.situationDescription = null;
     },
   },
 });
@@ -82,6 +95,8 @@ export const {
   clearPersonalInformation,
   saveFamilyFinancial,
   clearFamilyFinancial,
+  saveSituationDescription,
+  clearSituationDescription,
   clearAllFormData,
 } = permitSlice.actions;
 
