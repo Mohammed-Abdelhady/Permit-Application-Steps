@@ -13,6 +13,7 @@ import { generateUniqueId, createApplicationId } from '../utils/api';
 import { StorageUtils } from '../services/storage';
 import { AnalysisEngine } from '../services/analysis';
 import { ApiHelpers } from '../helpers/api';
+import { clearAllFormData } from '../slices/permitSlice';
 
 export const permitApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -39,6 +40,23 @@ export const permitApi = baseApi.injectEndpoints({
         };
 
         return { data: result };
+      },
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          // Wait for the submission to complete successfully
+          const result = await queryFulfilled;
+
+          // Only clear form data if this is a final submission (status is 'validated')
+          if (result.data.data.status === 'validated') {
+            dispatch(clearAllFormData());
+            StorageUtils.clearFormData();
+          }
+        } catch {
+          // If submission failed, don't clear the form data
+          console.log(
+            'Situation description submission failed, keeping form data'
+          );
+        }
       },
       invalidatesTags: ['Permit'],
     }),
@@ -95,6 +113,19 @@ export const permitApi = baseApi.injectEndpoints({
             },
           },
         };
+      },
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          // Wait for the submission to complete successfully
+          await queryFulfilled;
+
+          // Clear all form data after successful submission
+          dispatch(clearAllFormData());
+          StorageUtils.clearFormData();
+        } catch {
+          // If submission failed, don't clear the form data
+          console.log('Permit submission failed, keeping form data');
+        }
       },
       invalidatesTags: ['Permit'],
     }),

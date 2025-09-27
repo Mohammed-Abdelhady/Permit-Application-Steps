@@ -36,4 +36,15 @@ export const StorageUtils = {
       return null;
     }
   },
+
+  // Clear form data from localStorage
+  clearFormData(): boolean {
+    try {
+      localStorage.removeItem('dge_permit_data');
+      return true;
+    } catch (error) {
+      console.error('Error clearing form data from localStorage:', error);
+      return false;
+    }
+  },
 };
