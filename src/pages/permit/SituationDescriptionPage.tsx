@@ -6,6 +6,10 @@ import { usePermitSteps, useToast } from '../../hooks';
 import { useNavigation } from '../../contexts';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { saveSituationDescription } from '../../store/slices/permitSlice';
+import {
+  useSubmitSituationDescriptionMutation,
+  useSubmitPermitApplicationMutation,
+} from '../../store/api/permitApi';
 import { type SituationDescriptionFormData } from '../../schemas';
 import { scrollToTop } from '../../utils/helpers';
 const SituationDescriptionPage = () => {
@@ -16,7 +20,15 @@ const SituationDescriptionPage = () => {
   const toast = useToast();
   const dispatch = useAppDispatch();
 
-  // Get saved form data from Redux
+  // RTK Query mutations
+  const [submitSituationDescription] = useSubmitSituationDescriptionMutation();
+  const [submitPermitApplication] = useSubmitPermitApplicationMutation();
+
+  // Get saved form data from Redux for complete application
+  const personalInformation = useAppSelector(
+    state => state.permit.personalInformation
+  );
+  const familyFinancial = useAppSelector(state => state.permit.familyFinancial);
   const savedSituationDescription = useAppSelector(
     state => state.permit.situationDescription
   );
@@ -30,22 +42,66 @@ const SituationDescriptionPage = () => {
   const handleFormSubmit = async (data: SituationDescriptionFormData) => {
     setIsSubmitting(true);
     try {
-      // Save form data to Redux
+      // Save form data to Redux first
       dispatch(saveSituationDescription(data));
 
-      // Show success message
-      toast.success('success.situation_description_saved');
+      // Submit situation description to API
+      const situationResponse = await submitSituationDescription(data).unwrap();
 
-      // Simulate API call for final submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Show validation results
+      if (situationResponse.success) {
+        toast.success('success.situation_description_saved');
 
-      toast.success('success.form_submitted');
-      setDirection('forward');
-      scrollToTop();
-      navigate('/permit/success');
-    } catch (error) {
+        // Show validation score and recommendations if available
+        if (situationResponse.data.recommendations.length > 0) {
+          console.log(
+            'API Recommendations:',
+            situationResponse.data.recommendations
+          );
+          toast.info(
+            `Validation Score: ${situationResponse.data.validationScore}%`
+          );
+        }
+
+        // Now submit the complete permit application
+        const completeApplication = {
+          personalInformation,
+          familyFinancial,
+          situationDescription: data,
+        };
+
+        const applicationResponse =
+          await submitPermitApplication(completeApplication).unwrap();
+
+        if (applicationResponse.success) {
+          toast.success('success.form_submitted');
+
+          // Log the application details for debugging
+          console.log('Application submitted:', {
+            applicationId: applicationResponse.data.applicationId,
+            status: applicationResponse.data.status,
+            estimatedProcessingDays:
+              applicationResponse.data.estimatedProcessingDays,
+          });
+
+          setDirection('forward');
+          scrollToTop();
+          navigate(`/permit/success/${applicationResponse.data.applicationId}`);
+        }
+      }
+    } catch (error: unknown) {
       console.error('Form submission error:', error);
-      toast.error('form.errors.saveFailed', 'form.errors.tryAgain');
+
+      // Show specific error message if available from API
+      const errorObj = error as {
+        data?: { message?: string };
+        message?: string;
+      };
+      const errorMessage =
+        errorObj?.data?.message ||
+        errorObj?.message ||
+        'form.errors.saveFailed';
+      toast.error(errorMessage, 'form.errors.tryAgain');
     } finally {
       setIsSubmitting(false);
     }

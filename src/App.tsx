@@ -34,7 +34,10 @@ function App() {
                 element={<FamilyFinancialInfoPage />}
               />
               <Route path="situation" element={<SituationDescriptionPage />} />
-              <Route path="success" element={<PermitSubmissionSuccessPage />} />
+              <Route
+                path="success/:applicationId"
+                element={<PermitSubmissionSuccessPage />}
+              />
             </Route>
           </Routes>
           <ToastContainer />

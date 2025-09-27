@@ -355,6 +355,7 @@
     "noResultsFound": "لم يتم العثور على نتائج",
     "noOptionsAvailable": "لا توجد خيارات متاحة",
     "clear": "مسح التحديد",
+    "loading": "جاري التحميل...",
     "back_to_home": "العودة للرئيسية"
   },
   "validation": {
@@ -429,7 +430,11 @@
     "application_id": "رقم الطلب",
     "submission_date": "تاريخ التقديم",
     "application_summary": "ملخص الطلب",
+    "application_analysis": "تحليل الطلب",
+    "validation_score": "نقاط التحقق",
+    "recommendations": "التوصيات",
     "new_application": "طلب جديد",
+    "start_new_application": "بدء طلب جديد",
     "steps": {
       "personal": "المعلومات الشخصية",
       "familyFinancial": "المعلومات العائلية والمالية",
@@ -444,7 +449,17 @@
       "personalInfo": "يرجى إدخال معلوماتك الشخصية هنا...",
       "familyInfo": "يرجى إدخال معلومات عائلتك والمالية هنا...",
       "situationInfo": "يرجى وصف وضعك هنا..."
+    },
+    "text": {
+      "show_more": "عرض المزيد",
+      "show_less": "عرض أقل",
+      "read_in_overlay": "اقرأ في نافذة منبثقة",
+      "close": "إغلاق"
     }
+  },
+  "error": {
+    "permit_not_found": "الطلب غير موجود",
+    "permit_not_found_description": "لا يمكن العثور على الطلب الذي تبحث عنه. قد يكون تم حذفه أو الرابط غير صحيح."
   },
   "language": {
     "switch": "English"

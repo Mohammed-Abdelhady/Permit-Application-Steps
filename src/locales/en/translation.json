@@ -355,6 +355,7 @@
     "noResultsFound": "No results found",
     "noOptionsAvailable": "No options available",
     "clear": "Clear selection",
+    "loading": "Loading...",
     "back_to_home": "Back to Home"
   },
   "validation": {
@@ -429,7 +430,11 @@
     "application_id": "Application ID",
     "submission_date": "Submission Date",
     "application_summary": "Application Summary",
+    "application_analysis": "Application Analysis",
+    "validation_score": "Validation Score",
+    "recommendations": "Recommendations",
     "new_application": "New Application",
+    "start_new_application": "Start New Application",
     "steps": {
       "personal": "Personal Information",
       "familyFinancial": "Family and Financial Info",
@@ -444,7 +449,17 @@
       "personalInfo": "Please enter your personal information here...",
       "familyInfo": "Please enter your family and financial information here...",
       "situationInfo": "Please describe your situation here..."
+    },
+    "text": {
+      "show_more": "Show More",
+      "show_less": "Show Less",
+      "read_in_overlay": "Read in Overlay",
+      "close": "Close"
     }
+  },
+  "error": {
+    "permit_not_found": "Application Not Found",
+    "permit_not_found_description": "The application you're looking for could not be found. It may have been removed or the link is invalid."
   },
   "language": {
     "switch": "العربية"
