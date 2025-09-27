@@ -92,12 +92,14 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
 
     return (
       <motion.div
+        data-testid="form-textarea-container"
         className="space-y-2"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
         <label
+          data-testid="form-textarea-label"
           htmlFor={textareaId}
           className={classNames(
             'block cursor-pointer text-sm font-medium',
@@ -111,6 +113,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           {t(label)}
           {required && (
             <span
+              data-testid="form-textarea-required"
               className="ml-1 text-red-500"
               aria-label={t('form.required')}
               title={t('form.required')}
@@ -122,6 +125,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
 
         {description && (
           <motion.div
+            data-testid="form-textarea-description"
             id={descriptionId}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -140,6 +144,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           className="relative"
         >
           <textarea
+            data-testid="form-textarea-field"
             ref={ref}
             id={textareaId}
             rows={rows}
@@ -165,6 +170,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
 
           {enableAIHelp && (
             <motion.button
+              data-testid="form-textarea-ai-help"
               type="button"
               onClick={textSuggestion.onHelpMeWrite}
               disabled={textSuggestion.isLoading && !textSuggestion.isPopupOpen}
@@ -221,6 +227,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
 
         {helperText && !error && (
           <motion.div
+            data-testid="form-textarea-helper"
             id={helperId}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -236,6 +243,7 @@ const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
 
         {error && (
           <motion.div
+            data-testid="form-textarea-error"
             id={errorId}
             role="alert"
             aria-live="polite"
