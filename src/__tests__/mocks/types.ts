@@ -26,13 +26,12 @@ export interface PersonalInformationData extends Record<string, string> {
   email: string;
 }
 
-export interface FamilyFinancialData {
-  monthlyIncome: string;
-  monthlyExpenses: string;
-  dependents: string;
+export interface FamilyFinancialData extends Record<string, string | number> {
+  maritalStatus: string;
+  dependents: number;
   employmentStatus: string;
-  employerName: string;
-  jobTitle: string;
+  monthlyIncome: number;
+  housingStatus: string;
 }
 
 export interface SituationDescriptionData {
@@ -179,6 +178,9 @@ export interface TestIDs {
     personal: string;
     address: string;
     contact: string;
+    family: string;
+    employment: string;
+    housing: string;
   };
   fields: {
     name: string;
@@ -191,6 +193,11 @@ export interface TestIDs {
     state: string;
     phone: string;
     email: string;
+    maritalStatus: string;
+    dependents: string;
+    employmentStatus: string;
+    monthlyIncome: string;
+    housingStatus: string;
   };
   navigation: {
     container: string;

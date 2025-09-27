@@ -9,6 +9,7 @@ import { vi } from 'vitest';
 import type {
   StepData,
   PersonalInformationData,
+  FamilyFinancialData,
   UsePermitStepsReturn,
   UseToastReturn,
   UseNavigationReturn,
@@ -165,14 +166,14 @@ export const mockLocalStorage: MockLocalStorage = {
 };
 
 // Form Component Mocks
-export const mockFormInput = vi.fn<[MockComponentProps], unknown>(
-  ({ children }) => children
+export const mockFormInput = vi.fn(
+  ({ children }: MockComponentProps) => children
 );
-export const mockFormSelect = vi.fn<[MockComponentProps], unknown>(
-  ({ children }) => children
+export const mockFormSelect = vi.fn(
+  ({ children }: MockComponentProps) => children
 );
-export const mockFormTextArea = vi.fn<[MockComponentProps], unknown>(
-  ({ children }) => children
+export const mockFormTextArea = vi.fn(
+  ({ children }: MockComponentProps) => children
 );
 
 // Test Constants
@@ -183,6 +184,9 @@ export const TEST_IDS: TestIDs = {
     personal: 'personal-information-section',
     address: 'address-information-section',
     contact: 'contact-information-section',
+    family: 'family-information-section',
+    employment: 'employment-information-section',
+    housing: 'housing-information-section',
   },
   fields: {
     name: 'name-input',
@@ -195,6 +199,11 @@ export const TEST_IDS: TestIDs = {
     state: 'state-input',
     phone: 'phone-input',
     email: 'email-input',
+    maritalStatus: 'marital-status-select',
+    dependents: 'dependents-input',
+    employmentStatus: 'employment-status-select',
+    monthlyIncome: 'monthly-income-input',
+    housingStatus: 'housing-status-select',
   },
   navigation: {
     container: 'navigation',
@@ -217,12 +226,26 @@ export const REQUIRED_FIELDS: (keyof PersonalInformationData)[] = [
   'email',
 ];
 
+export const FAMILY_FINANCIAL_REQUIRED_FIELDS: (keyof FamilyFinancialData)[] = [
+  'maritalStatus',
+  'dependents',
+  'employmentStatus',
+  'monthlyIncome',
+  'housingStatus',
+];
+
 export const VALIDATION_PATTERNS: ValidationPatterns = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   phone: /^\+?[\d\s\-()]{10,}$/,
   nationalId: /^\d{10}$/,
   name: /^[a-zA-Z\s]+$/,
 };
+
+export const FAMILY_FINANCIAL_OPTIONS = {
+  maritalStatus: ['single', 'married', 'divorced', 'widowed'],
+  employmentStatus: ['employed', 'unemployed', 'self-employed', 'retired'],
+  housingStatus: ['owned', 'rented', 'family', 'other'],
+} as const;
 
 export const LANGUAGES: readonly string[] = ['en', 'ar'] as const;
 
@@ -288,6 +311,42 @@ export const createIncompleteFormData = (): PersonalInformationData => ({
   email: 'john@example.com',
 });
 
+// Family Financial Data Generators
+export const createMockFamilyFinancialData = (
+  overrides: Partial<FamilyFinancialData> = {}
+): FamilyFinancialData => ({
+  maritalStatus: 'married',
+  dependents: 2,
+  employmentStatus: 'employed',
+  monthlyIncome: 5000,
+  housingStatus: 'owned',
+  ...overrides,
+});
+
+export const createEmptyFamilyFinancialData = (): FamilyFinancialData => ({
+  maritalStatus: '',
+  dependents: 0,
+  employmentStatus: '',
+  monthlyIncome: 0,
+  housingStatus: '',
+});
+
+export const createPartialFamilyFinancialData = (): FamilyFinancialData => ({
+  maritalStatus: 'single',
+  dependents: 0,
+  employmentStatus: '',
+  monthlyIncome: 0,
+  housingStatus: '',
+});
+
+export const createIncompleteFamilyFinancialData = (): FamilyFinancialData => ({
+  maritalStatus: 'married',
+  dependents: 1,
+  employmentStatus: '',
+  monthlyIncome: 3000,
+  housingStatus: 'rented',
+});
+
 export const createMockUser = (
   overrides: Partial<TestUser> = {}
 ): TestUser => ({
@@ -325,6 +384,34 @@ export const isRTL = (lang: string) => lang === 'ar';
 
 export const getTextDirection = (language: string) =>
   language === 'ar' ? 'rtl' : 'ltr';
+
+// Family Financial Validation Functions
+export const isFamilyFinancialFormComplete = (
+  data: Record<string, string | number>
+) => {
+  return FAMILY_FINANCIAL_REQUIRED_FIELDS.every(field => {
+    const value = data[field];
+    if (typeof value === 'number') {
+      return value >= 0;
+    }
+    return value && String(value).trim() !== '';
+  });
+};
+
+export const calculateFamilyFinancialProgress = (
+  data: Record<string, string | number>
+) => {
+  const filledFields = FAMILY_FINANCIAL_REQUIRED_FIELDS.filter(field => {
+    const value = data[field];
+    if (typeof value === 'number') {
+      return value >= 0;
+    }
+    return value && String(value).trim() !== '';
+  });
+  return Math.round(
+    (filledFields.length / FAMILY_FINANCIAL_REQUIRED_FIELDS.length) * 100
+  );
+};
 
 // Mock Functions for Common Operations
 export const mockValidateForm = vi.fn(

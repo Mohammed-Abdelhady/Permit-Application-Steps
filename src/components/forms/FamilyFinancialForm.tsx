@@ -98,6 +98,7 @@ const FamilyFinancialForm = forwardRef<
 
   return (
     <motion.form
+      data-testid="family-financial-form"
       onSubmit={handleSubmit(handleFormSubmit)}
       className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
@@ -106,6 +107,7 @@ const FamilyFinancialForm = forwardRef<
     >
       {/* Family Information Section */}
       <motion.div
+        data-testid="family-information-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -119,6 +121,7 @@ const FamilyFinancialForm = forwardRef<
           <div>
             <FormSelect
               {...register('maritalStatus')}
+              data-testid="marital-status-select"
               value={watch('maritalStatus') || ''}
               label="form.fields.maritalStatus"
               options={MARITAL_STATUS_OPTIONS}
@@ -143,6 +146,7 @@ const FamilyFinancialForm = forwardRef<
 
           <FormInput
             {...register('dependents')}
+            data-testid="dependents-input"
             type="number"
             label="form.fields.dependents"
             placeholder={t('form.placeholders.dependents')}
@@ -166,6 +170,7 @@ const FamilyFinancialForm = forwardRef<
 
       {/* Employment Information Section */}
       <motion.div
+        data-testid="employment-information-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -179,6 +184,7 @@ const FamilyFinancialForm = forwardRef<
           <div>
             <FormSelect
               {...register('employmentStatus')}
+              data-testid="employment-status-select"
               value={watch('employmentStatus') || ''}
               label="form.fields.employmentStatus"
               options={EMPLOYMENT_STATUS_OPTIONS}
@@ -203,6 +209,7 @@ const FamilyFinancialForm = forwardRef<
 
           <FormInput
             {...register('monthlyIncome')}
+            data-testid="monthly-income-input"
             type="number"
             label="form.fields.monthlyIncome"
             placeholder={t('form.placeholders.monthlyIncome')}
@@ -226,6 +233,7 @@ const FamilyFinancialForm = forwardRef<
 
       {/* Housing Information Section */}
       <motion.div
+        data-testid="housing-information-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -239,6 +247,7 @@ const FamilyFinancialForm = forwardRef<
           <div>
             <FormSelect
               {...register('housingStatus')}
+              data-testid="housing-status-select"
               value={watch('housingStatus') || ''}
               label="form.fields.housingStatus"
               options={HOUSING_STATUS_OPTIONS}

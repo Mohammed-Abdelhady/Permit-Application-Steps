@@ -68,25 +68,23 @@ const FamilyFinancialInfoPage = () => {
   };
 
   return (
-    <PermitPageLayout
-      title={t('permit.steps.familyFinancial')}
-      currentStep={2}
-      steps={steps}
-      direction="forward"
-      showPrevious
-      showNext
-      onPrevious={handlePrevious}
-      onNext={handleNext}
-      isSubmitting={isSubmitting}
-      contentClassName={steps[1]?.isCompleted ? 'opacity-90' : ''}
-    >
-      <FamilyFinancialForm
-        ref={formRef}
-        onSubmit={handleFormSubmit}
-        initialData={savedFamilyFinancial || undefined}
+    <div data-testid="family-financial-page">
+      <PermitPageLayout
+        steps={steps}
+        currentStep={2}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
         isSubmitting={isSubmitting}
-      />
-    </PermitPageLayout>
+        title={t('titles.familyFinancial')}
+      >
+        <FamilyFinancialForm
+          ref={formRef}
+          onSubmit={handleFormSubmit}
+          initialData={savedFamilyFinancial || undefined}
+          isSubmitting={isSubmitting}
+        />
+      </PermitPageLayout>
+    </div>
   );
 };
 
