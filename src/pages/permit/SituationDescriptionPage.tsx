@@ -99,9 +99,6 @@ const SituationDescriptionPage = () => {
       const isValid = await formRef.current.submitForm();
       if (!isValid) {
         toast.warning('form.validation.pleaseFixErrors');
-      } else {
-        // If form is valid, it will be saved via handleFormSubmit
-        // and navigation will happen automatically
       }
     }
   };

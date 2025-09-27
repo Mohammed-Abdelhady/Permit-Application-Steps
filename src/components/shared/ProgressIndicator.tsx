@@ -3,20 +3,23 @@ import classNames from 'classnames';
 import { type ProgressIndicatorProps } from '../../types/components';
 
 const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
+  // Helper function to get step status
+  const getStepStatus = (step: (typeof steps)[0]) => {
+    if (step.isCompleted) return 'Completed';
+    if (step.isActive) return 'Current';
+    return 'Pending';
+  };
+
   return (
     <motion.div
-      className="mb-8"
+      className="mb-4 md:mb-6 lg:mb-8"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.1 }}
-      role="progressbar"
-      aria-valuenow={currentStep}
-      aria-valuemin={1}
-      aria-valuemax={steps.length}
       aria-label={`Step ${currentStep} of ${steps.length}: ${steps.find(s => s.number === currentStep)?.title}`}
     >
       {/* Steps */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-4 flex flex-col space-y-4 md:mb-6 md:flex-row md:items-center md:justify-between md:space-y-0">
         {steps.map((step, index) => (
           <motion.div
             key={step.number}
@@ -27,12 +30,12 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
           >
             {/* Connecting Line - positioned behind text */}
             {index < steps.length - 1 && (
-              <div className="absolute top-4 left-8 -z-10 h-0.5 w-16 bg-gray-300">
+              <div className="absolute top-10 left-4 -z-10 h-8 w-0.5 bg-gray-300 md:top-4 md:left-8 md:h-0.5 md:w-12 lg:w-16">
                 {step.isCompleted && (
                   <motion.div
-                    className="h-full bg-blue-600"
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
+                    className="h-full w-full bg-blue-600 md:h-full md:w-full"
+                    initial={{ height: 0, width: 0 }}
+                    animate={{ height: '100%', width: '100%' }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   />
                 )}
@@ -40,20 +43,28 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
             )}
 
             {/* Step Circle */}
-            <motion.div
+            <motion.button
+              type="button"
               className={classNames(
                 'relative',
                 'z-10',
                 'flex',
-                'h-8',
-                'w-8',
+                'h-6',
+                'w-6',
                 'items-center',
                 'justify-center',
                 'rounded-full',
-                'text-sm',
+                'text-xs',
                 'font-semibold',
                 'transition-colors',
                 'duration-300',
+                'md:h-8',
+                'md:w-8',
+                'md:text-sm',
+                'focus:outline-none',
+                'focus:ring-2',
+                'focus:ring-blue-500',
+                'focus:ring-offset-1',
                 {
                   'bg-blue-600 text-white': step.isActive,
                   'bg-green-600 text-white': step.isCompleted && !step.isActive,
@@ -63,15 +74,7 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
               )}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              aria-label={`Step ${step.number}: ${step.title} - ${
-                step.isCompleted
-                  ? 'Completed'
-                  : step.isActive
-                    ? 'Current'
-                    : 'Pending'
-              }`}
-              role="button"
-              tabIndex={0}
+              aria-label={`Step ${step.number}: ${step.title} - ${getStepStatus(step)}`}
             >
               <motion.span
                 key={step.isCompleted ? 'check' : step.number}
@@ -82,20 +85,22 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
               >
                 {step.isCompleted ? '✓' : step.number}
               </motion.span>
-            </motion.div>
+            </motion.button>
 
             {/* Step Title - with background to cover line */}
             <motion.span
               className={classNames(
                 'relative',
                 'z-10',
-                'ml-3',
+                'ml-2',
                 'bg-white',
                 'px-1',
-                'text-sm',
+                'text-xs',
                 'font-medium',
                 'transition-colors',
                 'duration-300',
+                'md:ml-3',
+                'md:text-sm',
                 {
                   'text-blue-700': step.isActive,
                   'text-green-700': step.isCompleted && !step.isActive,
@@ -129,7 +134,7 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
 
       {/* Progress Text */}
       <motion.div
-        className="mt-2 text-center text-sm text-gray-600"
+        className="mt-2 text-center text-xs text-gray-600 md:text-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.6 }}

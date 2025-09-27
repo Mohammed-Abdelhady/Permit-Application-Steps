@@ -28,9 +28,6 @@ const PersonalInformationPage = () => {
     isValid: boolean;
   }>(null);
 
-  // The persisted state is now automatically loaded by the store
-  // No need for manual localStorage loading
-
   const handleFormSubmit = async (data: PersonalInformationFormData) => {
     setIsSubmitting(true);
     try {
@@ -57,9 +54,6 @@ const PersonalInformationPage = () => {
       const isValid = await formRef.current.submitForm();
       if (!isValid) {
         toast.warning('form.validation.pleaseFixErrors');
-      } else {
-        // If form is valid, it will be saved via handleFormSubmit
-        // and navigation will happen automatically
       }
     }
   };
