@@ -4,7 +4,10 @@
     "sections": {
       "personal": "المعلومات الشخصية",
       "address": "معلومات العنوان",
-      "contact": "معلومات الاتصال"
+      "contact": "معلومات الاتصال",
+      "family": "المعلومات العائلية",
+      "employment": "معلومات العمل",
+      "housing": "معلومات السكن"
     },
     "fields": {
       "name": "الاسم الكامل",
@@ -16,7 +19,12 @@
       "state": "المحافظة/الولاية",
       "country": "الدولة",
       "phone": "رقم الهاتف",
-      "email": "البريد الإلكتروني"
+      "email": "البريد الإلكتروني",
+      "maritalStatus": "الحالة الاجتماعية",
+      "dependents": "عدد الأشخاص المعالين",
+      "employmentStatus": "حالة العمل",
+      "monthlyIncome": "الدخل الشهري",
+      "housingStatus": "حالة السكن"
     },
     "placeholders": {
       "name": "أدخل اسمك الكامل",
@@ -27,11 +35,34 @@
       "country": "أدخل اسم الدولة",
       "phone": "أدخل رقم الهاتف",
       "email": "أدخل بريدك الإلكتروني",
-      "gender": "اختر الجنس"
+      "gender": "اختر الجنس",
+      "maritalStatus": "اختر الحالة الاجتماعية",
+      "dependents": "أدخل عدد الأشخاص المعالين",
+      "employmentStatus": "اختر حالة العمل",
+      "monthlyIncome": "أدخل الدخل الشهري",
+      "housingStatus": "اختر حالة السكن"
     },
     "gender": {
       "male": "ذكر",
       "female": "أنثى",
+      "other": "أخرى"
+    },
+    "maritalStatus": {
+      "single": "أعزب/عزباء",
+      "married": "متزوج/متزوجة",
+      "divorced": "مطلق/مطلقة",
+      "widowed": "أرمل/أرملة"
+    },
+    "employmentStatus": {
+      "employed": "موظف",
+      "unemployed": "عاطل عن العمل",
+      "selfEmployed": "يعمل لحسابه الخاص",
+      "retired": "متقاعد"
+    },
+    "housingStatus": {
+      "owned": "مملوك",
+      "rented": "مؤجر",
+      "family": "يسكن مع العائلة",
       "other": "أخرى"
     },
     "countries": {
@@ -350,12 +381,26 @@
     "phonePattern": "يرجى إدخال رقم هاتف صحيح",
     "emailRequired": "البريد الإلكتروني مطلوب",
     "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
-    "emailMaxLength": "يجب ألا يتجاوز البريد الإلكتروني 100 حرف"
+    "emailMaxLength": "يجب ألا يتجاوز البريد الإلكتروني 100 حرف",
+    "maritalStatusRequired": "الحالة الاجتماعية مطلوبة",
+    "maritalStatusValid": "يرجى اختيار حالة اجتماعية صحيحة",
+    "dependentsRequired": "عدد الأشخاص المعالين مطلوب",
+    "dependentsMinValue": "عدد الأشخاص المعالين لا يمكن أن يكون سالباً",
+    "dependentsMaxValue": "عدد الأشخاص المعالين لا يمكن أن يتجاوز 20",
+    "dependentsInteger": "عدد الأشخاص المعالين يجب أن يكون رقماً صحيحاً",
+    "employmentStatusRequired": "حالة العمل مطلوبة",
+    "employmentStatusValid": "يرجى اختيار حالة عمل صحيحة",
+    "monthlyIncomeRequired": "الدخل الشهري مطلوب",
+    "monthlyIncomeMinValue": "الدخل الشهري لا يمكن أن يكون سالباً",
+    "monthlyIncomeMaxValue": "الدخل الشهري لا يمكن أن يتجاوز 1,000,000",
+    "housingStatusRequired": "حالة السكن مطلوبة",
+    "housingStatusValid": "يرجى اختيار حالة سكن صحيحة"
   },
   "success": {
     "hello": "مرحبا {{name}}! تم إرسال بريدك الإلكتروني {{email}} وعمرك {{age}} بنجاح.",
     "form_submitted": "تم إرسال النموذج بنجاح!",
-    "personal_info_saved": "تم حفظ المعلومات الشخصية بنجاح!"
+    "personal_info_saved": "تم حفظ المعلومات الشخصية بنجاح!",
+    "family_financial_saved": "تم حفظ المعلومات العائلية والمالية بنجاح!"
   },
   "permit": {
     "title": "طلب تصريح",

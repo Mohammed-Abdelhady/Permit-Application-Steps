@@ -5,6 +5,30 @@ export const GENDER_OPTIONS = [
   { value: 'other', label: 'form.gender.other' },
 ];
 
+// Marital status options
+export const MARITAL_STATUS_OPTIONS = [
+  { value: 'single', label: 'form.maritalStatus.single' },
+  { value: 'married', label: 'form.maritalStatus.married' },
+  { value: 'divorced', label: 'form.maritalStatus.divorced' },
+  { value: 'widowed', label: 'form.maritalStatus.widowed' },
+];
+
+// Employment status options
+export const EMPLOYMENT_STATUS_OPTIONS = [
+  { value: 'employed', label: 'form.employmentStatus.employed' },
+  { value: 'unemployed', label: 'form.employmentStatus.unemployed' },
+  { value: 'self-employed', label: 'form.employmentStatus.selfEmployed' },
+  { value: 'retired', label: 'form.employmentStatus.retired' },
+];
+
+// Housing status options
+export const HOUSING_STATUS_OPTIONS = [
+  { value: 'owned', label: 'form.housingStatus.owned' },
+  { value: 'rented', label: 'form.housingStatus.rented' },
+  { value: 'family', label: 'form.housingStatus.family' },
+  { value: 'other', label: 'form.housingStatus.other' },
+];
+
 // Complete list of all countries (ISO 3166-1 alpha-2 codes)
 export const COUNTRY_OPTIONS = [
   // A
@@ -308,5 +332,3 @@ export const COUNTRY_OPTIONS = [
   { value: 'zm', label: 'form.countries.zm' }, // Zambia
   { value: 'zw', label: 'form.countries.zw' }, // Zimbabwe
 ];
-
-// export const MARITAL_STATUS_OPTIONS = [...];

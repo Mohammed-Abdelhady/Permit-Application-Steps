@@ -22,3 +22,15 @@ export const createSteps = (
     };
   });
 };
+
+/**
+ * Scrolls to the top of the page with smooth animation
+ * @param behavior Scroll behavior (default: 'smooth')
+ */
+export const scrollToTop = (behavior: ScrollBehavior = 'smooth') => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior,
+  });
+};

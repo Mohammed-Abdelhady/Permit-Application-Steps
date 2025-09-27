@@ -7,6 +7,7 @@ import { useNavigation } from '../../contexts';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { savePersonalInformation } from '../../store/slices/permitSlice';
 import { type PersonalInformationFormData } from '../../schemas';
+import { scrollToTop } from '../../utils/helpers';
 
 const PersonalInformationPage = () => {
   const { t } = useTranslation();
@@ -41,6 +42,7 @@ const PersonalInformationPage = () => {
 
       // Move to next step automatically
       setDirection('forward');
+      scrollToTop();
       navigate('/permit/family-financial');
     } catch (error) {
       console.error('Form submission error:', error);

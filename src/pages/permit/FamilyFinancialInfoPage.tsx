@@ -1,46 +1,90 @@
+import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PermitPageLayout, FormPlaceholder } from '../../components';
-import { usePermitSteps } from '../../hooks';
+import { PermitPageLayout, FamilyFinancialForm } from '../../components';
+import { usePermitSteps, useToast } from '../../hooks';
 import { useNavigation } from '../../contexts';
-import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { saveFamilyFinancial } from '../../store/slices/permitSlice';
+import { type FamilyFinancialFormData } from '../../schemas';
+import { scrollToTop } from '../../utils/helpers';
 
 const FamilyFinancialInfoPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { direction, setDirection } = useNavigation();
+  const { setDirection } = useNavigation();
   const { steps } = usePermitSteps(2);
+  const toast = useToast();
+  const dispatch = useAppDispatch();
 
-  const handleNext = () => {
-    setDirection('forward');
-    navigate('/permit/situation');
+  // Get saved form data from Redux
+  const savedFamilyFinancial = useAppSelector(
+    state => state.permit.familyFinancial
+  );
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<{
+    submitForm: () => Promise<boolean>;
+    isValid: boolean;
+  }>(null);
+
+  const handleFormSubmit = async (data: FamilyFinancialFormData) => {
+    setIsSubmitting(true);
+    try {
+      // Save form data to Redux
+      dispatch(saveFamilyFinancial(data));
+
+      // Show success message
+      toast.success('success.family_financial_saved');
+
+      // Move to next step automatically
+      setDirection('forward');
+      scrollToTop();
+      navigate('/permit/situation');
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error('form.errors.saveFailed', 'form.errors.tryAgain');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleNext = async () => {
+    if (formRef.current) {
+      const isValid = await formRef.current.submitForm();
+      if (!isValid) {
+        toast.warning('form.validation.pleaseFixErrors');
+      } else {
+        // If form is valid, it will be saved via handleFormSubmit
+        // and navigation will happen automatically
+      }
+    }
   };
 
   const handlePrevious = () => {
     setDirection('backward');
+    scrollToTop();
     navigate('/permit/personal');
   };
-
-  const contentClassName = classNames({
-    'ring-2 ring-blue-200': direction === 'forward',
-    'ring-2 ring-gray-200': direction === 'backward',
-  });
 
   return (
     <PermitPageLayout
       title={t('permit.steps.familyFinancial')}
       currentStep={2}
       steps={steps}
-      direction={direction}
+      direction="forward"
       showPrevious
       showNext
       onPrevious={handlePrevious}
       onNext={handleNext}
-      contentClassName={contentClassName}
+      isSubmitting={isSubmitting}
+      contentClassName={steps[1]?.isCompleted ? 'opacity-90' : ''}
     >
-      <FormPlaceholder
-        content={t('permit.placeholders.familyInfo')}
-        direction={direction}
+      <FamilyFinancialForm
+        ref={formRef}
+        onSubmit={handleFormSubmit}
+        initialData={savedFamilyFinancial || undefined}
+        isSubmitting={isSubmitting}
       />
     </PermitPageLayout>
   );

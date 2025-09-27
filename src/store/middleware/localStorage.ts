@@ -1,5 +1,8 @@
 import type { Middleware } from '@reduxjs/toolkit';
-import type { PersonalInformationFormData } from '../../schemas';
+import type {
+  PersonalInformationFormData,
+  FamilyFinancialFormData,
+} from '../../schemas';
 import type { RootState } from '../store';
 
 // Key for localStorage
@@ -9,6 +12,8 @@ const REDUX_PERSIST_KEY = 'dge_permit_data';
 const PERSIST_ACTIONS = [
   'permit/savePersonalInformation',
   'permit/clearPersonalInformation',
+  'permit/saveFamilyFinancial',
+  'permit/clearFamilyFinancial',
   'permit/clearAllFormData',
 ];
 
@@ -28,6 +33,7 @@ export const localStorageMiddleware: Middleware = store => next => action => {
       const state = store.getState() as RootState;
       const persistData = {
         personalInformation: state.permit.personalInformation,
+        familyFinancial: state.permit.familyFinancial,
         timestamp: Date.now(),
       };
       localStorage.setItem(REDUX_PERSIST_KEY, JSON.stringify(persistData));
@@ -46,6 +52,7 @@ interface PersistedState {
     loading: false;
     error: null;
     personalInformation: PersonalInformationFormData | null;
+    familyFinancial: FamilyFinancialFormData | null;
   };
 }
 
@@ -70,6 +77,7 @@ export const loadPersistedState = (): PersistedState | undefined => {
         loading: false,
         error: null,
         personalInformation: parsed.personalInformation || null,
+        familyFinancial: parsed.familyFinancial || null,
       },
     };
   } catch (error) {

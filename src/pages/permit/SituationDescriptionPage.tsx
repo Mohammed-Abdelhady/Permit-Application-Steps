@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { PermitPageLayout, FormPlaceholder } from '../../components';
 import { usePermitSteps } from '../../hooks';
 import { useNavigation } from '../../contexts';
+import { scrollToTop } from '../../utils/helpers';
 const SituationDescriptionPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const SituationDescriptionPage = () => {
 
   const handlePrevious = () => {
     setDirection('backward');
+    scrollToTop();
     navigate('/permit/family-financial');
   };
 
@@ -23,6 +25,7 @@ const SituationDescriptionPage = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       alert(t('success.form_submitted'));
       setDirection('forward');
+      scrollToTop();
       navigate('/');
     } catch (error) {
       console.error('Submission error:', error);

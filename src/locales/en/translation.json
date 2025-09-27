@@ -4,7 +4,10 @@
     "sections": {
       "personal": "Personal Information",
       "address": "Address Information",
-      "contact": "Contact Information"
+      "contact": "Contact Information",
+      "family": "Family Information",
+      "employment": "Employment Information",
+      "housing": "Housing Information"
     },
     "fields": {
       "name": "Full Name",
@@ -16,7 +19,12 @@
       "state": "State/Province",
       "country": "Country",
       "phone": "Phone Number",
-      "email": "Email Address"
+      "email": "Email Address",
+      "maritalStatus": "Marital Status",
+      "dependents": "Number of Dependents",
+      "employmentStatus": "Employment Status",
+      "monthlyIncome": "Monthly Income",
+      "housingStatus": "Housing Status"
     },
     "placeholders": {
       "name": "Enter your full name",
@@ -27,11 +35,34 @@
       "country": "Enter your country",
       "phone": "Enter your phone number",
       "email": "Enter your email address",
-      "gender": "Select your gender"
+      "gender": "Select your gender",
+      "maritalStatus": "Select your marital status",
+      "dependents": "Enter number of dependents",
+      "employmentStatus": "Select your employment status",
+      "monthlyIncome": "Enter your monthly income",
+      "housingStatus": "Select your housing status"
     },
     "gender": {
       "male": "Male",
       "female": "Female",
+      "other": "Other"
+    },
+    "maritalStatus": {
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "widowed": "Widowed"
+    },
+    "employmentStatus": {
+      "employed": "Employed",
+      "unemployed": "Unemployed",
+      "selfEmployed": "Self-Employed",
+      "retired": "Retired"
+    },
+    "housingStatus": {
+      "owned": "Owned",
+      "rented": "Rented",
+      "family": "Living with Family",
       "other": "Other"
     },
     "countries": {
@@ -350,12 +381,26 @@
     "phonePattern": "Please enter a valid phone number",
     "emailRequired": "Email address is required",
     "emailInvalid": "Please enter a valid email address",
-    "emailMaxLength": "Email must not exceed 100 characters"
+    "emailMaxLength": "Email must not exceed 100 characters",
+    "maritalStatusRequired": "Marital status is required",
+    "maritalStatusValid": "Please select a valid marital status",
+    "dependentsRequired": "Number of dependents is required",
+    "dependentsMinValue": "Number of dependents cannot be negative",
+    "dependentsMaxValue": "Number of dependents cannot exceed 20",
+    "dependentsInteger": "Number of dependents must be a whole number",
+    "employmentStatusRequired": "Employment status is required",
+    "employmentStatusValid": "Please select a valid employment status",
+    "monthlyIncomeRequired": "Monthly income is required",
+    "monthlyIncomeMinValue": "Monthly income cannot be negative",
+    "monthlyIncomeMaxValue": "Monthly income cannot exceed 1,000,000",
+    "housingStatusRequired": "Housing status is required",
+    "housingStatusValid": "Please select a valid housing status"
   },
   "success": {
     "hello": "Hello {{name}}! Your email {{email}} and age {{age}} have been submitted successfully.",
     "form_submitted": "Form submitted successfully!",
-    "personal_info_saved": "Personal information saved successfully!"
+    "personal_info_saved": "Personal information saved successfully!",
+    "family_financial_saved": "Family and financial information saved successfully!"
   },
   "permit": {
     "title": "Permit Application",
