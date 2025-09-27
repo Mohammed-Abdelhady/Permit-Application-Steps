@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import type { StoredPermitData } from '../../store/api/types';
+import type { StoredPermitData } from '../../store/types/permit';
 
 interface ApplicationAnalysisProps {
   permitData: StoredPermitData;

@@ -7,12 +7,12 @@ import type {
   PermitStatusResponse,
   GetPermitResponse,
   StoredPermitData,
-} from './types';
-import { API_DELAYS } from './constants';
-import { generateUniqueId, createApplicationId } from './utils';
-import { StorageUtils } from './storage';
-import { AnalysisEngine } from './analysis';
-import { ApiHelpers } from './helpers';
+} from '../types/permit';
+import { API_DELAYS } from '../constants/api';
+import { generateUniqueId, createApplicationId } from '../utils/api';
+import { StorageUtils } from '../services/storage';
+import { AnalysisEngine } from '../services/analysis';
+import { ApiHelpers } from '../helpers/api';
 
 export const permitApi = baseApi.injectEndpoints({
   endpoints: builder => ({

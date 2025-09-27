@@ -5,7 +5,7 @@ import { PersonalInformationSummary } from './PersonalInformationSummary';
 import { FamilyFinancialSummary } from './FamilyFinancialSummary';
 import { SituationDescriptionSummary } from './SituationDescriptionSummary';
 
-import type { StoredPermitData } from '../../store/api/types';
+import type { StoredPermitData } from '../../store/types/permit';
 
 interface ApplicationSummaryProps {
   permitData: StoredPermitData;

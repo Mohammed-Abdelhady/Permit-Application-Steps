@@ -107,16 +107,13 @@ const SituationDescriptionForm = forwardRef<
 
         <FormTextArea
           {...register('currentFinancialSituation')}
+          value={watch('currentFinancialSituation') || ''}
           label="form.fields.currentFinancialSituation"
           placeholder={t('form.placeholders.currentFinancialSituation')}
           rows={5}
           resize="vertical"
-          onValueChange={value => {
-            register('currentFinancialSituation').onChange({
-              target: { name: 'currentFinancialSituation', value },
-            });
-            trigger('currentFinancialSituation');
-          }}
+          enableAIHelp={true}
+          aiFieldType="financial"
           error={
             showAllErrors || touchedFields.currentFinancialSituation
               ? errors.currentFinancialSituation?.message
@@ -141,16 +138,13 @@ const SituationDescriptionForm = forwardRef<
 
         <FormTextArea
           {...register('employmentCircumstances')}
+          value={watch('employmentCircumstances') || ''}
           label="form.fields.employmentCircumstances"
           placeholder={t('form.placeholders.employmentCircumstances')}
           rows={5}
           resize="vertical"
-          onValueChange={value => {
-            register('employmentCircumstances').onChange({
-              target: { name: 'employmentCircumstances', value },
-            });
-            trigger('employmentCircumstances');
-          }}
+          enableAIHelp={true}
+          aiFieldType="employment"
           error={
             showAllErrors || touchedFields.employmentCircumstances
               ? errors.employmentCircumstances?.message
@@ -175,16 +169,13 @@ const SituationDescriptionForm = forwardRef<
 
         <FormTextArea
           {...register('reasonForApplying')}
+          value={watch('reasonForApplying') || ''}
           label="form.fields.reasonForApplying"
           placeholder={t('form.placeholders.reasonForApplying')}
           rows={6}
           resize="vertical"
-          onValueChange={value => {
-            register('reasonForApplying').onChange({
-              target: { name: 'reasonForApplying', value },
-            });
-            trigger('reasonForApplying');
-          }}
+          enableAIHelp={true}
+          aiFieldType="reason"
           error={
             showAllErrors || touchedFields.reasonForApplying
               ? errors.reasonForApplying?.message

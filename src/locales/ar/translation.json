@@ -340,7 +340,23 @@
     "submitting": "جارٍ الإرسال...",
     "trySubmitting": "جرب إرسال النموذج مع التحقق من صحة البيانات!",
     "required": "حقل مطلوب",
-    "error": "خطأ"
+    "error": "خطأ",
+    "helpMeWrite": "ساعدني في الكتابة",
+    "generating": "جارٍ الإنتاج..."
+  },
+  "ai": {
+    "suggestion_title": "اقتراح الكتابة بالذكاء الاصطناعي",
+    "suggestion_ready": "الاقتراح جاهز",
+    "suggestion_description": "راجع الاقتراح أدناه واختر إجراءً.",
+    "error_title": "خطأ في إنتاج الاقتراح",
+    "edit_suggestion": "تعديل الاقتراح",
+    "suggested_text": "النص المقترح",
+    "suggestion_placeholder": "أدخل النص هنا...",
+    "discard": "تجاهل",
+    "edit": "تعديل",
+    "accept": "قبول الأصلي",
+    "use_edited": "استخدام المُعدَّل",
+    "save_changes": "حفظ التغييرات"
   },
   "common": {
     "dismiss": "إغلاق",

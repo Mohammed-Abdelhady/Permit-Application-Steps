@@ -340,7 +340,23 @@
     "submitting": "Submitting...",
     "trySubmitting": "Try submitting the form with validation!",
     "required": "Required field",
-    "error": "Error"
+    "error": "Error",
+    "helpMeWrite": "Help Me Write",
+    "generating": "Generating..."
+  },
+  "ai": {
+    "suggestion_title": "AI Writing Suggestion",
+    "suggestion_ready": "AI Suggestion Ready",
+    "suggestion_description": "Review the suggestion below and choose an action.",
+    "error_title": "Error generating suggestion",
+    "edit_suggestion": "Edit Suggestion",
+    "suggested_text": "Suggested Text",
+    "suggestion_placeholder": "Enter your text here...",
+    "discard": "Discard",
+    "edit": "Edit",
+    "accept": "Accept Original",
+    "use_edited": "Use Edited",
+    "save_changes": "Save Changes"
   },
   "common": {
     "dismiss": "Dismiss",

@@ -7,7 +7,7 @@ export type {
   StoredPermitData,
   GetPermitResponse,
   AnalysisResult,
-} from './types';
+} from '../types/permit';
 
 // Re-export constants
 export {
@@ -16,19 +16,23 @@ export {
   SCORING_CONFIG,
   RECOMMENDATIONS,
   PROCESSING_CONFIG,
-} from './constants';
+} from '../constants/api';
 
 // Re-export utilities
-export { generateUniqueId, createApplicationId, simulateDelay } from './utils';
+export {
+  generateUniqueId,
+  createApplicationId,
+  simulateDelay,
+} from '../utils/api';
 
 // Re-export storage functions
-export { StorageUtils } from './storage';
+export { StorageUtils } from '../services/storage';
 
 // Re-export analysis engine
-export { AnalysisEngine } from './analysis';
+export { AnalysisEngine } from '../services/analysis';
 
 // Re-export API helpers
-export { ApiHelpers } from './helpers';
+export { ApiHelpers } from '../helpers/api';
 
 // Re-export main API
 export {
@@ -38,3 +42,29 @@ export {
   useGetPermitByIdQuery,
   useGetPermitStatusQuery,
 } from './permitApi';
+
+// Re-export OpenAI API
+export {
+  openAIApi,
+  useGenerateTextSuggestionMutation,
+  useGenerateTextMutation,
+} from './openAIApi';
+
+// Re-export OpenAI types
+export type {
+  OpenAIMessage,
+  OpenAIRequest,
+  OpenAIResponse,
+  GenerateTextRequest,
+  GenerateTextResponse,
+  GenerateGenericTextRequest,
+  GenerateGenericTextResponse,
+  SuggestionFieldType,
+  OpenAIConfig,
+  OpenAIError,
+  OpenAIErrorCode,
+} from '../types/openAI';
+export { DEFAULT_OPENAI_CONFIG } from '../types/openAI';
+
+// Re-export base API
+export { baseApi } from './baseApi';

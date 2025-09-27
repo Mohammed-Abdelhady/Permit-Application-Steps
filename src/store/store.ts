@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { baseApi } from './api/baseApi';
+import { openAIApi } from './api/openAIApi';
 import permitReducer from './slices/permitSlice';
 import {
   localStorageMiddleware,
@@ -11,6 +12,7 @@ import {
 const rootReducer = {
   permit: permitReducer,
   [baseApi.reducerPath]: baseApi.reducer,
+  [openAIApi.reducerPath]: openAIApi.reducer,
 };
 
 // Load persisted state from localStorage
@@ -26,6 +28,7 @@ export const store = configureStore({
       },
     })
       .concat(baseApi.middleware)
+      .concat(openAIApi.middleware)
       .concat(localStorageMiddleware),
 });
 
