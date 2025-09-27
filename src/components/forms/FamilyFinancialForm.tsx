@@ -99,23 +99,23 @@ const FamilyFinancialForm = forwardRef<
   return (
     <motion.form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="space-y-6"
+      className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       {/* Family Information Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.family')}
         </h3>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <div>
             <FormSelect
               {...register('maritalStatus')}
@@ -166,16 +166,16 @@ const FamilyFinancialForm = forwardRef<
 
       {/* Employment Information Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.employment')}
         </h3>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <div>
             <FormSelect
               {...register('employmentStatus')}
@@ -226,12 +226,12 @@ const FamilyFinancialForm = forwardRef<
 
       {/* Housing Information Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.housing')}
         </h3>
 

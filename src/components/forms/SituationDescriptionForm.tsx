@@ -89,19 +89,19 @@ const SituationDescriptionForm = forwardRef<
   return (
     <motion.form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="space-y-6"
+      className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       {/* Financial Situation Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.financialSituation')}
         </h3>
 
@@ -130,12 +130,12 @@ const SituationDescriptionForm = forwardRef<
 
       {/* Employment Circumstances Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.employmentCircumstances')}
         </h3>
 
@@ -164,12 +164,12 @@ const SituationDescriptionForm = forwardRef<
 
       {/* Application Reason Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.applicationReason')}
         </h3>
 

@@ -50,19 +50,6 @@ const SituationDescriptionPage = () => {
 
       // Show validation results
       if (situationResponse.success) {
-        toast.success('success.situation_description_saved');
-
-        // Show validation score and recommendations if available
-        if (situationResponse.data.recommendations.length > 0) {
-          console.log(
-            'API Recommendations:',
-            situationResponse.data.recommendations
-          );
-          toast.info(
-            `Validation Score: ${situationResponse.data.validationScore}%`
-          );
-        }
-
         // Now submit the complete permit application
         const completeApplication = {
           personalInformation,

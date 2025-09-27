@@ -32,7 +32,7 @@ const PermitPageLayout = ({
   return (
     <div
       className={classNames(
-        'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4',
+        'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-2 md:p-4 lg:p-6',
         {
           rtl: isRTL,
           ltr: !isRTL,
@@ -41,7 +41,7 @@ const PermitPageLayout = ({
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Header */}
-      <Header className="mx-auto mb-8 flex max-w-4xl items-center justify-between" />
+      <Header className="mx-auto mb-4 flex max-w-4xl items-center justify-between md:mb-6 lg:mb-8" />
 
       {/* Main Content */}
       <div className="mx-auto max-w-4xl">
@@ -49,10 +49,10 @@ const PermitPageLayout = ({
           <motion.div
             className={classNames(
               'mx-auto',
-              'max-w-2xl',
+              'max-w-4xl',
               'rounded-xl',
               'bg-white',
-              'p-8',
+              'p-4 md:p-6 lg:p-8 xl:p-10',
               'shadow-lg',
               containerClassName
             )}
@@ -62,7 +62,7 @@ const PermitPageLayout = ({
             whileHover={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
           >
             <motion.h2
-              className="mb-6 text-2xl font-bold text-gray-800"
+              className="mb-4 text-xl font-bold text-gray-800 md:mb-6 md:text-2xl lg:text-3xl"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
@@ -74,8 +74,8 @@ const PermitPageLayout = ({
 
             <motion.div
               className={classNames(
-                'mb-8',
-                'space-y-4',
+                'mb-6 md:mb-8',
+                'space-y-4 md:space-y-6',
                 {
                   'opacity-50': isSubmitting,
                   'pointer-events-none': isSubmitting,

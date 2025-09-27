@@ -107,7 +107,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             aria-required={required ? 'true' : 'false'}
             aria-describedby={ariaDescribedBy || undefined}
             className={classNames(
-              'block w-full rounded-lg border px-4 py-3 text-sm transition-all duration-200 focus:ring-2 focus:outline-none',
+              'block w-full rounded-lg border px-3 py-2 text-sm transition-all duration-200 focus:ring-2 focus:outline-none md:px-4 md:py-3 md:text-base',
               {
                 'border-gray-300 bg-white text-gray-900 focus:border-blue-500 focus:ring-blue-500':
                   !error,

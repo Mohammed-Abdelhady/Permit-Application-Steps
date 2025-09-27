@@ -105,23 +105,23 @@ const PersonalInformationForm = forwardRef<
   return (
     <motion.form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="space-y-6"
+      className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       {/* Personal Information Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.personal')}
         </h3>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('name')}
             label="form.fields.name"
@@ -161,7 +161,7 @@ const PersonalInformationForm = forwardRef<
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('dateOfBirth')}
             type="date"
@@ -211,15 +211,15 @@ const PersonalInformationForm = forwardRef<
       {/* Address Information Section */}
 
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.address')}
         </h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('address')}
             label="form.fields.address"
@@ -262,7 +262,7 @@ const PersonalInformationForm = forwardRef<
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('city')}
             label="form.fields.city"
@@ -305,16 +305,16 @@ const PersonalInformationForm = forwardRef<
 
       {/* Contact Information Section */}
       <motion.div
-        className="space-y-4"
+        className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
       >
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        <h3 className="mb-4 text-lg font-semibold text-gray-800 md:text-xl">
           {t('form.sections.contact')}
         </h3>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('phone')}
             type="tel"

@@ -10,7 +10,7 @@ import ApplicationAnalysis from '../../components/permit/ApplicationAnalysis';
 import ApplicationSummary from '../../components/permit/ApplicationSummary';
 import ActionButtons from '../../components/permit/ActionButtons';
 
-const PermitSubmissionSuccessPage = () => {
+const PermitSubmissionSuccessPageOptimized = () => {
   const { i18n } = useTranslation();
   const { applicationId } = useParams<{ applicationId: string }>();
   const isRTL = i18n.language === 'ar';
@@ -85,4 +85,4 @@ const PermitSubmissionSuccessPage = () => {
   );
 };
 
-export default PermitSubmissionSuccessPage;
+export default PermitSubmissionSuccessPageOptimized;
