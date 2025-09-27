@@ -221,12 +221,14 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
     if (!searchable) {
       return (
         <motion.div
+          data-testid="form-select-container"
           className="space-y-2"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           <label
+            data-testid="form-select-label"
             htmlFor={selectId}
             className={classNames(
               'block cursor-pointer text-sm font-medium',
@@ -240,6 +242,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
             {t(label)}
             {required && (
               <span
+                data-testid="form-select-required"
                 className="ml-1 text-red-500"
                 aria-label={t('form.required')}
                 title={t('form.required')}
@@ -251,6 +254,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
           {description && (
             <motion.div
+              data-testid="form-select-description"
               id={descriptionId}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -268,6 +272,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
             transition={{ duration: 0.2 }}
           >
             <select
+              data-testid="form-select-field"
               ref={ref}
               id={selectId}
               value={value}
@@ -306,6 +311,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
           {helperText && !error && (
             <motion.div
+              data-testid="form-select-helper"
               id={helperId}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
@@ -321,6 +327,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
           {error && (
             <motion.div
+              data-testid="form-select-error"
               id={errorId}
               role="alert"
               aria-live="polite"
@@ -343,6 +350,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
     // Enhanced searchable select with custom dropdown
     return (
       <motion.div
+        data-testid="form-select-searchable-container"
         ref={containerRef}
         className="relative space-y-2"
         initial={{ opacity: 0, y: 10 }}
@@ -350,6 +358,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
         transition={{ duration: 0.3 }}
       >
         <label
+          data-testid="form-select-searchable-label"
           htmlFor={selectId}
           className={classNames(
             'block cursor-pointer text-sm font-medium',
@@ -363,6 +372,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
           {t(label)}
           {required && (
             <span
+              data-testid="form-select-searchable-required"
               className="ml-1 text-red-500"
               aria-label={t('form.required')}
               title={t('form.required')}
@@ -374,6 +384,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
         {description && (
           <motion.div
+            data-testid="form-select-searchable-description"
             id={descriptionId}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -406,6 +417,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
         {/* Custom Dropdown Button */}
         <motion.button
+          data-testid="form-select-trigger"
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           onKeyDown={handleKeyDown}
@@ -428,6 +440,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
         >
           <span className="flex items-center justify-between">
             <span
+              data-testid="form-select-display-text"
               className={classNames('truncate', {
                 'text-gray-500': !selectedOption,
                 'text-gray-900': selectedOption,
@@ -440,6 +453,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
               {/* Clear button */}
               {clearable && selectedOption && (
                 <motion.button
+                  data-testid="form-select-clear-button"
                   type="button"
                   onClick={handleClear}
                   className="rounded p-1 hover:bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -464,6 +478,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
               {/* Dropdown arrow */}
               <motion.svg
+                data-testid="form-select-dropdown-icon"
                 className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -485,6 +500,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              data-testid="form-select-dropdown"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -494,6 +510,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
               {/* Search Input */}
               <div className="border-b border-gray-200 p-2">
                 <input
+                  data-testid="form-select-search-input"
                   ref={searchRef}
                   id={searchId}
                   type="text"
@@ -507,6 +524,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
               {/* Options List */}
               <ul
+                data-testid="form-select-options-list"
                 ref={listboxRef}
                 id={listboxId}
                 role="listbox"
@@ -514,7 +532,10 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
                 style={{ maxHeight }}
               >
                 {filteredOptions.length === 0 ? (
-                  <li className="px-4 py-2 text-sm text-gray-500">
+                  <li
+                    data-testid="form-select-no-results"
+                    className="px-4 py-2 text-sm text-gray-500"
+                  >
                     {searchTerm
                       ? t('common.noResultsFound')
                       : t('common.noOptionsAvailable')}
@@ -526,6 +547,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
                     return (
                       <motion.li
+                        data-testid={`form-select-option-${option.value}`}
                         key={option.value}
                         role="option"
                         aria-selected={isSelected}
@@ -603,6 +625,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
         {helperText && !error && (
           <motion.div
+            data-testid="form-select-searchable-helper"
             id={helperId}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -618,6 +641,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
         {error && (
           <motion.div
+            data-testid="form-select-searchable-error"
             id={errorId}
             role="alert"
             aria-live="polite"
