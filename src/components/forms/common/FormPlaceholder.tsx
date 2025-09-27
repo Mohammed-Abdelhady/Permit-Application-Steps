@@ -9,6 +9,7 @@ const FormPlaceholder = ({
 }: FormPlaceholderProps) => {
   return (
     <motion.div
+      data-testid="form-placeholder"
       className={classNames(
         'rounded-lg',
         'border-2',
@@ -27,7 +28,9 @@ const FormPlaceholder = ({
       whileHover={{ scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
-      <p className="text-gray-500">{content}</p>
+      <p data-testid="form-placeholder-content" className="text-gray-500">
+        {content}
+      </p>
     </motion.div>
   );
 };
