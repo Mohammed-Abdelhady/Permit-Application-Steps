@@ -38,8 +38,8 @@ describe('PersonalInformationPage - Core Logic Tests', () => {
       // Verify test ID structure is logical and complete
       expect(TEST_IDS.page).toBe('personal-information-page');
       expect(TEST_IDS.form).toBe('personal-information-form');
-      expect(Object.keys(TEST_IDS.sections)).toHaveLength(3);
-      expect(Object.keys(TEST_IDS.fields)).toHaveLength(10);
+      expect(Object.keys(TEST_IDS.sections)).toHaveLength(6);
+      expect(Object.keys(TEST_IDS.fields)).toHaveLength(15);
       expect(Object.keys(TEST_IDS.navigation)).toHaveLength(4);
     });
   });

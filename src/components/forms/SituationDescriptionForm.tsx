@@ -88,6 +88,7 @@ const SituationDescriptionForm = forwardRef<
 
   return (
     <motion.form
+      data-testid="situation-description-form"
       onSubmit={handleSubmit(handleFormSubmit)}
       className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
@@ -96,6 +97,7 @@ const SituationDescriptionForm = forwardRef<
     >
       {/* Financial Situation Section */}
       <motion.div
+        data-testid="financial-situation-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -107,6 +109,7 @@ const SituationDescriptionForm = forwardRef<
 
         <FormTextArea
           {...register('currentFinancialSituation')}
+          data-testid="current-financial-situation-input"
           value={watch('currentFinancialSituation') || ''}
           label="form.fields.currentFinancialSituation"
           placeholder={t('form.placeholders.currentFinancialSituation')}
@@ -127,6 +130,7 @@ const SituationDescriptionForm = forwardRef<
 
       {/* Employment Circumstances Section */}
       <motion.div
+        data-testid="employment-circumstances-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -138,6 +142,7 @@ const SituationDescriptionForm = forwardRef<
 
         <FormTextArea
           {...register('employmentCircumstances')}
+          data-testid="employment-circumstances-input"
           value={watch('employmentCircumstances') || ''}
           label="form.fields.employmentCircumstances"
           placeholder={t('form.placeholders.employmentCircumstances')}
@@ -158,6 +163,7 @@ const SituationDescriptionForm = forwardRef<
 
       {/* Application Reason Section */}
       <motion.div
+        data-testid="application-reason-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -169,6 +175,7 @@ const SituationDescriptionForm = forwardRef<
 
         <FormTextArea
           {...register('reasonForApplying')}
+          data-testid="reason-for-applying-input"
           value={watch('reasonForApplying') || ''}
           label="form.fields.reasonForApplying"
           placeholder={t('form.placeholders.reasonForApplying')}

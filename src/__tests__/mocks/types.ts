@@ -34,11 +34,10 @@ export interface FamilyFinancialData extends Record<string, string | number> {
   housingStatus: string;
 }
 
-export interface SituationDescriptionData {
-  currentSituation: string;
-  reasonForApplication: string;
-  additionalInfo: string;
-  urgencyLevel: string;
+export interface SituationDescriptionData extends Record<string, string> {
+  currentFinancialSituation: string;
+  employmentCircumstances: string;
+  reasonForApplying: string;
 }
 
 // Form State Types

@@ -116,25 +116,27 @@ const SituationDescriptionPage = () => {
   };
 
   return (
-    <PermitPageLayout
-      title={t('permit.steps.situation')}
-      currentStep={3}
-      steps={steps}
-      direction="forward"
-      showPrevious
-      showSubmit
-      onPrevious={handlePrevious}
-      onSubmit={handleSubmit}
-      isSubmitting={isSubmitting}
-      contentClassName={steps[2]?.isCompleted ? 'opacity-90' : ''}
-    >
-      <SituationDescriptionForm
-        ref={formRef}
-        onSubmit={handleFormSubmit}
-        initialData={savedSituationDescription || undefined}
+    <div data-testid="situation-description-page">
+      <PermitPageLayout
+        title={t('permit.steps.situation')}
+        currentStep={3}
+        steps={steps}
+        direction="forward"
+        showPrevious
+        showSubmit
+        onPrevious={handlePrevious}
+        onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
-      />
-    </PermitPageLayout>
+        contentClassName={steps[2]?.isCompleted ? 'opacity-90' : ''}
+      >
+        <SituationDescriptionForm
+          ref={formRef}
+          onSubmit={handleFormSubmit}
+          initialData={savedSituationDescription || undefined}
+          isSubmitting={isSubmitting}
+        />
+      </PermitPageLayout>
+    </div>
   );
 };
 

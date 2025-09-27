@@ -177,6 +177,21 @@ export const mockFormTextArea = vi.fn(
 );
 
 // Test Constants
+export const SITUATION_DESCRIPTION_TEST_IDS = {
+  page: 'situation-description-page',
+  form: 'situation-description-form',
+  sections: {
+    financialSituation: 'financial-situation-section',
+    employmentCircumstances: 'employment-circumstances-section',
+    applicationReason: 'application-reason-section',
+  },
+  fields: {
+    currentFinancialSituation: 'current-financial-situation-input',
+    employmentCircumstances: 'employment-circumstances-input',
+    reasonForApplying: 'reason-for-applying-input',
+  },
+};
+
 export const TEST_IDS: TestIDs = {
   page: 'personal-information-page',
   form: 'personal-information-form',
@@ -233,6 +248,12 @@ export const FAMILY_FINANCIAL_REQUIRED_FIELDS: (keyof FamilyFinancialData)[] = [
   'monthlyIncome',
   'housingStatus',
 ];
+
+export const SITUATION_DESCRIPTION_REQUIRED_FIELDS = [
+  'currentFinancialSituation',
+  'employmentCircumstances',
+  'reasonForApplying',
+] as const;
 
 export const VALIDATION_PATTERNS: ValidationPatterns = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -347,6 +368,41 @@ export const createIncompleteFamilyFinancialData = (): FamilyFinancialData => ({
   housingStatus: 'rented',
 });
 
+// Situation Description Data Generators
+export const createMockSituationDescriptionData = (
+  overrides: Partial<SituationDescriptionData> = {}
+): SituationDescriptionData => ({
+  currentFinancialSituation:
+    'I am currently facing financial difficulties due to unexpected medical expenses. My savings have been depleted and I am struggling to meet my monthly obligations.',
+  employmentCircumstances:
+    'I am currently employed full-time as a customer service representative. However, my income is not sufficient to cover all my expenses after the recent medical emergency.',
+  reasonForApplying:
+    'I am applying for this permit to access financial assistance that will help me stabilize my situation and get back on track financially.',
+  ...overrides,
+});
+
+export const createEmptySituationDescriptionData =
+  (): SituationDescriptionData => ({
+    currentFinancialSituation: '',
+    employmentCircumstances: '',
+    reasonForApplying: '',
+  });
+
+export const createPartialSituationDescriptionData =
+  (): SituationDescriptionData => ({
+    currentFinancialSituation: 'Financial difficulties due to job loss',
+    employmentCircumstances: '',
+    reasonForApplying: 'Need assistance to get back on my feet',
+  });
+
+export const createIncompleteSituationDescriptionData =
+  (): SituationDescriptionData => ({
+    currentFinancialSituation:
+      'Recent medical expenses have created financial strain',
+    employmentCircumstances: '',
+    reasonForApplying: 'Seeking temporary assistance to stabilize finances',
+  });
+
 export const createMockUser = (
   overrides: Partial<TestUser> = {}
 ): TestUser => ({
@@ -410,6 +466,26 @@ export const calculateFamilyFinancialProgress = (
   });
   return Math.round(
     (filledFields.length / FAMILY_FINANCIAL_REQUIRED_FIELDS.length) * 100
+  );
+};
+
+// Situation Description Validation Functions
+export const isSituationDescriptionFormComplete = (
+  data: Record<string, string>
+) => {
+  return SITUATION_DESCRIPTION_REQUIRED_FIELDS.every(
+    field => data[field] && data[field].trim() !== ''
+  );
+};
+
+export const calculateSituationDescriptionProgress = (
+  data: Record<string, string>
+) => {
+  const filledFields = SITUATION_DESCRIPTION_REQUIRED_FIELDS.filter(
+    field => data[field] && data[field].trim() !== ''
+  );
+  return Math.round(
+    (filledFields.length / SITUATION_DESCRIPTION_REQUIRED_FIELDS.length) * 100
   );
 };
 
