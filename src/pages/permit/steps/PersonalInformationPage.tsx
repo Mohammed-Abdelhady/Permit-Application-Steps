@@ -62,23 +62,25 @@ const PersonalInformationPage = () => {
   };
 
   return (
-    <PermitPageLayout
-      title={t('permit.steps.personal')}
-      currentStep={1}
-      steps={steps}
-      direction="forward"
-      showNext
-      onNext={handleNext}
-      isSubmitting={isSubmitting}
-      contentClassName={steps[0]?.isCompleted ? 'opacity-90' : ''}
-    >
-      <PersonalInformationForm
-        ref={formRef}
-        onSubmit={handleFormSubmit}
-        initialData={savedPersonalInfo || undefined}
+    <div data-testid="personal-information-page">
+      <PermitPageLayout
+        title={t('permit.steps.personal')}
+        currentStep={1}
+        steps={steps}
+        direction="forward"
+        showNext
+        onNext={handleNext}
         isSubmitting={isSubmitting}
-      />
-    </PermitPageLayout>
+        contentClassName={steps[0]?.isCompleted ? 'opacity-90' : ''}
+      >
+        <PersonalInformationForm
+          ref={formRef}
+          onSubmit={handleFormSubmit}
+          initialData={savedPersonalInfo || undefined}
+          isSubmitting={isSubmitting}
+        />
+      </PermitPageLayout>
+    </div>
   );
 };
 

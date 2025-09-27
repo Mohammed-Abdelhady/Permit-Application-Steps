@@ -23,6 +23,7 @@ const Header = ({ className }: HeaderProps) => {
 
   return (
     <motion.header
+      data-testid="header"
       className={`${className} relative`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -42,6 +43,7 @@ const Header = ({ className }: HeaderProps) => {
               {/* Brand Text */}
               <div className="block">
                 <motion.button
+                  data-testid="home-button"
                   onClick={handleHomeClick}
                   className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-sm font-bold text-transparent transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none sm:text-lg md:text-xl lg:text-2xl"
                   whileHover={{ scale: 1.02 }}
@@ -55,6 +57,7 @@ const Header = ({ className }: HeaderProps) => {
 
             {/* Navigation */}
             <motion.div
+              data-testid="header-navigation"
               className="flex items-center space-x-2 md:space-x-4 lg:space-x-6"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -62,6 +65,7 @@ const Header = ({ className }: HeaderProps) => {
             >
               {/* Notifications */}
               <motion.button
+                data-testid="notifications-button"
                 className="relative rounded-lg p-2 text-gray-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -72,6 +76,7 @@ const Header = ({ className }: HeaderProps) => {
 
               {/* Language Toggle */}
               <motion.button
+                data-testid="language-toggle-button"
                 onClick={toggleLanguage}
                 aria-label={`${t('language.switch')} - ${i18n.language === 'en' ? 'Switch to Arabic' : 'Switch to English'}`}
                 className="flex items-center space-x-1 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-2 py-1.5 text-white shadow-md transition-all duration-200 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none md:space-x-2 md:px-4 md:py-2"

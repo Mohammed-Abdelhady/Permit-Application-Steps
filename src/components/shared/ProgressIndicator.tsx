@@ -12,6 +12,7 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
 
   return (
     <motion.div
+      data-testid="progress-indicator"
       className="mb-4 md:mb-6 lg:mb-8"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -23,6 +24,7 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
         {steps.map((step, index) => (
           <motion.div
             key={step.number}
+            data-testid={`step-${step.number}`}
             className="relative flex items-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -45,6 +47,7 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
             {/* Step Circle */}
             <motion.button
               type="button"
+              data-testid={`step-${step.number}-circle`}
               className={classNames(
                 'relative',
                 'z-10',
@@ -119,12 +122,14 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
 
       {/* Animated Progress Bar */}
       <motion.div
+        data-testid="progress-bar-container"
         className="h-2 w-full overflow-hidden rounded-sm bg-gray-200 shadow-inner"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <motion.div
+          data-testid="progress-bar-fill"
           className="h-2 rounded-sm bg-gradient-to-r from-blue-500 to-blue-600"
           initial={{ width: 0 }}
           animate={{ width: `${(currentStep / steps.length) * 100}%` }}
@@ -134,6 +139,7 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
 
       {/* Progress Text */}
       <motion.div
+        data-testid="progress-text"
         className="mt-2 text-center text-xs text-gray-600 md:text-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

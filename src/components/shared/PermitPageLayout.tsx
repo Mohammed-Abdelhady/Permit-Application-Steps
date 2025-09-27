@@ -31,6 +31,7 @@ const PermitPageLayout = ({
 
   return (
     <div
+      data-testid="permit-page-layout"
       className={classNames(
         'min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-2 md:p-4 lg:p-6',
         {
@@ -47,6 +48,7 @@ const PermitPageLayout = ({
       <div className="mx-auto max-w-4xl">
         <AnimatedPageWrapper direction={normalizedDirection}>
           <motion.div
+            data-testid="permit-page-content"
             className={classNames(
               'mx-auto',
               'max-w-4xl',
@@ -62,6 +64,7 @@ const PermitPageLayout = ({
             whileHover={{ boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
           >
             <motion.h2
+              data-testid="page-title"
               className="mb-4 text-xl font-bold text-gray-800 md:mb-6 md:text-2xl lg:text-3xl"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -73,6 +76,7 @@ const PermitPageLayout = ({
             <ProgressIndicator steps={steps} currentStep={currentStep} />
 
             <motion.div
+              data-testid="form-content"
               className={classNames(
                 'mb-6 md:mb-8',
                 'space-y-4 md:space-y-6',

@@ -18,6 +18,7 @@ const Navigation = ({
 
   return (
     <motion.div
+      data-testid="navigation"
       className="flex justify-between pt-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -27,6 +28,7 @@ const Navigation = ({
         {showPrevious && (
           <motion.button
             type="button"
+            data-testid="previous-button"
             onClick={onPrevious}
             aria-label={t('permit.navigation.previous')}
             className={classNames(
@@ -62,6 +64,7 @@ const Navigation = ({
         {showNext && (
           <motion.button
             type="button"
+            data-testid="next-button"
             onClick={onNext}
             aria-label={t('permit.navigation.next')}
             className={classNames(
@@ -94,6 +97,7 @@ const Navigation = ({
         {showSubmit && (
           <motion.button
             type="submit"
+            data-testid="submit-button"
             onClick={onSubmit}
             disabled={isSubmitting}
             aria-label={

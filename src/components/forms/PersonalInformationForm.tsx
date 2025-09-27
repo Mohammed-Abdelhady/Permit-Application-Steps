@@ -104,6 +104,7 @@ const PersonalInformationForm = forwardRef<
 
   return (
     <motion.form
+      data-testid="personal-information-form"
       onSubmit={handleSubmit(handleFormSubmit)}
       className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
@@ -112,6 +113,7 @@ const PersonalInformationForm = forwardRef<
     >
       {/* Personal Information Section */}
       <motion.div
+        data-testid="personal-information-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -124,6 +126,7 @@ const PersonalInformationForm = forwardRef<
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('name')}
+            data-testid="name-input"
             label="form.fields.name"
             placeholder={t('form.placeholders.name')}
             onValueChange={value => {
@@ -143,6 +146,7 @@ const PersonalInformationForm = forwardRef<
 
           <FormInput
             {...register('nationalId')}
+            data-testid="national-id-input"
             label="form.fields.nationalId"
             placeholder={t('form.placeholders.nationalId')}
             onValueChange={value => {
@@ -164,6 +168,7 @@ const PersonalInformationForm = forwardRef<
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('dateOfBirth')}
+            data-testid="date-of-birth-input"
             type="date"
             label="form.fields.dateOfBirth"
             onValueChange={value => {
@@ -184,6 +189,7 @@ const PersonalInformationForm = forwardRef<
           <div>
             <FormSelect
               {...register('gender')}
+              data-testid="gender-select"
               value={watch('gender') || ''}
               label="form.fields.gender"
               options={GENDER_OPTIONS}
@@ -211,6 +217,7 @@ const PersonalInformationForm = forwardRef<
       {/* Address Information Section */}
 
       <motion.div
+        data-testid="address-information-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -222,6 +229,7 @@ const PersonalInformationForm = forwardRef<
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('address')}
+            data-testid="address-input"
             label="form.fields.address"
             placeholder={t('form.placeholders.address')}
             onValueChange={value => {
@@ -240,6 +248,7 @@ const PersonalInformationForm = forwardRef<
           />
           <FormSelect
             {...register('country')}
+            data-testid="country-select"
             value={watch('country') || ''}
             label="form.fields.country"
             options={COUNTRY_OPTIONS}
@@ -265,6 +274,7 @@ const PersonalInformationForm = forwardRef<
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('city')}
+            data-testid="city-input"
             label="form.fields.city"
             placeholder={t('form.placeholders.city')}
             onValueChange={value => {
@@ -284,6 +294,7 @@ const PersonalInformationForm = forwardRef<
 
           <FormInput
             {...register('state')}
+            data-testid="state-input"
             label="form.fields.state"
             placeholder={t('form.placeholders.state')}
             onValueChange={value => {
@@ -305,6 +316,7 @@ const PersonalInformationForm = forwardRef<
 
       {/* Contact Information Section */}
       <motion.div
+        data-testid="contact-information-section"
         className="space-y-4 md:space-y-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -317,6 +329,7 @@ const PersonalInformationForm = forwardRef<
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-2">
           <FormInput
             {...register('phone')}
+            data-testid="phone-input"
             type="tel"
             label="form.fields.phone"
             placeholder={t('form.placeholders.phone')}
@@ -337,6 +350,7 @@ const PersonalInformationForm = forwardRef<
 
           <FormInput
             {...register('email')}
+            data-testid="email-input"
             type="email"
             label="form.fields.email"
             placeholder={t('form.placeholders.email')}
@@ -364,7 +378,12 @@ const PersonalInformationForm = forwardRef<
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.4 }}
       >
-        <button type="submit" className="sr-only" aria-label={t('form.submit')}>
+        <button
+          type="submit"
+          data-testid="form-submit-button"
+          className="sr-only"
+          aria-label={t('form.submit')}
+        >
           {t('form.submit')}
         </button>
       </motion.div>
