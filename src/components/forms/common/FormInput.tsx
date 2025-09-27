@@ -56,12 +56,14 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
     return (
       <motion.div
+        data-testid="form-input-container"
         className="space-y-2"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
         <label
+          data-testid="form-input-label"
           htmlFor={inputId}
           className={classNames(
             'block cursor-pointer text-sm font-medium',
@@ -75,6 +77,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           {t(label)}
           {required && (
             <span
+              data-testid="form-input-required"
               className="ml-1 text-red-500"
               aria-label={t('form.required')}
               title={t('form.required')}
@@ -86,6 +89,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
         {description && (
           <motion.div
+            data-testid="form-input-description"
             id={descriptionId}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -100,6 +104,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
         <motion.div whileFocus={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
           <input
+            data-testid="form-input-field"
             ref={ref}
             id={inputId}
             onChange={handleChange}
@@ -122,6 +127,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
         {helperText && !error && (
           <motion.div
+            data-testid="form-input-helper"
             id={helperId}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -137,6 +143,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
         {error && (
           <motion.div
+            data-testid="form-input-error"
             id={errorId}
             role="alert"
             aria-live="polite"
