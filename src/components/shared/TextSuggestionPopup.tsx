@@ -64,6 +64,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          data-testid="text-suggestion-overlay"
           className="bg-opacity-60 fixed inset-0 z-50 flex items-center justify-center bg-black p-4 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -72,6 +73,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
           onClick={onClose}
         >
           <motion.div
+            data-testid="text-suggestion-popup"
             className="max-h-[90vh] w-full max-w-2xl overflow-hidden rounded-xl border border-gray-100 bg-white shadow-2xl"
             initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -80,18 +82,25 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
             onClick={e => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
+            <div
+              data-testid="popup-header"
+              className="flex items-center justify-between border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6"
+            >
               <div className="flex items-center space-x-3">
                 <div className="flex-shrink-0">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600">
                     <Zap className="h-4 w-4 text-white" />
                   </div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3
+                  data-testid="popup-title"
+                  className="text-lg font-semibold text-gray-900"
+                >
                   {t('ai.suggestion_title', 'AI Writing Suggestion')}
                 </h3>
               </div>
               <motion.button
+                data-testid="close-button"
                 type="button"
                 onClick={e => {
                   e.preventDefault();
@@ -107,9 +116,13 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
             </div>
 
             {/* Content */}
-            <div className="max-h-[60vh] overflow-y-auto p-6">
+            <div
+              data-testid="popup-content"
+              className="max-h-[60vh] overflow-y-auto p-6"
+            >
               {isLoading && (
                 <motion.div
+                  data-testid="loading-state"
                   className="flex items-center justify-center py-16"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -141,6 +154,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
               )}
               {!isLoading && error && (
                 <motion.div
+                  data-testid="error-state"
                   className="rounded-xl border border-red-200 bg-gradient-to-r from-red-50 to-pink-50 p-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -162,6 +176,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
               )}
               {!isLoading && !error && suggestion && (
                 <motion.div
+                  data-testid="suggestion-content"
                   className="space-y-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -198,6 +213,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                         {t('ai.edit_suggestion', 'Edit Suggestion')}
                       </label>
                       <textarea
+                        data-testid="edit-textarea"
                         value={editedText}
                         onChange={e => setEditedText(e.target.value)}
                         className="block w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3 text-sm leading-relaxed shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
@@ -217,7 +233,10 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                       <label className="block text-sm font-semibold text-gray-700">
                         {t('ai.suggested_text', 'Suggested Text')}
                       </label>
-                      <div className="rounded-xl border-2 border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 p-6 shadow-inner">
+                      <div
+                        data-testid="suggestion-display"
+                        className="rounded-xl border-2 border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 p-6 shadow-inner"
+                      >
                         <p className="text-sm leading-relaxed font-medium whitespace-pre-wrap text-gray-800">
                           {suggestion}
                         </p>
@@ -230,8 +249,12 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
 
             {/* Footer Actions */}
             {!isLoading && !error && suggestion && (
-              <div className="flex flex-row justify-stretch gap-1 border-t border-gray-200 bg-gray-50 p-4 sm:justify-end sm:gap-4 sm:p-6">
+              <div
+                data-testid="popup-actions"
+                className="flex flex-row justify-stretch gap-1 border-t border-gray-200 bg-gray-50 p-4 sm:justify-end sm:gap-4 sm:p-6"
+              >
                 <motion.button
+                  data-testid="discard-button"
                   type="button"
                   onClick={e => {
                     e.preventDefault();
@@ -251,6 +274,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                 {isEditing ? (
                   <>
                     <motion.button
+                      data-testid="cancel-edit-button"
                       type="button"
                       onClick={e => {
                         e.preventDefault();
@@ -267,6 +291,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                       </span>
                     </motion.button>
                     <motion.button
+                      data-testid="use-edited-button"
                       type="button"
                       onClick={e => {
                         e.preventDefault();
@@ -289,6 +314,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                 ) : (
                   <>
                     <motion.button
+                      data-testid="edit-button"
                       type="button"
                       onClick={e => {
                         e.preventDefault();
@@ -305,6 +331,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                       </span>
                     </motion.button>
                     <motion.button
+                      data-testid="accept-button"
                       type="button"
                       onClick={e => {
                         e.preventDefault();
@@ -328,6 +355,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
             {error && (
               <div className="flex justify-end gap-4 border-t border-gray-200 bg-gray-50 p-6">
                 <motion.button
+                  data-testid="error-close-button"
                   type="button"
                   onClick={e => {
                     e.preventDefault();

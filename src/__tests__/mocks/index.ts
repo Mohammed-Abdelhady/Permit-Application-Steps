@@ -5,11 +5,13 @@
  * Centralizing mocks helps maintain consistency and reduces duplication.
  */
 
+import React from 'react';
 import { vi } from 'vitest';
 import type {
   StepData,
   PersonalInformationData,
   FamilyFinancialData,
+  SituationDescriptionData,
   UsePermitStepsReturn,
   UseToastReturn,
   UseNavigationReturn,
@@ -27,6 +29,7 @@ import type {
   ValidationPatterns,
   Routes,
   MockComponentProps,
+  TextSuggestionPopupProps,
 } from './types';
 
 // Navigation Mock
@@ -513,6 +516,140 @@ export const mockGenerateText = vi.fn(async () => {
   await new Promise(resolve => setTimeout(resolve, 50)); // Simulate async
   return 'Generated text response';
 });
+
+// TextSuggestionPopup Test IDs
+export const TEXT_SUGGESTION_TEST_IDS = {
+  overlay: 'text-suggestion-overlay',
+  popup: 'text-suggestion-popup',
+  header: 'popup-header',
+  title: 'popup-title',
+  closeButton: 'close-button',
+  content: 'popup-content',
+  loadingState: 'loading-state',
+  errorState: 'error-state',
+  suggestionContent: 'suggestion-content',
+  editTextarea: 'edit-textarea',
+  suggestionDisplay: 'suggestion-display',
+  actions: 'popup-actions',
+  discardButton: 'discard-button',
+  editButton: 'edit-button',
+  acceptButton: 'accept-button',
+  cancelEditButton: 'cancel-edit-button',
+  useEditedButton: 'use-edited-button',
+  errorCloseButton: 'error-close-button',
+};
+
+// TextSuggestionPopup Mock Props
+export const createMockTextSuggestionProps = (
+  overrides: Partial<TextSuggestionPopupProps> = {}
+): TextSuggestionPopupProps => ({
+  isOpen: true,
+  suggestion:
+    'This is a sample AI-generated suggestion text for testing purposes.',
+  isLoading: false,
+  error: null,
+  onAccept: vi.fn(),
+  onEdit: vi.fn(),
+  onDiscard: vi.fn(),
+  onClose: vi.fn(),
+  ...overrides,
+});
+
+// TextSuggestionPopup Test Scenarios
+export const TEXT_SUGGESTION_SCENARIOS = {
+  loading: createMockTextSuggestionProps({
+    isLoading: true,
+    suggestion: '',
+  }),
+  error: createMockTextSuggestionProps({
+    error: 'Failed to generate AI suggestion. Please try again.',
+    suggestion: '',
+  }),
+  withSuggestion: createMockTextSuggestionProps({
+    suggestion:
+      'This is a detailed AI-generated suggestion that provides helpful content for the user to review and potentially use or edit.',
+  }),
+  closed: createMockTextSuggestionProps({
+    isOpen: false,
+  }),
+};
+
+// Component Mocks
+interface MotionComponentProps {
+  children: React.ReactNode;
+  className?: string;
+  'data-testid'?: string;
+  onClick?: (e: React.MouseEvent) => void;
+  disabled?: boolean;
+  type?: string;
+  whileHover?: Record<string, unknown>;
+  whileTap?: Record<string, unknown>;
+  initial?: Record<string, unknown>;
+  animate?: Record<string, unknown>;
+  exit?: Record<string, unknown>;
+  transition?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+
+interface AnimatePresenceProps {
+  children: React.ReactNode;
+}
+
+interface IconComponentProps {
+  className?: string;
+  'data-testid'?: string;
+}
+
+// Framer Motion Mocks
+export const mockFramerMotion = {
+  motion: {
+    div: ({ children, className, ...props }: MotionComponentProps) =>
+      React.createElement('div', { className, ...props }, children),
+    button: ({ children, className, ...props }: MotionComponentProps) =>
+      React.createElement('button', { className, ...props }, children),
+    p: ({ children, className, ...props }: MotionComponentProps) =>
+      React.createElement('p', { className, ...props }, children),
+  },
+  AnimatePresence: ({ children }: AnimatePresenceProps) => children,
+};
+
+// Lucide React Icon Mocks
+export const mockLucideIcons = {
+  Zap: (props: IconComponentProps) =>
+    React.createElement('div', { ...props, 'data-testid': 'zap-icon' }, 'Zap'),
+  X: (props: IconComponentProps) =>
+    React.createElement('div', { ...props, 'data-testid': 'x-icon' }, 'X'),
+  AlertCircle: (props: IconComponentProps) =>
+    React.createElement(
+      'div',
+      { ...props, 'data-testid': 'alert-circle-icon' },
+      'AlertCircle'
+    ),
+  CheckCircle2: (props: IconComponentProps) =>
+    React.createElement(
+      'div',
+      { ...props, 'data-testid': 'check-circle2-icon' },
+      'CheckCircle2'
+    ),
+  Trash2: (props: IconComponentProps) =>
+    React.createElement(
+      'div',
+      { ...props, 'data-testid': 'trash2-icon' },
+      'Trash2'
+    ),
+  Edit3: (props: IconComponentProps) =>
+    React.createElement(
+      'div',
+      { ...props, 'data-testid': 'edit3-icon' },
+      'Edit3'
+    ),
+  Check: (props: IconComponentProps) =>
+    React.createElement(
+      'div',
+      { ...props, 'data-testid': 'check-icon' },
+      'Check'
+    ),
+};
 
 // Reset all mocks function
 export const resetAllMocks = () => {

@@ -220,3 +220,36 @@ export interface Routes {
   familyFinancial: string;
   situationDescription: string;
 }
+
+// TextSuggestionPopup Types
+export interface TextSuggestionPopupProps {
+  isOpen: boolean;
+  suggestion: string;
+  isLoading: boolean;
+  error: string | null;
+  onAccept: (text: string) => void;
+  onEdit: (text: string) => void;
+  onDiscard: () => void;
+  onClose: () => void;
+}
+
+export interface TextSuggestionTestIDs {
+  overlay: string;
+  popup: string;
+  header: string;
+  title: string;
+  closeButton: string;
+  content: string;
+  loadingState: string;
+  errorState: string;
+  suggestionContent: string;
+  editTextarea: string;
+  suggestionDisplay: string;
+  actions: string;
+  discardButton: string;
+  editButton: string;
+  acceptButton: string;
+  cancelEditButton: string;
+  useEditedButton: string;
+  errorCloseButton: string;
+}
