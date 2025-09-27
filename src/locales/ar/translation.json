@@ -28,7 +28,7 @@
     "title": "طلب تصريح",
     "steps": {
       "personal": "المعلومات الشخصية",
-      "familyFinancial": "معلومات العائلة والمالية",
+      "familyFinancial": "المعلومات العائلية والمالية",
       "situation": "وصف الوضع"
     },
     "navigation": {

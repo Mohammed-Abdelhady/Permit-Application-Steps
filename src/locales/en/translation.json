@@ -28,7 +28,7 @@
     "title": "Permit Application",
     "steps": {
       "personal": "Personal Information",
-      "familyFinancial": "Family & Financial Info",
+      "familyFinancial": "Family and Financial Info",
       "situation": "Situation Description"
     },
     "navigation": {

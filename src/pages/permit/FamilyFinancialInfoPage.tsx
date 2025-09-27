@@ -1,44 +1,48 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import ProgressIndicator from '../../components/shared/ProgressIndicator';
-import Navigation from '../../components/shared/Navigation';
-import { usePermitSteps } from '../../hooks/usePermitSteps';
+import { PermitPageLayout, FormPlaceholder } from '../../components';
+import { usePermitSteps } from '../../hooks';
+import { useNavigation } from '../../contexts';
+import classNames from 'classnames';
 
 const FamilyFinancialInfoPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { direction, setDirection } = useNavigation();
   const { steps } = usePermitSteps(2);
 
   const handleNext = () => {
+    setDirection('forward');
     navigate('/permit/situation');
   };
 
   const handlePrevious = () => {
+    setDirection('backward');
     navigate('/permit/personal');
   };
 
+  const contentClassName = classNames({
+    'ring-2 ring-blue-200': direction === 'forward',
+    'ring-2 ring-gray-200': direction === 'backward',
+  });
+
   return (
-    <div className="mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-lg">
-      <h2 className="mb-6 text-2xl font-bold text-gray-800">
-        {t('permit.steps.familyFinancial')}
-      </h2>
-
-      <ProgressIndicator steps={steps} currentStep={2} />
-
-      {/* Form Content Placeholder */}
-      <div className="mb-8 space-y-4">
-        <div className="rounded-lg border-2 border-dashed border-gray-300 p-6 text-center">
-          <p className="text-gray-500">{t('permit.placeholders.familyInfo')}</p>
-        </div>
-      </div>
-
-      <Navigation
-        showPrevious
-        showNext
-        onPrevious={handlePrevious}
-        onNext={handleNext}
+    <PermitPageLayout
+      title={t('permit.steps.familyFinancial')}
+      currentStep={2}
+      steps={steps}
+      direction={direction}
+      showPrevious
+      showNext
+      onPrevious={handlePrevious}
+      onNext={handleNext}
+      contentClassName={contentClassName}
+    >
+      <FormPlaceholder
+        content={t('permit.placeholders.familyInfo')}
+        direction={direction}
       />
-    </div>
+    </PermitPageLayout>
   );
 };
 

@@ -1,12 +1,9 @@
-// Common types for the permit application
+// Main types index - re-exports all organized types
+export * from './step';
+export * from './components';
+export * from './pages';
 
-export interface PermitStep {
-  number: number;
-  title: string;
-  isActive: boolean;
-  isCompleted: boolean;
-}
-
+// Legacy types (kept for backward compatibility)
 export interface PersonalInfo {
   firstName: string;
   lastName: string;
@@ -37,19 +34,4 @@ export interface PermitApplication {
   situationDescription: SituationDescription;
   submittedAt?: Date;
   status: 'draft' | 'submitted' | 'under_review' | 'approved' | 'rejected';
-}
-
-export interface NavigationProps {
-  onPrevious?: () => void;
-  onNext?: () => void;
-  onSubmit?: () => void;
-  showPrevious?: boolean;
-  showNext?: boolean;
-  showSubmit?: boolean;
-  isSubmitting?: boolean;
-}
-
-export interface ProgressIndicatorProps {
-  steps: PermitStep[];
-  currentStep: number;
 }

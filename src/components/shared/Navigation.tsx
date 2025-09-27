@@ -1,14 +1,7 @@
 import { useTranslation } from 'react-i18next';
-
-interface NavigationProps {
-  onPrevious?: () => void;
-  onNext?: () => void;
-  onSubmit?: () => void;
-  showPrevious?: boolean;
-  showNext?: boolean;
-  showSubmit?: boolean;
-  isSubmitting?: boolean;
-}
+import { motion } from 'framer-motion';
+import classNames from 'classnames';
+import { type NavigationProps } from '../../types/components';
 
 const Navigation = ({
   onPrevious,
@@ -22,46 +15,93 @@ const Navigation = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex justify-between pt-6">
+    <motion.div
+      className="flex justify-between pt-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.5 }}
+    >
       <div>
         {showPrevious && (
-          <button
+          <motion.button
             type="button"
             onClick={onPrevious}
-            className="rounded-lg border border-gray-300 bg-white px-6 py-2 text-gray-700 hover:bg-gray-50"
+            className={classNames(
+              'rounded-lg',
+              'border',
+              'border-gray-300',
+              'bg-white',
+              'px-6',
+              'py-2',
+              'text-gray-700',
+              'transition-all',
+              'hover:bg-gray-50'
+            )}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.6 }}
           >
             {t('permit.navigation.previous')}
-          </button>
+          </motion.button>
         )}
       </div>
       <div className="flex space-x-4">
         {showNext && (
-          <button
+          <motion.button
             type="button"
             onClick={onNext}
-            className="rounded-lg bg-indigo-600 px-6 py-2 text-white hover:bg-indigo-700"
+            className={classNames(
+              'rounded-lg',
+              'bg-indigo-600',
+              'px-6',
+              'py-2',
+              'text-white',
+              'transition-all',
+              'hover:bg-indigo-700'
+            )}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.6 }}
           >
             {t('permit.navigation.next')}
-          </button>
+          </motion.button>
         )}
         {showSubmit && (
-          <button
+          <motion.button
             type="submit"
             onClick={onSubmit}
             disabled={isSubmitting}
-            className={`rounded-lg px-6 py-2 text-white ${
-              isSubmitting
-                ? 'cursor-not-allowed bg-gray-400'
-                : 'bg-green-600 hover:bg-green-700'
-            }`}
+            className={classNames(
+              'rounded-lg px-6 py-2 text-white transition-all',
+              {
+                'cursor-not-allowed bg-gray-400': isSubmitting,
+                'bg-green-600 hover:bg-green-700': !isSubmitting,
+              }
+            )}
+            whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+            whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.6 }}
           >
-            {isSubmitting
-              ? t('form.submitting')
-              : t('permit.navigation.submit')}
-          </button>
+            <motion.span
+              key={isSubmitting ? 'submitting' : 'submit'}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isSubmitting
+                ? t('form.submitting')
+                : t('permit.navigation.submit')}
+            </motion.span>
+          </motion.button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

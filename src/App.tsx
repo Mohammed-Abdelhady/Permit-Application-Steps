@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { PermitLayout } from './layouts';
+import { NavigationProvider } from './contexts';
 import {
   PersonalInformationPage,
   FamilyFinancialInfoPage,
@@ -13,20 +13,25 @@ import {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/permit/personal" replace />} />
-        <Route path="/permit" element={<PermitLayout />}>
-          <Route index element={<Navigate to="/permit/personal" replace />} />
-          <Route path="personal" element={<PersonalInformationPage />} />
+    <NavigationProvider>
+      <Router>
+        <Routes>
           <Route
-            path="family-financial"
-            element={<FamilyFinancialInfoPage />}
+            path="/"
+            element={<Navigate to="/permit/personal" replace />}
           />
-          <Route path="situation" element={<SituationDescriptionPage />} />
-        </Route>
-      </Routes>
-    </Router>
+          <Route path="/permit">
+            <Route index element={<Navigate to="/permit/personal" replace />} />
+            <Route path="personal" element={<PersonalInformationPage />} />
+            <Route
+              path="family-financial"
+              element={<FamilyFinancialInfoPage />}
+            />
+            <Route path="situation" element={<SituationDescriptionPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </NavigationProvider>
   );
 }
 
