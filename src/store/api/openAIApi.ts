@@ -6,6 +6,12 @@ import type {
   GenerateTextRequest,
   GenerateTextResponse,
 } from '../types/openAI';
+import {
+  getCurrentLanguage,
+  getLocalizedPrompt,
+  getFieldPrompts,
+  type SupportedLanguage,
+} from '../constants/prompts';
 
 // Configuration
 const OPENAI_CONFIG = {
@@ -17,23 +23,13 @@ const OPENAI_CONFIG = {
   temperature: 0.7,
 } as const;
 
-// Field-specific prompt templates
-const FIELD_PROMPTS = {
-  financial: `You are helping someone write about their current financial situation for a government assistance application. 
-Write a clear, honest, and professional description of their financial circumstances. 
-Focus on: current income, expenses, financial challenges, and how assistance would help.
-Keep it concise (2-3 sentences) and appropriate for an official application.`,
-
-  employment: `You are helping someone describe their employment circumstances for a government assistance application.
-Write a clear, professional description of their work situation.
-Focus on: employment status, job challenges, work history, and how their situation affects their finances.
-Keep it concise (2-3 sentences) and appropriate for an official application.`,
-
-  reason: `You are helping someone explain why they are applying for government assistance.
-Write a clear, respectful, and compelling reason that explains their need for assistance.
-Focus on: specific circumstances, how assistance will help, and their commitment to improvement.
-Keep it concise (2-3 sentences) and appropriate for an official application.`,
-};
+/**
+ * Get localized prompts based on current language
+ * @param language - Current language ('en' or 'ar')
+ * @returns Object with field-specific prompts
+ */
+const getLocalizedFieldPrompts = (language: SupportedLanguage) =>
+  getFieldPrompts(language);
 
 // RTK Query API for OpenAI
 export const openAIApi = createApi({
@@ -63,8 +59,12 @@ export const openAIApi = createApi({
       query: request => {
         const { fieldType, currentText = '', context = '' } = request;
 
-        // Create field-specific prompt
-        const fieldPrompt = FIELD_PROMPTS[fieldType];
+        // Get current language and localized prompts
+        const language = getCurrentLanguage();
+        const fieldPrompts = getLocalizedFieldPrompts(language);
+        const fieldPrompt = fieldPrompts[fieldType];
+        const systemPrompt = getLocalizedPrompt(language, 'system');
+
         const promptText = `${fieldPrompt}
 Current text: "${currentText}"
 Additional context: "${context}"`;
@@ -72,8 +72,7 @@ Additional context: "${context}"`;
         const messages: OpenAIMessage[] = [
           {
             role: 'system',
-            content:
-              'You are a helpful assistant that writes professional, clear, and appropriate text for government assistance applications. Always maintain a respectful and honest tone.',
+            content: systemPrompt,
           },
           {
             role: 'user',
@@ -155,11 +154,14 @@ Additional context: "${context}"`;
       { prompt: string; context?: string; maxTokens?: number }
     >({
       query: ({ prompt, context = '', maxTokens = 500 }) => {
+        // Get current language and localized system prompt
+        const language = getCurrentLanguage();
+        const systemPrompt = getLocalizedPrompt(language, 'general');
+
         const messages: OpenAIMessage[] = [
           {
             role: 'system',
-            content:
-              'You are a helpful assistant that helps users write clear, professional, and detailed descriptions for government permit applications. Provide helpful, accurate, and relevant suggestions that would be appropriate for official documentation.',
+            content: systemPrompt,
           },
         ];
 
@@ -240,34 +242,3 @@ Additional context: "${context}"`;
 
 export const { useGenerateTextSuggestionMutation, useGenerateTextMutation } =
   openAIApi;
-
-// Helper functions for field-specific prompts (for backward compatibility)
-export const getPromptForField = (
-  fieldType: string,
-  currentValue?: string
-): string => {
-  const prompts = {
-    currentFinancialSituation: `Help me write a clear and detailed description of my current financial situation for a government permit application. ${
-      currentValue
-        ? `I've started with: "${currentValue}". Please improve or expand on this.`
-        : 'Please provide a professional template that covers income, expenses, assets, debts, and any financial challenges.'
-    }`,
-
-    employmentCircumstances: `Help me describe my employment circumstances for a government permit application. ${
-      currentValue
-        ? `I've written: "${currentValue}". Please help me improve this description.`
-        : 'Please provide a professional template that covers employment status, job details, work history, and any relevant employment changes.'
-    }`,
-
-    reasonForApplying: `Help me explain my reason for applying for this permit in a clear and compelling way. ${
-      currentValue
-        ? `My current explanation: "${currentValue}". Please help me make this more detailed and professional.`
-        : 'Please provide a professional template that explains the purpose, necessity, and expected outcomes of obtaining this permit.'
-    }`,
-  };
-
-  return (
-    prompts[fieldType as keyof typeof prompts] ||
-    `Help me write a professional description for this field: ${fieldType}`
-  );
-};
