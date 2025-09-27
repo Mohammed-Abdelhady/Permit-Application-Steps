@@ -26,6 +26,7 @@ const Navigation = ({
           <motion.button
             type="button"
             onClick={onPrevious}
+            aria-label={t('permit.navigation.previous')}
             className={classNames(
               'rounded-lg',
               'border',
@@ -35,7 +36,10 @@ const Navigation = ({
               'py-2',
               'text-gray-700',
               'transition-all',
-              'hover:bg-gray-50'
+              'hover:bg-gray-50',
+              'focus:ring-2',
+              'focus:ring-indigo-500',
+              'focus:outline-none'
             )}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -52,6 +56,7 @@ const Navigation = ({
           <motion.button
             type="button"
             onClick={onNext}
+            aria-label={t('permit.navigation.next')}
             className={classNames(
               'rounded-lg',
               'bg-indigo-600',
@@ -59,7 +64,10 @@ const Navigation = ({
               'py-2',
               'text-white',
               'transition-all',
-              'hover:bg-indigo-700'
+              'hover:bg-indigo-700',
+              'focus:ring-2',
+              'focus:ring-indigo-500',
+              'focus:outline-none'
             )}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -75,11 +83,19 @@ const Navigation = ({
             type="submit"
             onClick={onSubmit}
             disabled={isSubmitting}
+            aria-label={
+              isSubmitting
+                ? t('form.submitting')
+                : t('permit.navigation.submit')
+            }
+            aria-disabled={isSubmitting}
             className={classNames(
-              'rounded-lg px-6 py-2 text-white transition-all',
+              'rounded-lg px-6 py-2 text-white transition-all focus:ring-2 focus:outline-none',
               {
-                'cursor-not-allowed bg-gray-400': isSubmitting,
-                'bg-green-600 hover:bg-green-700': !isSubmitting,
+                'cursor-not-allowed bg-gray-400 focus:ring-gray-300':
+                  isSubmitting,
+                'bg-green-600 hover:bg-green-700 focus:ring-green-500':
+                  !isSubmitting,
               }
             )}
             whileHover={!isSubmitting ? { scale: 1.05 } : {}}

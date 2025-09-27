@@ -9,6 +9,11 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.1 }}
+      role="progressbar"
+      aria-valuenow={currentStep}
+      aria-valuemin={1}
+      aria-valuemax={steps.length}
+      aria-label={`Step ${currentStep} of ${steps.length}: ${steps.find(s => s.number === currentStep)?.title}`}
     >
       {/* Steps */}
       <div className="mb-6 flex items-center justify-between">
@@ -58,12 +63,22 @@ const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
               )}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              aria-label={`Step ${step.number}: ${step.title} - ${
+                step.isCompleted
+                  ? 'Completed'
+                  : step.isActive
+                    ? 'Current'
+                    : 'Pending'
+              }`}
+              role="button"
+              tabIndex={0}
             >
               <motion.span
                 key={step.isCompleted ? 'check' : step.number}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
+                aria-hidden="true"
               >
                 {step.isCompleted ? '✓' : step.number}
               </motion.span>

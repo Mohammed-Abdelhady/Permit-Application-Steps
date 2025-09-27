@@ -2,6 +2,7 @@
 export * from './step';
 export * from './components';
 export * from './pages';
+export * from './toast';
 
 // Re-export permit types for backward compatibility
 export * from './permit';

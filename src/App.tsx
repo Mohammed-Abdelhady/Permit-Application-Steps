@@ -4,7 +4,8 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { NavigationProvider } from './contexts';
+import { NavigationProvider, ToastProvider } from './contexts';
+import { ToastContainer } from './components';
 import {
   PersonalInformationPage,
   FamilyFinancialInfoPage,
@@ -13,25 +14,31 @@ import {
 
 function App() {
   return (
-    <NavigationProvider>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={<Navigate to="/permit/personal" replace />}
-          />
-          <Route path="/permit">
-            <Route index element={<Navigate to="/permit/personal" replace />} />
-            <Route path="personal" element={<PersonalInformationPage />} />
+    <ToastProvider>
+      <NavigationProvider>
+        <Router>
+          <Routes>
             <Route
-              path="family-financial"
-              element={<FamilyFinancialInfoPage />}
+              path="/"
+              element={<Navigate to="/permit/personal" replace />}
             />
-            <Route path="situation" element={<SituationDescriptionPage />} />
-          </Route>
-        </Routes>
-      </Router>
-    </NavigationProvider>
+            <Route path="/permit">
+              <Route
+                index
+                element={<Navigate to="/permit/personal" replace />}
+              />
+              <Route path="personal" element={<PersonalInformationPage />} />
+              <Route
+                path="family-financial"
+                element={<FamilyFinancialInfoPage />}
+              />
+              <Route path="situation" element={<SituationDescriptionPage />} />
+            </Route>
+          </Routes>
+          <ToastContainer />
+        </Router>
+      </NavigationProvider>
+    </ToastProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import classNames from 'classnames';
-import { type FormPlaceholderProps } from '../../types/components';
+import { type FormPlaceholderProps } from '../../../types/components';
 
 const FormPlaceholder = ({
   content,
