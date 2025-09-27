@@ -7,6 +7,7 @@ export { default as FormPlaceholder } from './forms/common/FormPlaceholder';
 export { default as Header } from './shared/Header';
 export { default as FormInput } from './forms/common/FormInput';
 export { default as FormSelect } from './forms/common/FormSelect';
+export { default as FormTextArea } from './forms/common/FormTextArea';
 export { default as ToastContainer } from './shared/ToastContainer';
 
 // Export form components
