@@ -74,8 +74,10 @@ const FamilyFinancialInfoPage = () => {
         currentStep={2}
         onPrevious={handlePrevious}
         onNext={handleNext}
+        showNext
+        showPrevious
         isSubmitting={isSubmitting}
-        title={t('titles.familyFinancial')}
+        title={t('permit.steps.familyFinancial')}
       >
         <FamilyFinancialForm
           ref={formRef}
