@@ -1,17 +1,20 @@
 import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PermitPageLayout, SituationDescriptionForm } from '../../components';
-import { usePermitSteps, useToast, useRefreshWarning } from '../../hooks';
-import { useNavigation } from '../../contexts';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { saveSituationDescription } from '../../store/slices/permitSlice';
+import {
+  PermitPageLayout,
+  SituationDescriptionForm,
+} from '../../../components';
+import { usePermitSteps, useToast, useRefreshWarning } from '../../../hooks';
+import { useNavigation } from '../../../contexts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { saveSituationDescription } from '../../../store/slices/permitSlice';
 import {
   useSubmitSituationDescriptionMutation,
   useSubmitPermitApplicationMutation,
-} from '../../store/api/permitApi';
-import { type SituationDescriptionFormData } from '../../schemas';
-import { scrollToTop } from '../../utils/helpers';
+} from '../../../store/api/permitApi';
+import { type SituationDescriptionFormData } from '../../../schemas';
+import { scrollToTop } from '../../../utils/helpers';
 const SituationDescriptionPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
