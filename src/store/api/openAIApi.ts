@@ -7,6 +7,16 @@ import type {
   GenerateTextResponse,
 } from '../types/openAI';
 
+// Configuration
+const OPENAI_CONFIG = {
+  model: import.meta.env.VITE_OPENAI_MODEL || 'gpt-3.5-turbo',
+  maxTokens: {
+    suggestion: 150,
+    general: 500,
+  },
+  temperature: 0.7,
+} as const;
+
 // Field-specific prompt templates
 const FIELD_PROMPTS = {
   financial: `You are helping someone write about their current financial situation for a government assistance application. 
@@ -29,7 +39,7 @@ Keep it concise (2-3 sentences) and appropriate for an official application.`,
 export const openAIApi = createApi({
   reducerPath: 'openAIApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.openai.com/v1/',
+    baseUrl: import.meta.env.VITE_OPENAI_BASE_URL,
     prepareHeaders: headers => {
       const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
       if (!apiKey) {
@@ -72,10 +82,10 @@ Additional context: "${context}"`;
         ];
 
         const openAIRequest: OpenAIRequest = {
-          model: 'gpt-3.5-turbo',
+          model: OPENAI_CONFIG.model,
           messages,
-          max_tokens: 150,
-          temperature: 0.7,
+          max_tokens: OPENAI_CONFIG.maxTokens.suggestion,
+          temperature: OPENAI_CONFIG.temperature,
           stream: false,
         };
 
@@ -166,10 +176,10 @@ Additional context: "${context}"`;
         });
 
         const openAIRequest: OpenAIRequest = {
-          model: 'gpt-3.5-turbo',
+          model: OPENAI_CONFIG.model,
           messages,
-          max_tokens: maxTokens,
-          temperature: 0.7,
+          max_tokens: maxTokens || OPENAI_CONFIG.maxTokens.general,
+          temperature: OPENAI_CONFIG.temperature,
         };
 
         return {
@@ -230,3 +240,34 @@ Additional context: "${context}"`;
 
 export const { useGenerateTextSuggestionMutation, useGenerateTextMutation } =
   openAIApi;
+
+// Helper functions for field-specific prompts (for backward compatibility)
+export const getPromptForField = (
+  fieldType: string,
+  currentValue?: string
+): string => {
+  const prompts = {
+    currentFinancialSituation: `Help me write a clear and detailed description of my current financial situation for a government permit application. ${
+      currentValue
+        ? `I've started with: "${currentValue}". Please improve or expand on this.`
+        : 'Please provide a professional template that covers income, expenses, assets, debts, and any financial challenges.'
+    }`,
+
+    employmentCircumstances: `Help me describe my employment circumstances for a government permit application. ${
+      currentValue
+        ? `I've written: "${currentValue}". Please help me improve this description.`
+        : 'Please provide a professional template that covers employment status, job details, work history, and any relevant employment changes.'
+    }`,
+
+    reasonForApplying: `Help me explain my reason for applying for this permit in a clear and compelling way. ${
+      currentValue
+        ? `My current explanation: "${currentValue}". Please help me make this more detailed and professional.`
+        : 'Please provide a professional template that explains the purpose, necessity, and expected outcomes of obtaining this permit.'
+    }`,
+  };
+
+  return (
+    prompts[fieldType as keyof typeof prompts] ||
+    `Help me write a professional description for this field: ${fieldType}`
+  );
+};
