@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PermitPageLayout, FamilyFinancialForm } from '../../components';
-import { usePermitSteps, useToast, useRefreshWarning } from '../../hooks';
-import { useNavigation } from '../../contexts';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { saveFamilyFinancial } from '../../store/slices/permitSlice';
-import { type FamilyFinancialFormData } from '../../schemas';
-import { scrollToTop } from '../../utils/helpers';
+import { PermitPageLayout, FamilyFinancialForm } from '../../../components';
+import { usePermitSteps, useToast, useRefreshWarning } from '../../../hooks';
+import { useNavigation } from '../../../contexts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { saveFamilyFinancial } from '../../../store/slices/permitSlice';
+import { type FamilyFinancialFormData } from '../../../schemas';
+import { scrollToTop } from '../../../utils/helpers';
 
 const FamilyFinancialInfoPage = () => {
   const { t } = useTranslation();
