@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
   Zap,
   X,
-  Loader2,
   AlertCircle,
   CheckCircle2,
   Trash2,
@@ -116,9 +115,8 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                   animate={{ opacity: 1 }}
                 >
                   <div className="text-center">
-                    <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
                     <motion.p
-                      className="mt-6 text-sm font-medium text-gray-600"
+                      className="text-sm font-medium text-gray-600"
                       animate={{ opacity: [0.5, 1, 0.5] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
@@ -232,7 +230,7 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
 
             {/* Footer Actions */}
             {!isLoading && !error && suggestion && (
-              <div className="flex flex-col justify-end gap-4 border-t border-gray-200 bg-gray-50 p-6 sm:flex-row">
+              <div className="flex flex-row justify-stretch gap-1 border-t border-gray-200 bg-gray-50 p-4 sm:justify-end sm:gap-4 sm:p-6">
                 <motion.button
                   type="button"
                   onClick={e => {
@@ -240,12 +238,14 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                     e.stopPropagation();
                     onDiscard();
                   }}
-                  className="group flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-600 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 focus:ring-4 focus:ring-gray-100"
+                  className="group flex flex-1 cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 bg-white px-3 py-3 text-sm font-semibold text-gray-600 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 focus:ring-4 focus:ring-gray-100 sm:flex-none sm:px-6"
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Trash2 className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                  {t('ai.discard', 'Discard')}
+                  <Trash2 className="h-4 w-4 transition-transform group-hover:scale-110 sm:mr-2" />
+                  <span className="hidden sm:inline">
+                    {t('ai.discard', 'Discard')}
+                  </span>
                 </motion.button>
 
                 {isEditing ? (
@@ -257,12 +257,14 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                         e.stopPropagation();
                         handleCancelEdit();
                       }}
-                      className="group flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-600 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 focus:ring-4 focus:ring-gray-100"
+                      className="group flex flex-1 cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 bg-white px-3 py-3 text-sm font-semibold text-gray-600 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 focus:ring-4 focus:ring-gray-100 sm:flex-none sm:px-6"
                       whileHover={{ scale: 1.02, y: -1 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <X className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                      {t('common.cancel', 'Cancel')}
+                      <X className="h-4 w-4 transition-transform group-hover:scale-110 sm:mr-2" />
+                      <span className="hidden sm:inline">
+                        {t('common.cancel', 'Cancel')}
+                      </span>
                     </motion.button>
                     <motion.button
                       type="button"
@@ -272,14 +274,16 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                         handleUseEdited();
                       }}
                       disabled={!editedText.trim()}
-                      className="group flex cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                      className="group flex flex-1 cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 sm:flex-none sm:px-6"
                       whileHover={
                         editedText.trim() ? { scale: 1.02, y: -1 } : {}
                       }
                       whileTap={editedText.trim() ? { scale: 0.98 } : {}}
                     >
-                      <Check className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                      {t('ai.use_edited', 'Use Edited')}
+                      <Check className="h-4 w-4 transition-transform group-hover:scale-110 sm:mr-2" />
+                      <span className="hidden sm:inline">
+                        {t('ai.use_edited', 'Use Edited')}
+                      </span>
                     </motion.button>
                   </>
                 ) : (
@@ -291,12 +295,14 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                         e.stopPropagation();
                         handleEdit();
                       }}
-                      className="group flex cursor-pointer items-center justify-center rounded-xl border-2 border-blue-500 bg-white px-6 py-3 text-sm font-semibold text-blue-600 shadow-sm transition-all duration-200 hover:border-blue-600 hover:bg-blue-50 hover:text-blue-700 focus:ring-4 focus:ring-blue-100"
+                      className="group flex flex-1 cursor-pointer items-center justify-center rounded-xl border-2 border-blue-500 bg-white px-3 py-3 text-sm font-semibold text-blue-600 shadow-sm transition-all duration-200 hover:border-blue-600 hover:bg-blue-50 hover:text-blue-700 focus:ring-4 focus:ring-blue-100 sm:flex-none sm:px-6"
                       whileHover={{ scale: 1.02, y: -1 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Edit3 className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                      {t('ai.edit', 'Edit')}
+                      <Edit3 className="h-4 w-4 transition-transform group-hover:scale-110 sm:mr-2" />
+                      <span className="hidden sm:inline">
+                        {t('ai.edit', 'Edit')}
+                      </span>
                     </motion.button>
                     <motion.button
                       type="button"
@@ -305,12 +311,14 @@ export const TextSuggestionPopup: React.FC<TextSuggestionPopupProps> = ({
                         e.stopPropagation();
                         handleAcceptOriginal();
                       }}
-                      className="group flex cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:from-green-700 hover:to-emerald-700 hover:shadow-xl focus:ring-4 focus:ring-green-200"
+                      className="group flex flex-1 cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-3 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:from-green-700 hover:to-emerald-700 hover:shadow-xl focus:ring-4 focus:ring-green-200 sm:flex-none sm:px-6"
                       whileHover={{ scale: 1.02, y: -1 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <CheckCircle2 className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                      {t('ai.accept', 'Accept Original')}
+                      <CheckCircle2 className="h-4 w-4 transition-transform group-hover:scale-110 sm:mr-2" />
+                      <span className="hidden sm:inline">
+                        {t('ai.accept', 'Accept Original')}
+                      </span>
                     </motion.button>
                   </>
                 )}
