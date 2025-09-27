@@ -22,7 +22,25 @@
     "ageMinimum": "يجب أن يكون العمر 18 سنة على الأقل"
   },
   "success": {
-    "hello": "مرحباً {{name}}! بريدك الإلكتروني هو {{email}} وعمرك {{age}} سنة."
+    "hello": "مرحبا {{name}}! تم إرسال بريدك الإلكتروني {{email}} وعمرك {{age}} بنجاح."
+  },
+  "permit": {
+    "title": "طلب تصريح",
+    "steps": {
+      "personal": "المعلومات الشخصية",
+      "familyFinancial": "معلومات العائلة والمالية",
+      "situation": "وصف الوضع"
+    },
+    "navigation": {
+      "next": "التالي",
+      "previous": "السابق",
+      "submit": "إرسال الطلب"
+    },
+    "placeholders": {
+      "personalInfo": "يرجى إدخال معلوماتك الشخصية هنا...",
+      "familyInfo": "يرجى إدخال معلومات عائلتك والمالية هنا...",
+      "situationInfo": "يرجى وصف وضعك هنا..."
+    }
   },
   "language": {
     "switch": "English"

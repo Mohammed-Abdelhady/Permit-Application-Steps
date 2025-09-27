@@ -22,7 +22,25 @@
     "ageMinimum": "Must be at least 18 years old"
   },
   "success": {
-    "hello": "Hello {{name}}! Your email is {{email}} and you are {{age}} years old."
+    "hello": "Hello {{name}}! Your email {{email}} and age {{age}} have been submitted successfully."
+  },
+  "permit": {
+    "title": "Permit Application",
+    "steps": {
+      "personal": "Personal Information",
+      "familyFinancial": "Family & Financial Info",
+      "situation": "Situation Description"
+    },
+    "navigation": {
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "Submit Application"
+    },
+    "placeholders": {
+      "personalInfo": "Please enter your personal information here...",
+      "familyInfo": "Please enter your family and financial information here...",
+      "situationInfo": "Please describe your situation here..."
+    }
   },
   "language": {
     "switch": "العربية"

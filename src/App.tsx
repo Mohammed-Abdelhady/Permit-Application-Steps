@@ -1,196 +1,32 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useTranslation } from 'react-i18next';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-
-type FormData = {
-  name: string;
-  email: string;
-  age: number;
-};
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import { PermitLayout } from './layouts';
+import {
+  PersonalInformationPage,
+  FamilyFinancialInfoPage,
+  SituationDescriptionPage,
+} from './pages';
 
 function App() {
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
-
-  // Create Yup schema with translated messages
-  const createSchema = () =>
-    yup.object({
-      name: yup
-        .string()
-        .required(t('validation.nameRequired'))
-        .min(2, t('validation.nameMinLength')),
-      email: yup
-        .string()
-        .required(t('validation.emailRequired'))
-        .email(t('validation.emailInvalid')),
-      age: yup
-        .number()
-        .required(t('validation.ageRequired'))
-        .positive(t('validation.agePositive'))
-        .integer(t('validation.ageInteger'))
-        .min(18, t('validation.ageMinimum')),
-    });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormData>({
-    resolver: yupResolver(createSchema()),
-  });
-
-  const onSubmit = (data: FormData) => {
-    console.log('Form submitted:', data);
-    alert(
-      t('success.hello', {
-        name: data.name,
-        email: data.email,
-        age: data.age,
-      })
-    );
-    reset();
-  };
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(newLang);
-  };
-
   return (
-    <div
-      className={`flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 ${isRTL ? 'rtl' : 'ltr'} bg-black`}
-      dir={isRTL ? 'rtl' : 'ltr'}
-    >
-      <div className="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-lg">
-        <div className="p-8">
-          {/* Language Toggle Button */}
-          <div className="mb-4 flex justify-end">
-            <button
-              onClick={toggleLanguage}
-              className="rounded-lg bg-gray-100 px-4 py-2 text-sm transition-colors duration-200 hover:bg-gray-200"
-            >
-              {t('language.switch')}
-            </button>
-          </div>
-
-          <div className="mb-6 flex justify-center space-x-4">
-            <a
-              href="https://vite.dev"
-              target="_blank"
-              className="transition-opacity hover:opacity-75"
-            >
-              <img src={viteLogo} className="h-12 w-12" alt="Vite logo" />
-            </a>
-            <a
-              href="https://react.dev"
-              target="_blank"
-              className="transition-opacity hover:opacity-75"
-            >
-              <img
-                src={reactLogo}
-                className="h-12 w-12 animate-spin"
-                alt="React logo"
-              />
-            </a>
-          </div>
-
-          <h1 className="mb-6 text-center text-2xl font-bold text-gray-800">
-            {t('title')}
-          </h1>
-
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <label
-                htmlFor="name"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                {t('form.name')}
-              </label>
-              <input
-                {...register('name')}
-                type="text"
-                id="name"
-                className={`w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
-                } ${isRTL ? 'text-right' : 'text-left'}`}
-                placeholder={t('form.namePlaceholder')}
-              />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                {t('form.email')}
-              </label>
-              <input
-                {...register('email')}
-                type="email"
-                id="email"
-                className={`w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                } ${isRTL ? 'text-right' : 'text-left'}`}
-                placeholder={t('form.emailPlaceholder')}
-              />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="age"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                {t('form.age')}
-              </label>
-              <input
-                {...register('age')}
-                type="number"
-                id="age"
-                className={`w-full rounded-lg border px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none ${
-                  errors.age ? 'border-red-500' : 'border-gray-300'
-                } ${isRTL ? 'text-right' : 'text-left'}`}
-                placeholder={t('form.agePlaceholder')}
-              />
-              {errors.age && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.age.message}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full rounded-lg px-4 py-3 font-medium transition-colors duration-200 ${
-                isSubmitting
-                  ? 'cursor-not-allowed bg-gray-400'
-                  : 'bg-indigo-600 text-white hover:bg-indigo-700'
-              }`}
-            >
-              {isSubmitting ? t('form.submitting') : t('form.submit')}
-            </button>
-          </form>
-
-          <div className="mt-6 text-center text-sm text-gray-500">
-            <p>{t('form.trySubmitting')}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/permit/personal" replace />} />
+        <Route path="/permit" element={<PermitLayout />}>
+          <Route index element={<Navigate to="/permit/personal" replace />} />
+          <Route path="personal" element={<PersonalInformationPage />} />
+          <Route
+            path="family-financial"
+            element={<FamilyFinancialInfoPage />}
+          />
+          <Route path="situation" element={<SituationDescriptionPage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
