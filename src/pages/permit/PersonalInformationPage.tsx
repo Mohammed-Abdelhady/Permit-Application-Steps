@@ -27,6 +27,9 @@ const PersonalInformationPage = () => {
     isValid: boolean;
   }>(null);
 
+  // The persisted state is now automatically loaded by the store
+  // No need for manual localStorage loading
+
   const handleFormSubmit = async (data: PersonalInformationFormData) => {
     setIsSubmitting(true);
     try {

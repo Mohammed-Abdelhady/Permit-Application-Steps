@@ -37,6 +37,7 @@ const PersonalInformationForm = forwardRef<
     formState: { errors, isValid, isDirty, touchedFields },
     watch,
     trigger,
+    reset,
   } = useForm<PersonalInformationFormData>({
     resolver: yupResolver(personalInformationSchema),
     defaultValues: {
@@ -71,6 +72,25 @@ const PersonalInformationForm = forwardRef<
     },
     isValid,
   }));
+
+  // Reset form when initialData changes (e.g., when loaded from localStorage)
+  useEffect(() => {
+    if (initialData) {
+      reset({
+        name: '',
+        nationalId: '',
+        dateOfBirth: undefined,
+        gender: '',
+        address: '',
+        city: '',
+        state: '',
+        country: '',
+        phone: '',
+        email: '',
+        ...initialData,
+      });
+    }
+  }, [initialData, reset]);
 
   // Notify parent about validation state changes
   useEffect(() => {
