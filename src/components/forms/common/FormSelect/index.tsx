@@ -1,31 +1,10 @@
 import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { forwardRef, useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-interface SelectOption {
-  value: string;
-  label: string;
-  description?: string;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-}
-
-interface FormSelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  label: string;
-  options: SelectOption[];
-  error?: string;
-  helperText?: string;
-  required?: boolean;
-  isRTL?: boolean;
-  placeholder?: string;
-  description?: string;
-  searchable?: boolean;
-  clearable?: boolean;
-  maxHeight?: number;
-  onValueChange?: (value: string) => void;
-}
+import SelectDropdown from './SelectDropdown';
+import SelectTrigger from './SelectTrigger';
+import type { FormSelectProps } from './types';
 
 const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
   (
@@ -65,8 +44,6 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
     // Refs for managing focus and clicks
     const containerRef = useRef<HTMLDivElement>(null);
-    const listboxRef = useRef<HTMLUListElement>(null);
-    const searchRef = useRef<HTMLInputElement>(null);
 
     // Filter options based on search term
     const filteredOptions = searchable
@@ -166,6 +143,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
         case 'Tab':
           setIsOpen(false);
           setHighlightedIndex(-1);
+          setSearchTerm('');
           // Don't prevent default - allow normal tab navigation
           break;
       }
@@ -173,10 +151,12 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
     // Close dropdown when clicking outside or losing focus
     useEffect(() => {
+      const containerElement = containerRef.current;
+
       const handleClickOutside = (event: MouseEvent) => {
         if (
-          containerRef.current &&
-          !containerRef.current.contains(event.target as Node)
+          containerElement &&
+          !containerElement.contains(event.target as Node)
         ) {
           setIsOpen(false);
         }
@@ -184,44 +164,23 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
       const handleFocusOut = (event: FocusEvent) => {
         if (
-          containerRef.current &&
-          !containerRef.current.contains(event.relatedTarget as Node)
+          containerElement &&
+          !containerElement.contains(event.relatedTarget as Node)
         ) {
           setIsOpen(false);
           setHighlightedIndex(-1);
+          setSearchTerm('');
         }
       };
 
       document.addEventListener('mousedown', handleClickOutside);
-      containerRef.current?.addEventListener('focusout', handleFocusOut);
+      containerElement?.addEventListener('focusout', handleFocusOut);
 
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
-        containerRef.current?.removeEventListener('focusout', handleFocusOut);
+        containerElement?.removeEventListener('focusout', handleFocusOut);
       };
     }, []);
-
-    // Focus search input when dropdown opens
-    useEffect(() => {
-      if (isOpen && searchable && searchRef.current) {
-        searchRef.current.focus();
-      }
-    }, [isOpen, searchable]);
-
-    // Scroll highlighted option into view
-    useEffect(() => {
-      if (highlightedIndex >= 0 && listboxRef.current) {
-        const highlightedElement = listboxRef.current.children[
-          highlightedIndex
-        ] as HTMLElement;
-        if (highlightedElement) {
-          highlightedElement.scrollIntoView({
-            block: 'nearest',
-            behavior: 'smooth',
-          });
-        }
-      }
-    }, [highlightedIndex]);
 
     // Determine the display value for the select button
     let displayValue: string;
@@ -432,212 +391,45 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
         </select>
 
         {/* Custom Dropdown Button */}
-        <motion.button
-          data-testid="form-select-trigger"
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
+        <SelectTrigger
+          isOpen={isOpen}
+          displayValue={displayValue}
+          selectedOption={selectedOption}
+          clearable={clearable}
+          error={error}
+          required={required}
+          ariaDescribedBy={ariaDescribedBy}
+          onToggle={() => setIsOpen(!isOpen)}
+          onClear={handleClear}
           onKeyDown={handleKeyDown}
-          aria-expanded={isOpen}
-          aria-haspopup="listbox"
-          aria-describedby={ariaDescribedBy || undefined}
-          aria-invalid={error ? 'true' : 'false'}
-          aria-required={required ? 'true' : 'false'}
-          className={classNames(
-            'relative w-full rounded-lg border px-4 py-3 text-left text-sm transition-all duration-200 focus:ring-2 focus:outline-none',
-            {
-              'border-gray-300 bg-white text-gray-900 hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500':
-                !error,
-              'border-red-300 bg-red-50 text-red-900 focus:border-red-500 focus:ring-red-500':
-                error,
-            }
-          )}
-          whileFocus={{ scale: 1.01 }}
-          transition={{ duration: 0.2 }}
-        >
-          <span className="flex items-center justify-between">
-            <span
-              data-testid="form-select-display-text"
-              className={classNames('truncate', {
-                'text-gray-500': !selectedOption,
-                'text-gray-900': selectedOption,
-              })}
-            >
-              {displayValue}
-            </span>
-
-            <span className="flex items-center space-x-2">
-              {/* Clear button */}
-              {clearable && selectedOption && (
-                <motion.button
-                  data-testid="form-select-clear-button"
-                  type="button"
-                  onClick={handleClear}
-                  className="rounded p-1 hover:bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  aria-label={t('common.clear')}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </motion.button>
-              )}
-
-              {/* Dropdown arrow */}
-              <motion.svg
-                data-testid="form-select-dropdown-icon"
-                className="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </motion.svg>
-            </span>
-          </span>
-        </motion.button>
+          onBlur={() => {
+            // Small delay to allow focus to move to next element
+            setTimeout(() => {
+              if (!containerRef.current?.contains(document.activeElement)) {
+                setIsOpen(false);
+                setHighlightedIndex(-1);
+                setSearchTerm('');
+              }
+            }, 100);
+          }}
+        />
 
         {/* Dropdown Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              data-testid="form-select-dropdown"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute z-50 mt-1 w-full rounded-lg border border-gray-300 bg-white shadow-lg"
-            >
-              {/* Search Input */}
-              <div className="border-b border-gray-200 p-2">
-                <input
-                  data-testid="form-select-search-input"
-                  ref={searchRef}
-                  id={searchId}
-                  type="text"
-                  value={searchTerm}
-                  onChange={e => setSearchTerm(e.target.value)}
-                  placeholder={t('common.search')}
-                  className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                  aria-label={t('common.searchOptions')}
-                />
-              </div>
-
-              {/* Options List */}
-              <ul
-                data-testid="form-select-options-list"
-                ref={listboxRef}
-                id={listboxId}
-                role="listbox"
-                className="max-h-60 overflow-auto py-1"
-                style={{ maxHeight }}
-              >
-                {filteredOptions.length === 0 ? (
-                  <li
-                    data-testid="form-select-no-results"
-                    className="px-4 py-2 text-sm text-gray-500"
-                  >
-                    {searchTerm
-                      ? t('common.noResultsFound')
-                      : t('common.noOptionsAvailable')}
-                  </li>
-                ) : (
-                  filteredOptions.map((option, index) => {
-                    const isSelected = value === option.value;
-                    const isHighlighted = index === highlightedIndex;
-
-                    return (
-                      <motion.li
-                        data-testid={`form-select-option-${option.value}`}
-                        key={option.value}
-                        role="option"
-                        aria-selected={isSelected}
-                        aria-disabled={option.disabled}
-                        className={classNames(
-                          'cursor-pointer px-4 py-2 text-sm transition-colors duration-150',
-                          {
-                            'bg-blue-600 text-white':
-                              isHighlighted && !option.disabled,
-                            'border-l-4 border-blue-500 bg-blue-50 text-blue-900':
-                              isSelected && !isHighlighted,
-                            'text-gray-900 hover:bg-blue-50 hover:text-blue-900':
-                              !isSelected && !isHighlighted && !option.disabled,
-                            'cursor-not-allowed bg-gray-50 text-gray-400':
-                              option.disabled,
-                          }
-                        )}
-                        onClick={() =>
-                          !option.disabled && handleSelect(option.value)
-                        }
-                        onMouseEnter={() =>
-                          !option.disabled && setHighlightedIndex(index)
-                        }
-                        onMouseLeave={() => setHighlightedIndex(-1)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            {option.icon && (
-                              <span
-                                className="flex-shrink-0"
-                                aria-hidden="true"
-                              >
-                                {option.icon}
-                              </span>
-                            )}
-                            <div>
-                              <div className="font-medium">
-                                {t(option.label)}
-                              </div>
-                              {option.description && (
-                                <div className="text-xs opacity-75">
-                                  {t(option.description)}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Selection indicator */}
-                          {isSelected && (
-                            <motion.svg
-                              className="h-4 w-4"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                              aria-hidden="true"
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              transition={{ duration: 0.2 }}
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </motion.svg>
-                          )}
-                        </div>
-                      </motion.li>
-                    );
-                  })
-                )}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <SelectDropdown
+          isOpen={isOpen}
+          searchable={searchable}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          filteredOptions={filteredOptions}
+          value={value}
+          highlightedIndex={highlightedIndex}
+          onSelect={handleSelect}
+          onHighlight={setHighlightedIndex}
+          onClearHighlight={() => setHighlightedIndex(-1)}
+          maxHeight={maxHeight}
+          searchId={searchId}
+          listboxId={listboxId}
+        />
 
         {helperText && !error && (
           <motion.div

@@ -1,15 +1,15 @@
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { forwardRef, useImperativeHandle, useEffect, useState } from 'react';
-import FormInput from './common/FormInput';
-import FormSelect from './common/FormSelect';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import {
   personalInformationSchema,
   type PersonalInformationFormData,
 } from '../../schemas';
-import { GENDER_OPTIONS, COUNTRY_OPTIONS } from '../../utils/formOptions';
+import { COUNTRY_OPTIONS, GENDER_OPTIONS } from '../../utils/formOptions';
+import FormInput from './common/FormInput';
+import FormSelect from './common/FormSelect';
 
 interface PersonalInformationFormProps {
   onSubmit: (data: PersonalInformationFormData) => void;
