@@ -1,5 +1,5 @@
-import type { PermitApplicationData } from '@/types/permit';
 import { PROCESSING_CONFIG } from '@/store/constants/api';
+import type { PermitApplicationData } from '@/store/types/permit';
 import { simulateDelay } from '@/utils/api';
 
 // Helper functions for API operations

@@ -1,19 +1,19 @@
-import { baseApi } from './baseApi';
 import type { SituationDescriptionFormData } from '@/schemas';
+import { API_DELAYS } from '@/store/constants/api';
+import { ApiHelpers } from '@/store/helpers/api';
+import { AnalysisEngine } from '@/store/services/analysis';
+import { StorageUtils } from '@/store/services/storage';
+import { clearAllFormData } from '@/store/slices/permitSlice';
 import type {
+  GetPermitResponse,
   PermitApplicationData,
+  PermitStatusResponse,
   PermitSubmissionResponse,
   SituationDescriptionResponse,
-  PermitStatusResponse,
-  GetPermitResponse,
   StoredPermitData,
-} from '@/types/permit';
-import { API_DELAYS } from '@/store/constants/api';
-import { generateUniqueId, createApplicationId } from '@/utils/api';
-import { StorageUtils } from '@/store/services/storage';
-import { AnalysisEngine } from '@/store/services/analysis';
-import { ApiHelpers } from '@/store/helpers/api';
-import { clearAllFormData } from '@/store/slices/permitSlice';
+} from '@/store/types/permit';
+import { createApplicationId, generateUniqueId } from '@/utils/api';
+import { baseApi } from './baseApi';
 
 export const permitApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -166,6 +166,7 @@ export const permitApi = baseApi.injectEndpoints({
             success: true,
             message: statusData.message,
             data: {
+              applicationId,
               status: statusData.status,
               lastUpdated: new Date().toISOString(),
               notes: statusData.notes,

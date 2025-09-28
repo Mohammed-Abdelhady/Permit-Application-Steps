@@ -1,6 +1,6 @@
 import type {
-  PersonalInformationFormData,
   FamilyFinancialFormData,
+  PersonalInformationFormData,
   SituationDescriptionFormData,
 } from '@/schemas';
 
@@ -39,6 +39,7 @@ export interface PermitStatusResponse {
   success: boolean;
   message: string;
   data: {
+    applicationId: string;
     status: 'pending' | 'approved' | 'rejected' | 'under_review';
     lastUpdated: string;
     notes: string;

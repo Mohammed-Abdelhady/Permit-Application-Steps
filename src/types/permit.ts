@@ -4,11 +4,6 @@ export * from './pages';
 export * from './step';
 
 // Import types for use in this file
-import type {
-  FamilyFinancialData,
-  PersonalInformationData,
-  SituationDescriptionData,
-} from './pages';
 
 // API Response Types
 export interface AnalysisResult {
@@ -16,6 +11,8 @@ export interface AnalysisResult {
   recommendations: string[];
   status: 'approved' | 'pending' | 'rejected';
 }
+
+import type { StoredPermitData } from '@/store/types/permit';
 
 export interface GetPermitResponse {
   success: boolean;
@@ -50,16 +47,6 @@ export interface SituationDescriptionResponse {
     recommendations: string[];
   };
   message?: string;
-}
-
-export interface StoredPermitData {
-  applicationId: string;
-  personalInformation: PersonalInformationData;
-  familyFinancial: FamilyFinancialData;
-  situationDescription: SituationDescriptionData;
-  submissionDate: string;
-  status: 'pending' | 'approved' | 'rejected';
-  analysis?: AnalysisResult;
 }
 
 // Legacy types (kept for backward compatibility)

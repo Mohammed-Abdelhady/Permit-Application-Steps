@@ -1,5 +1,5 @@
-import type { StoredPermitData } from '@/types/permit';
 import { PERMITS_STORAGE_KEY } from '@/store/constants/api';
+import type { StoredPermitData } from '@/store/types/permit';
 
 // Optimized localStorage utility functions
 export const StorageUtils = {

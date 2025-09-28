@@ -1,6 +1,6 @@
 import type { SituationDescriptionFormData } from '@/schemas';
-import type { AnalysisResult } from '@/types/permit';
-import { SCORING_CONFIG, RECOMMENDATIONS } from '@/store/constants/api';
+import { RECOMMENDATIONS, SCORING_CONFIG } from '@/store/constants/api';
+import type { AnalysisResult } from '@/store/types/permit';
 
 // Optimized analysis engine with better performance
 export const AnalysisEngine = {
