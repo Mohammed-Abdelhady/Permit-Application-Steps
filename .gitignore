@@ -48,3 +48,13 @@ dist-ssr
 test-results/
 playwright-report/
 playwright/.cache/
+
+# Docker
+.dockerignore
+
+# Test files
+test-package.json
+
+# Build artifacts
+dist/
+build/
