@@ -1,6 +1,6 @@
-import { forwardRef, useId, useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import classNames from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
+import { forwardRef, useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface SelectOption {
