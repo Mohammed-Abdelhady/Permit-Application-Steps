@@ -17,7 +17,6 @@ yarn.lock
 *.log
 
 # IDE files
-.vscode/
 .idea/
 
 # OS files
