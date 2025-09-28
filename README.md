@@ -2,6 +2,10 @@
 
 A modern, intelligent permit application platform built with React and TypeScript. This application streamlines the permit submission process through a multi-step form flow with AI-powered assistance, real-time validation, and comprehensive user experience features.
 
+## 📚 Documentation
+
+- **[Core Technical Documentation.pdf](docs/Core%20Technical%20Documentation.pdf)** - Comprehensive technical documentation covering architecture decisions, component library, testing strategy, AI integration, and more.
+
 ## 📋 Requirements
 
 ### System Requirements

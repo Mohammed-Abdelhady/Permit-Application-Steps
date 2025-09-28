@@ -1,4 +1,4 @@
-import { ToastContainer } from '@/components';
+import { RouteGuard, ToastContainer } from '@/components';
 import { NavigationProvider, ToastProvider } from '@/contexts';
 import {
   FamilyFinancialInfoPage,
@@ -35,9 +35,20 @@ function App() {
               <Route path="personal" element={<PersonalInformationPage />} />
               <Route
                 path="family-financial"
-                element={<FamilyFinancialInfoPage />}
+                element={
+                  <RouteGuard requiredStep={2}>
+                    <FamilyFinancialInfoPage />
+                  </RouteGuard>
+                }
               />
-              <Route path="situation" element={<SituationDescriptionPage />} />
+              <Route
+                path="situation"
+                element={
+                  <RouteGuard requiredStep={3}>
+                    <SituationDescriptionPage />
+                  </RouteGuard>
+                }
+              />
               <Route
                 path="success/:applicationId"
                 element={<PermitSubmissionSuccessPage />}

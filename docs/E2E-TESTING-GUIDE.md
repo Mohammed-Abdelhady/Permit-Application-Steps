@@ -1,189 +1,255 @@
-# E2E Testing with Video Recording and Screenshots
+# 🎬 E2E Testing Guide - Complete Flow Videos
 
-This document explains how to run the complete permit application flow E2E test with comprehensive video recording and screenshots.
+This guide explains how to run individual E2E test scenarios with full flow video recording.
 
-## 🎥 Video Recording Features
+## 🎥 Individual Scenario Testing
 
-The complete flow test includes enhanced video recording with:
+Each scenario can be run individually with enhanced video recording:
+
+### Scenario 1: Complete Flow Without AI Generation
+
+```bash
+npm run test:e2e:scenario1
+```
+
+**What it tests:**
+
+- Complete permit application flow
+- Auto-fill all forms
+- Navigation between steps
+- Success page verification
+- Form data persistence
+
+### Scenario 2: Complete Flow With AI Generation
+
+```bash
+npm run test:e2e:scenario2
+```
+
+**What it tests:**
+
+- Complete permit application flow
+- AI-powered text generation
+- AI suggestion popup interactions
+- Performance and loading states
+- AI-generated content verification
+
+### Scenario 3: Form Validation with Auto-Fix
+
+```bash
+npm run test:e2e:scenario3
+```
+
+**What it tests:**
+
+- Invalid data submission
+- Real-time validation feedback
+- Auto-fix functionality
+- Error message display
+- Form correction mechanisms
+
+### Scenario 4: Success Screen with Wrong ID
+
+```bash
+npm run test:e2e:scenario4
+```
+
+**What it tests:**
+
+- Invalid application IDs in URL
+- Malformed URLs
+- Error handling and recovery
+- Security against injection attempts
+- Case sensitivity handling
+
+### Scenario 5: Refresh Warning and Navigation
+
+```bash
+npm run test:e2e:scenario5
+```
+
+**What it tests:**
+
+- Browser refresh warnings
+- Navigation away warnings
+- Form data protection
+- Multiple browser actions
+- Warning dialog interactions
+
+### Scenario 6: LocalStorage Persistence
+
+```bash
+npm run test:e2e:scenario6
+```
+
+**What it tests:**
+
+- Data persistence after refresh
+- Cross-step data retention
+- Browser close/reopen scenarios
+- Partial data handling
+- AI-generated content persistence
+
+## 🎬 Video Recording Features
+
+Each individual scenario includes:
 
 - **High-quality video** (1280x720 resolution)
-- **Slow-motion actions** (100ms delay between actions for better visibility)
-- **Retain on failure** (videos are kept even if tests fail)
+- **Slow-motion actions** (150ms delay for better visibility)
 - **Full test coverage** (entire user journey recorded)
-
-## 📸 Screenshot Documentation
-
-The test automatically captures screenshots at key points:
-
-### Screenshot Sequence:
-
-1. `01-personal-information-initial.png` - Initial personal information page
-2. `02-personal-information-filled.png` - Personal information form filled
-3. `03-family-financial-initial.png` - Family financial page initial state
-4. `04-family-financial-filled.png` - Family financial form filled
-5. `05-situation-description-initial.png` - Situation description page initial
-6. `06-situation-description-filled.png` - Situation description form filled
-7. `07-success-page-header.png` - Success page header section
-8. `08-complete-success-page.png` - Complete success page view
-9. `09-application-summary.png` - Application summary section
-10. `10-application-analysis.png` - Application analysis section
-
-## 🚀 Running the Complete Flow Test
-
-### Basic Video Recording
-
-```bash
-# Run complete flow test with video recording
-npm run test:e2e:complete-flow
-```
-
-### Headed Mode (See Browser)
-
-```bash
-# Run with visible browser window
-npm run test:e2e:complete-flow:headed
-```
-
-### UI Mode (Interactive)
-
-```bash
-# Run with Playwright UI for debugging
-npm run test:e2e:complete-flow:ui
-```
+- **Automatic screenshots** at key points
+- **Detailed test reports** with video links
 
 ## 📁 Output Locations
 
 ### Videos
 
-- **Location**: `test-results/` directory
-- **Format**: `.webm` files
-- **Naming**: `complete-permit-flow-success-chromium-[timestamp].webm`
+- **Location**: `test-results/scenarios-XX-[test-name]-[browser]/video.webm`
+- **Format**: WebM video format
+- **Quality**: 1280x720 resolution
 
 ### Screenshots
 
-- **Location**: `test-results/` directory
-- **Format**: `.png` files
-- **Naming**: Sequential numbering (01-10) with descriptive names
+- **Location**: `test-results/scenarios-XX-[test-name]-[browser]/test-finished-1.png`
+- **Format**: PNG images
+- **Coverage**: Key test moments
 
-### Test Reports
+### Reports
 
-- **HTML Report**: `playwright-report/index.html`
-- **JSON Results**: `test-results/results.json`
-- **JUnit XML**: `test-results/results.xml`
+- **Location**: `playwright-report/index.html`
+- **Access**: Run `npm run test:e2e:report` to view
 
-## 🎯 Test Coverage
+## 🚀 Quick Start
 
-The complete flow test verifies:
+1. **Start the development server:**
 
-### ✅ Form Validation
+   ```bash
+   npm run dev
+   ```
 
-- Required field validation
-- Data format validation
-- Form submission validation
+2. **Run any individual scenario:**
 
-### ✅ Data Persistence
+   ```bash
+   npm run test:e2e:scenario1  # Complete flow without AI
+   npm run test:e2e:scenario2  # Complete flow with AI
+   npm run test:e2e:scenario3  # Form validation
+   npm run test:e2e:scenario4  # Error handling
+   npm run test:e2e:scenario5  # Navigation warnings
+   npm run test:e2e:scenario6  # Data persistence
+   ```
 
-- Form data survives navigation
-- Data persistence across steps
-- State management verification
-
-### ✅ Success Page Verification
-
-- Application ID generation
-- Submission date display
-- Complete data summary
-- AI analysis generation
-
-### ✅ User Experience
-
-- Progress indicator updates
-- Loading states
-- Error handling
-- Responsive design
+3. **View the results:**
+   ```bash
+   npm run test:e2e:report
+   ```
 
 ## 🔧 Configuration Details
 
-### Video Settings
+### Individual Scenario Config (`playwright-scenario.config.ts`)
 
-```typescript
-video: {
-  mode: 'retain-on-failure',
-  size: { width: 1280, height: 720 },
-}
+- **Video**: Always on with high quality
+- **Screenshots**: Always taken
+- **Slow motion**: 150ms delay between actions
+- **Workers**: Single worker for consistent recording
+- **Parallel**: Disabled for sequential execution
+
+### Test Data
+
+- **Centralized**: All test data in `e2e/common/testData.ts`
+- **Reusable**: Common data sets for different scenarios
+- **Consistent**: Same data across all tests
+
+### Helper Functions
+
+- **FormHelper**: Common form interactions
+- **Screenshot**: Automatic screenshot capture
+- **Verification**: Data validation helpers
+- **Navigation**: Step-by-step navigation
+
+## 🎯 Test Coverage
+
+Each scenario covers:
+
+1. **User Interface**: Form interactions, navigation, UI elements
+2. **Data Flow**: Form submission, validation, persistence
+3. **Error Handling**: Invalid inputs, network errors, edge cases
+4. **Accessibility**: Keyboard navigation, screen reader support
+5. **Performance**: Loading states, response times, AI generation
+6. **Security**: Input validation, XSS prevention, data protection
+
+## 📊 Scenario Summary
+
+| Scenario | Focus                   | Duration | Video Size |
+| -------- | ----------------------- | -------- | ---------- |
+| 1        | Complete Flow (No AI)   | ~3-5 min | ~50-80 MB  |
+| 2        | Complete Flow (With AI) | ~5-8 min | ~80-120 MB |
+| 3        | Form Validation         | ~4-6 min | ~60-90 MB  |
+| 4        | Error Handling          | ~3-5 min | ~50-80 MB  |
+| 5        | Navigation Warnings     | ~4-6 min | ~60-90 MB  |
+| 6        | Data Persistence        | ~5-7 min | ~70-100 MB |
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+1. **localStorage Errors**: Fixed with try-catch blocks
+2. **Video Recording**: Ensure sufficient disk space
+3. **Test Timeouts**: Increase timeout in config if needed
+4. **Browser Issues**: Try different browsers (Chrome, Firefox, Safari)
+
+### Performance Tips
+
+1. **Close other applications** during video recording
+2. **Use SSD storage** for better video performance
+3. **Run scenarios individually** for better resource management
+4. **Check disk space** before running tests
+
+## 🎥 Video Quality Settings
+
+- **Resolution**: 1280x720 (HD)
+- **Frame Rate**: 30 FPS
+- **Codec**: VP8 (WebM)
+- **Bitrate**: Adaptive
+- **Audio**: Disabled (for smaller file size)
+
+## 📈 Best Practices
+
+1. **Run scenarios individually** for focused testing
+2. **Review videos** to identify UI/UX issues
+3. **Use screenshots** for quick verification
+4. **Check reports** for detailed test results
+5. **Clean up old videos** regularly to save space
+
+## 🔍 Debugging
+
+### Enable Debug Mode
+
+```bash
+# Run with debug information
+npm run test:e2e:scenario1 -- --debug
+
+# Run with trace
+npm run test:e2e:scenario1 -- --trace on
 ```
 
-### Screenshot Settings
+### View Test Results
 
-```typescript
-screenshot: 'only-on-failure';
+```bash
+# Open HTML report
+npm run test:e2e:report
+
+# View specific test results
+npx playwright show-report
 ```
 
-### Performance Settings
+## 🎯 Next Steps
 
-```typescript
-launchOptions: {
-  slowMo: 100, // 100ms delay between actions
-}
-```
+1. **Run individual scenarios** to see complete flows
+2. **Review video recordings** for UI/UX insights
+3. **Check test reports** for detailed results
+4. **Modify test data** in `testData.ts` as needed
+5. **Add new scenarios** following the existing pattern
 
-## 📊 Test Data
+---
 
-The test uses comprehensive, realistic data:
-
-### Personal Information
-
-- Name: Mohammed Abdelhady
-- Nationality: Saudi Arabia (SA)
-- Email: ahmed.alrashid@example.com
-- Phone: +966501234567
-
-### Family Financial
-
-- Monthly Income: 15,000 SAR
-- Family Size: 4 members
-- Spouse Income: 8,000 SAR
-- Children: 2
-- Monthly Expenses: 6,000 SAR
-- Savings: 50,000 SAR
-
-### Situation Description
-
-- Career-focused application reason
-- Current software engineering position
-- Future technology consulting goals
-- Complete emergency contact information
-
-## 🎬 Video Quality Tips
-
-1. **Run in headed mode** for best visual quality
-2. **Use single worker** to avoid parallel execution issues
-3. **Ensure stable network** for consistent API responses
-4. **Close other applications** to improve performance
-
-## 📝 Troubleshooting
-
-### Video Not Recording
-
-- Check Playwright configuration
-- Verify output directory permissions
-- Ensure sufficient disk space
-
-### Screenshots Missing
-
-- Check test-results directory exists
-- Verify test data IDs are correct
-- Ensure page elements are visible
-
-### Test Failures
-
-- Check API endpoints are running
-- Verify environment variables
-- Review browser console for errors
-
-## 🎯 Best Practices
-
-1. **Run tests in clean environment**
-2. **Use consistent test data**
-3. **Review videos for UX improvements**
-4. **Document any test failures**
-5. **Keep test data realistic and comprehensive**
+**Happy Testing! 🎬✨**

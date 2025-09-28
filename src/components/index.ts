@@ -8,6 +8,7 @@ export { default as Header } from './shared/Header';
 export { default as Navigation } from './shared/Navigation';
 export { default as PermitPageLayout } from './shared/PermitPageLayout';
 export { default as ProgressIndicator } from './shared/ProgressIndicator';
+export { default as RouteGuard } from './shared/RouteGuard';
 export { TextSuggestionPopup } from './shared/TextSuggestionPopup';
 export { default as ToastContainer } from './shared/ToastContainer';
 
