@@ -1,8 +1,8 @@
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
-import { PersonalInformationSummary } from './PersonalInformationSummary';
 import { FamilyFinancialSummary } from './FamilyFinancialSummary';
+import { PersonalInformationSummary } from './PersonalInformationSummary';
 import { SituationDescriptionSummary } from './SituationDescriptionSummary';
 
 import type { StoredPermitData } from '@/store/types/permit';
@@ -17,12 +17,14 @@ const ApplicationSummary = ({ permitData, isRTL }: ApplicationSummaryProps) => {
 
   return (
     <motion.div
+      data-testid="application-summary"
       className="space-y-6"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
     >
       <h2
+        data-testid="summary-title"
         className={classNames(
           'text-2xl font-semibold text-gray-800',
           isRTL ? 'text-right' : 'text-left'

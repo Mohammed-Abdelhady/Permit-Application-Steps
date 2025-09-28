@@ -40,7 +40,12 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "e2e/accessibility.spec.ts",
+    "e2e/permit-application-final.spec.ts",
+    "e2e/permit-application-flow-clean.spec.ts"
+  ],
   "exclude": [
     "src/__tests__/**/*",
     "**/*.test.ts",

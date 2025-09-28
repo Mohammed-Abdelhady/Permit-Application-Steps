@@ -3,6 +3,13 @@ export * from './components';
 export * from './pages';
 export * from './step';
 
+// Import types for use in this file
+import type {
+  FamilyFinancialData,
+  PersonalInformationData,
+  SituationDescriptionData,
+} from './pages';
+
 // API Response Types
 export interface AnalysisResult {
   score: number;
@@ -57,8 +64,7 @@ export interface StoredPermitData {
 
 // Legacy types (kept for backward compatibility)
 export interface PersonalInfo {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   phone: string;
   dateOfBirth: string;

@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
 
 interface SuccessHeaderProps {
   isRTL: boolean;
@@ -17,6 +17,7 @@ export const SuccessHeader = ({
 
   return (
     <motion.div
+      data-testid="success-header"
       className="mb-8 rounded-2xl bg-white p-8 text-center shadow-lg"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -44,6 +45,7 @@ export const SuccessHeader = ({
       </motion.div>
 
       <h1
+        data-testid="success-title"
         className={classNames(
           'mb-2 text-3xl font-bold text-gray-800',
           isRTL ? 'text-right' : 'text-left'
@@ -53,6 +55,7 @@ export const SuccessHeader = ({
       </h1>
 
       <p
+        data-testid="success-description"
         className={classNames(
           'text-lg text-gray-600',
           isRTL ? 'text-right' : 'text-left'
@@ -66,13 +69,23 @@ export const SuccessHeader = ({
           <p className="text-sm font-medium text-blue-800">
             {t('permit.application_id')}
           </p>
-          <p className="text-xl font-bold text-blue-900">{applicationId}</p>
+          <p
+            data-testid="application-id"
+            className="text-xl font-bold text-blue-900"
+          >
+            {applicationId}
+          </p>
         </div>
         <div className="rounded-lg bg-green-50 p-4">
           <p className="text-sm font-medium text-green-800">
             {t('permit.submission_date')}
           </p>
-          <p className="text-xl font-bold text-green-900">{submissionDate}</p>
+          <p
+            data-testid="submission-date"
+            className="text-xl font-bold text-green-900"
+          >
+            {submissionDate}
+          </p>
         </div>
       </div>
     </motion.div>

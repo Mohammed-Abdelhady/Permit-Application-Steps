@@ -1,7 +1,7 @@
+import type { StoredPermitData } from '@/store/types/permit';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
-import type { StoredPermitData } from '@/store/types/permit';
 
 interface ApplicationAnalysisProps {
   permitData: StoredPermitData;
@@ -28,12 +28,14 @@ const ApplicationAnalysis = ({
 
   return (
     <motion.div
+      data-testid="application-analysis"
       className="mb-6 rounded-lg bg-white p-6 shadow-md"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
       <h3
+        data-testid="analysis-title"
         className={classNames(
           'mb-4 text-xl font-semibold text-gray-800',
           isRTL ? 'text-right' : 'text-left'

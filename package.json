@@ -16,11 +16,13 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:e2e": "playwright test",
-    "test:e2e:no-server": "playwright test --config=playwright-no-server.config.ts",
-    "test:e2e:ui": "playwright test --config=playwright-no-server.config.ts --ui",
-    "test:e2e:debug": "playwright test --debug",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:scenario1": "playwright test e2e/scenarios/01-complete-flow-no-ai.spec.ts --config=playwright-scenario.config.ts --headed",
+    "test:e2e:scenario2": "playwright test e2e/scenarios/02-complete-flow-with-ai.spec.ts --config=playwright-scenario.config.ts --headed",
+    "test:e2e:scenario3": "playwright test e2e/scenarios/03-form-validation-auto-fix.spec.ts --config=playwright-scenario.config.ts --headed",
+    "test:e2e:scenario4": "playwright test e2e/scenarios/04-success-screen-wrong-id.spec.ts --config=playwright-scenario.config.ts --headed"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

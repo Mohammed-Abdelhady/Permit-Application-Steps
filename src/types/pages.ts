@@ -11,11 +11,14 @@ export interface BasePermitPageProps {
 
 // Personal Information Page specific types
 export interface PersonalInformationData {
-  firstName: string;
-  lastName: string;
+  name: string;
+  nationalId: string;
   dateOfBirth: string;
-  nationality: string;
-  passportNumber: string;
+  gender: 'male' | 'female';
+  address: string;
+  city: string;
+  state: string;
+  country: string;
   email: string;
   phoneNumber: string;
 }
