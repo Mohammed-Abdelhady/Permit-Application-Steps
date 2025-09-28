@@ -44,6 +44,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
     // Refs for managing focus and clicks
     const containerRef = useRef<HTMLDivElement>(null);
+    const blurTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Filter options based on search term
     const filteredOptions = searchable
@@ -179,6 +180,10 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
         containerElement?.removeEventListener('focusout', handleFocusOut);
+        // Cleanup blur timeout
+        if (blurTimeoutRef.current) {
+          clearTimeout(blurTimeoutRef.current);
+        }
       };
     }, []);
 
@@ -403,8 +408,13 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
           onClear={handleClear}
           onKeyDown={handleKeyDown}
           onBlur={() => {
+            // Clear any existing timeout
+            if (blurTimeoutRef.current) {
+              clearTimeout(blurTimeoutRef.current);
+            }
+
             // Small delay to allow focus to move to next element
-            setTimeout(() => {
+            blurTimeoutRef.current = setTimeout(() => {
               if (!containerRef.current?.contains(document.activeElement)) {
                 setIsOpen(false);
                 setHighlightedIndex(-1);

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -473,8 +473,14 @@ describe('FormSelect', () => {
         const trigger = screen.getByTestId('form-select-trigger');
         await user.click(trigger);
 
+        // Wait for dropdown to be rendered
+        await screen.findByTestId('form-select-dropdown');
+
         const option = screen.getByTestId('form-select-option-option2');
-        await user.click(option);
+
+        await act(async () => {
+          await user.click(option);
+        });
 
         expect(mockOnValueChange).toHaveBeenCalledWith('option2');
       });
