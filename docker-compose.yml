@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  ai-permit-app:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: ai-permit-application
+    networks:
+      - permit-network
+
+networks:
+  permit-network:
+    driver: bridge
