@@ -1,13 +1,13 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { forwardRef, useImperativeHandle, useEffect, useState } from 'react';
-import FormTextArea from './common/FormTextArea';
 import {
   situationDescriptionSchema,
   type SituationDescriptionFormData,
-} from '../../schemas';
+} from '@/schemas';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { motion } from 'framer-motion';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import FormTextArea from './common/FormTextArea';
 
 interface SituationDescriptionFormProps {
   onSubmit: (data: SituationDescriptionFormData) => void;

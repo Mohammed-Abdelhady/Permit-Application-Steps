@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import classNames from 'classnames';
-import { type ProgressIndicatorProps } from '../../types/components';
+import { type ProgressIndicatorProps } from '@/types/components';
 
 const ProgressIndicator = ({ steps, currentStep }: ProgressIndicatorProps) => {
   // Helper function to get step status

@@ -3,4 +3,4 @@ export * from './permit';
 export * from './openAI';
 
 // Re-export for convenience
-export type { RootState, AppDispatch } from '../store';
+export type { RootState, AppDispatch } from '@/store';

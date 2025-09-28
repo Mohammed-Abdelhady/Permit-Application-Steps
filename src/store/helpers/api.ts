@@ -1,6 +1,6 @@
-import type { PermitApplicationData } from '../types/permit';
-import { PROCESSING_CONFIG } from '../constants/api';
-import { simulateDelay } from '../utils/api';
+import type { PermitApplicationData } from '@/types/permit';
+import { PROCESSING_CONFIG } from '@/store/constants/api';
+import { simulateDelay } from '@/utils/api';
 
 // Helper functions for API operations
 export const ApiHelpers = {

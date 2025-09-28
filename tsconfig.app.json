@@ -16,6 +16,22 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Path mapping for absolute imports */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/contexts/*": ["src/contexts/*"],
+      "@/store/*": ["src/store/*"],
+      "@/types/*": ["src/types/*"],
+      "@/schemas/*": ["src/schemas/*"],
+      "@/locales/*": ["src/locales/*"],
+      "@/assets/*": ["src/assets/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -24,5 +40,12 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "src/__tests__/**/*",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ]
 }

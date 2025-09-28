@@ -1,7 +1,59 @@
 // Main types index - re-exports all organized types
-export * from './step';
 export * from './components';
 export * from './pages';
+export * from './step';
+
+// API Response Types
+export interface AnalysisResult {
+  score: number;
+  recommendations: string[];
+  status: 'approved' | 'pending' | 'rejected';
+}
+
+export interface GetPermitResponse {
+  success: boolean;
+  data: StoredPermitData;
+  message?: string;
+}
+
+export interface PermitStatusResponse {
+  success: boolean;
+  data: {
+    applicationId: string;
+    status: 'pending' | 'approved' | 'rejected';
+    lastUpdated: string;
+  };
+  message?: string;
+}
+
+export interface PermitSubmissionResponse {
+  success: boolean;
+  data: {
+    applicationId: string;
+    status: 'submitted';
+    estimatedProcessingDays: number;
+  };
+  message?: string;
+}
+
+export interface SituationDescriptionResponse {
+  success: boolean;
+  data: {
+    validationScore: number;
+    recommendations: string[];
+  };
+  message?: string;
+}
+
+export interface StoredPermitData {
+  applicationId: string;
+  personalInformation: PersonalInformationData;
+  familyFinancial: FamilyFinancialData;
+  situationDescription: SituationDescriptionData;
+  submissionDate: string;
+  status: 'pending' | 'approved' | 'rejected';
+  analysis?: AnalysisResult;
+}
 
 // Legacy types (kept for backward compatibility)
 export interface PersonalInfo {

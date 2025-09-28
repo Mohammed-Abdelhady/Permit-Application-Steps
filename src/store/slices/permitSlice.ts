@@ -4,7 +4,7 @@ import type {
   PersonalInformationFormData,
   FamilyFinancialFormData,
   SituationDescriptionFormData,
-} from '../../schemas';
+} from '@/schemas';
 
 export interface Permit {
   id: string;

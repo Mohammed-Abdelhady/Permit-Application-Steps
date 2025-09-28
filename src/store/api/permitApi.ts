@@ -1,5 +1,5 @@
 import { baseApi } from './baseApi';
-import type { SituationDescriptionFormData } from '../../schemas';
+import type { SituationDescriptionFormData } from '@/schemas';
 import type {
   PermitApplicationData,
   PermitSubmissionResponse,
@@ -7,13 +7,13 @@ import type {
   PermitStatusResponse,
   GetPermitResponse,
   StoredPermitData,
-} from '../types/permit';
-import { API_DELAYS } from '../constants/api';
-import { generateUniqueId, createApplicationId } from '../utils/api';
-import { StorageUtils } from '../services/storage';
-import { AnalysisEngine } from '../services/analysis';
-import { ApiHelpers } from '../helpers/api';
-import { clearAllFormData } from '../slices/permitSlice';
+} from '@/types/permit';
+import { API_DELAYS } from '@/store/constants/api';
+import { generateUniqueId, createApplicationId } from '@/utils/api';
+import { StorageUtils } from '@/store/services/storage';
+import { AnalysisEngine } from '@/store/services/analysis';
+import { ApiHelpers } from '@/store/helpers/api';
+import { clearAllFormData } from '@/store/slices/permitSlice';
 
 export const permitApi = baseApi.injectEndpoints({
   endpoints: builder => ({

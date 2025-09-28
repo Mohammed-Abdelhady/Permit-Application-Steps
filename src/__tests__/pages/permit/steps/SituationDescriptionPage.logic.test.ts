@@ -8,23 +8,23 @@
  * - Navigation behavior testing
  */
 
-import { describe, test, expect, beforeEach, vi } from 'vitest';
-import '../../../mocks/moduleMocks';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import {
-  SITUATION_DESCRIPTION_TEST_IDS,
-  SITUATION_DESCRIPTION_REQUIRED_FIELDS,
   LANGUAGES,
   ROUTES,
-  createMockSituationDescriptionData,
-  createEmptySituationDescriptionData,
-  createPartialSituationDescriptionData,
-  createIncompleteSituationDescriptionData,
-  isSituationDescriptionFormComplete,
+  SITUATION_DESCRIPTION_REQUIRED_FIELDS,
+  SITUATION_DESCRIPTION_TEST_IDS,
   calculateSituationDescriptionProgress,
-  isRTL,
+  createEmptySituationDescriptionData,
+  createIncompleteSituationDescriptionData,
+  createMockSituationDescriptionData,
+  createPartialSituationDescriptionData,
   getTextDirection,
+  isRTL,
+  isSituationDescriptionFormComplete,
   mockStepsData,
 } from '../../../mocks';
+import '../../../mocks/moduleMocks';
 import type { SituationDescriptionData } from '../../../mocks/types';
 
 describe('SituationDescriptionPage - Core Logic Tests', () => {

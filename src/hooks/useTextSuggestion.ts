@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { useGenerateTextSuggestionMutation } from '../store/api';
+import { useGenerateTextSuggestionMutation } from '@/store/api';
 
 export interface UseTextSuggestionProps {
   fieldType: 'financial' | 'employment' | 'reason';

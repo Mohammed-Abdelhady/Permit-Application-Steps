@@ -1,8 +1,8 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+import { useToast } from '@/hooks/useToast';
+import type { Toast } from '@/types/toast';
 import classNames from 'classnames';
-import { useToast } from '../../hooks/useToast';
-import type { Toast } from '../../types/toast';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface ToastItemProps {
   toast: Toast;

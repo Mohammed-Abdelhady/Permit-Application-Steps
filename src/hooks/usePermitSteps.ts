@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { PERMIT_STEP_KEYS, TOTAL_PERMIT_STEPS } from '../utils/constants';
-import { createSteps } from '../utils/helpers';
-import { type PermitStep } from '../types/step';
+import { PERMIT_STEP_KEYS, TOTAL_PERMIT_STEPS } from '@/utils/constants';
+import { createSteps } from '@/utils/helpers';
+import { type PermitStep } from '@/types/step';
 
 /**
  * Custom hook for permit step management

@@ -3,8 +3,8 @@ import type {
   PersonalInformationFormData,
   FamilyFinancialFormData,
   SituationDescriptionFormData,
-} from '../../schemas';
-import type { RootState } from '../store';
+} from '@/schemas';
+import type { RootState } from '@/store';
 
 // Key for localStorage
 const REDUX_PERSIST_KEY = 'dge_permit_data';

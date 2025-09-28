@@ -1,4 +1,4 @@
-import type { PermitStep } from '../types/step';
+import type { PermitStep } from '@/types/step';
 
 /**
  * Creates step configuration for progress indicator

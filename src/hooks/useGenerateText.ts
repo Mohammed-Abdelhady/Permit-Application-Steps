@@ -1,4 +1,4 @@
-import { useGenerateTextMutation } from '../store/api';
+import { useGenerateTextMutation } from '@/store/api';
 
 /**
  * Hook for general text generation using OpenAI API

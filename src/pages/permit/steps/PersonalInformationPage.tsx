@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react';
+import { PermitPageLayout, PersonalInformationForm } from '@/components';
+import { useNavigation } from '@/contexts';
+import { usePermitSteps, useRefreshWarning, useToast } from '@/hooks';
+import { type PersonalInformationFormData } from '@/schemas';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { savePersonalInformation } from '@/store/slices/permitSlice';
+import { scrollToTop } from '@/utils/helpers';
+import { SEO_KEYS, useSEO } from '@/utils/seo';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PermitPageLayout, PersonalInformationForm } from '../../../components';
-import { usePermitSteps, useToast, useRefreshWarning } from '../../../hooks';
-import { useNavigation } from '../../../contexts';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { savePersonalInformation } from '../../../store/slices/permitSlice';
-import { type PersonalInformationFormData } from '../../../schemas';
-import { scrollToTop } from '../../../utils/helpers';
 
 const PersonalInformationPage = () => {
   const { t } = useTranslation();
@@ -30,6 +31,9 @@ const PersonalInformationPage = () => {
 
   // Enable refresh warning for unsaved form data
   useRefreshWarning();
+
+  // Set SEO data
+  useSEO(SEO_KEYS.personal);
 
   const handleFormSubmit = async (data: PersonalInformationFormData) => {
     setIsSubmitting(true);

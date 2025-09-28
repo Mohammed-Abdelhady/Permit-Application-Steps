@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { AnimatedPageWrapper, Header } from '../../components';
+import { AnimatedPageWrapper, Header } from '@/components';
 
 const LoadingState = () => {
   const { t } = useTranslation();

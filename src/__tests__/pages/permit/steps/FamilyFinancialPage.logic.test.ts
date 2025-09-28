@@ -9,24 +9,24 @@
  * - Family financial specific validation
  */
 
-import { describe, test, expect, beforeEach, vi } from 'vitest';
-import '../../../mocks/moduleMocks';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import {
-  TEST_IDS,
-  FAMILY_FINANCIAL_REQUIRED_FIELDS,
   FAMILY_FINANCIAL_OPTIONS,
+  FAMILY_FINANCIAL_REQUIRED_FIELDS,
   LANGUAGES,
   ROUTES,
-  createMockFamilyFinancialData,
-  createEmptyFamilyFinancialData,
-  createPartialFamilyFinancialData,
-  createIncompleteFamilyFinancialData,
-  isFamilyFinancialFormComplete,
+  TEST_IDS,
   calculateFamilyFinancialProgress,
-  isRTL,
+  createEmptyFamilyFinancialData,
+  createIncompleteFamilyFinancialData,
+  createMockFamilyFinancialData,
+  createPartialFamilyFinancialData,
   getTextDirection,
+  isFamilyFinancialFormComplete,
+  isRTL,
   mockStepsData,
 } from '../../../mocks';
+import '../../../mocks/moduleMocks';
 import type { FamilyFinancialData } from '../../../mocks/types';
 
 describe('FamilyFinancialPage - Core Logic Tests', () => {

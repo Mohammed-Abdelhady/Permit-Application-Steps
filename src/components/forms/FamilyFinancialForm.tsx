@@ -1,17 +1,14 @@
+import { familyFinancialSchema, type FamilyFinancialFormData } from '@/schemas';
+import {
+  EMPLOYMENT_STATUS_OPTIONS,
+  HOUSING_STATUS_OPTIONS,
+  MARITAL_STATUS_OPTIONS,
+} from '@/utils/formOptions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { motion } from 'framer-motion';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  familyFinancialSchema,
-  type FamilyFinancialFormData,
-} from '../../schemas';
-import {
-  EMPLOYMENT_STATUS_OPTIONS,
-  HOUSING_STATUS_OPTIONS,
-  MARITAL_STATUS_OPTIONS,
-} from '../../utils/formOptions';
 import FormInput from './common/FormInput';
 import FormSelect from './common/FormSelect';
 

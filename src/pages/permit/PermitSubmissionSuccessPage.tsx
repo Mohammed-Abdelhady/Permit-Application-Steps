@@ -1,14 +1,15 @@
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { AnimatedPageWrapper, Header } from '@/components';
+import ActionButtons from '@/components/permit/ActionButtons';
+import ApplicationAnalysis from '@/components/permit/ApplicationAnalysis';
+import ApplicationSummary from '@/components/permit/ApplicationSummary';
+import ErrorState from '@/components/permit/ErrorState';
+import LoadingState from '@/components/permit/LoadingState';
+import { SuccessHeader } from '@/components/permit/SuccessHeader';
+import { useGetPermitByIdQuery } from '@/store/api/permitApi';
+import { SEO_KEYS, useSEO } from '@/utils/seo';
 import { motion } from 'framer-motion';
-import { useGetPermitByIdQuery } from '../../store/api/permitApi';
-import { AnimatedPageWrapper, Header } from '../../components';
-import { SuccessHeader } from '../../components/permit/SuccessHeader';
-import LoadingState from '../../components/permit/LoadingState';
-import ErrorState from '../../components/permit/ErrorState';
-import ApplicationAnalysis from '../../components/permit/ApplicationAnalysis';
-import ApplicationSummary from '../../components/permit/ApplicationSummary';
-import ActionButtons from '../../components/permit/ActionButtons';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 
 const PermitSubmissionSuccessPage = () => {
   const { i18n } = useTranslation();
@@ -25,6 +26,9 @@ const PermitSubmissionSuccessPage = () => {
   });
 
   const permitData = permitResponse?.data;
+
+  // Set SEO data
+  useSEO(SEO_KEYS.success);
 
   // Helper function to get locale string
   const getLocaleString = () => (i18n.language === 'ar' ? 'ar-SA' : 'en-US');

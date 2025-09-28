@@ -8,24 +8,24 @@
  * - Navigation behavior testing
  */
 
-import { describe, test, expect, beforeEach, vi } from 'vitest';
-import '../../../mocks/moduleMocks';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import {
-  TEST_IDS,
-  REQUIRED_FIELDS,
-  VALIDATION_PATTERNS,
   LANGUAGES,
+  REQUIRED_FIELDS,
   ROUTES,
-  createMockFormData,
-  createEmptyFormData,
-  createPartialFormData,
-  createIncompleteFormData,
-  isFormComplete,
+  TEST_IDS,
+  VALIDATION_PATTERNS,
   calculateProgress,
-  isRTL,
+  createEmptyFormData,
+  createIncompleteFormData,
+  createMockFormData,
+  createPartialFormData,
   getTextDirection,
+  isFormComplete,
+  isRTL,
   mockStepsData,
 } from '../../../mocks';
+import '../../../mocks/moduleMocks';
 import type { PersonalInformationData } from '../../../mocks/types';
 
 describe('PersonalInformationPage - Core Logic Tests', () => {

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import type { PersonalInformationFormData } from '../../schemas';
+import type { PersonalInformationFormData } from '@/schemas';
 
 interface PersonalInformationSummaryProps {
   data: PersonalInformationFormData;

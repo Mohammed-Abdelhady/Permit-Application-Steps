@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from '../store';
+import { useAppSelector } from '@/store';
 
 /**
  * Custom hook to warn users before leaving the page when they have unsaved form data

@@ -1,13 +1,13 @@
+import {
+  personalInformationSchema,
+  type PersonalInformationFormData,
+} from '@/schemas';
+import { COUNTRY_OPTIONS, GENDER_OPTIONS } from '@/utils/formOptions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { motion } from 'framer-motion';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  personalInformationSchema,
-  type PersonalInformationFormData,
-} from '../../schemas';
-import { COUNTRY_OPTIONS, GENDER_OPTIONS } from '../../utils/formOptions';
 import FormInput from './common/FormInput';
 import FormSelect from './common/FormSelect';
 

@@ -5,13 +5,13 @@ import type {
   OpenAIResponse,
   GenerateTextRequest,
   GenerateTextResponse,
-} from '../types/openAI';
+} from '@/types/openAI';
 import {
   getCurrentLanguage,
   getLocalizedPrompt,
   getFieldPrompts,
   type SupportedLanguage,
-} from '../constants/prompts';
+} from '@/store/constants/prompts';
 
 // Configuration
 const OPENAI_CONFIG = {

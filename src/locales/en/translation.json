@@ -476,6 +476,33 @@
       "show_less": "Show Less",
       "read_in_overlay": "Read in Overlay",
       "close": "Close"
+    },
+    "seo": {
+      "app": {
+        "title": "DGE Permit Application",
+        "description": "Complete your government permit application online with our user-friendly form. Apply for permits quickly and easily.",
+        "keywords": "permit application, DGE, government services, online application, permit form"
+      },
+      "personal": {
+        "title": "Personal Information - DGE Permit Application",
+        "description": "Complete your personal information for the DGE permit application. Enter your name, national ID, date of birth, and contact details.",
+        "keywords": "permit application, personal information, DGE, government services, application form"
+      },
+      "familyFinancial": {
+        "title": "Family & Financial Information - DGE Permit Application",
+        "description": "Provide your family and financial information for the DGE permit application. Include marital status, dependents, employment, and income details.",
+        "keywords": "permit application, family information, financial information, DGE, employment, income"
+      },
+      "situation": {
+        "title": "Situation Description - DGE Permit Application",
+        "description": "Describe your current situation and reason for applying for the DGE permit. Provide detailed information about your circumstances.",
+        "keywords": "permit application, situation description, DGE, application reason, circumstances"
+      },
+      "success": {
+        "title": "Application Submitted Successfully - DGE Permit",
+        "description": "Your DGE permit application has been submitted successfully. View your application details, analysis, and next steps.",
+        "keywords": "permit application, submitted, DGE, application success, application analysis"
+      }
     }
   },
   "error": {

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { type AnimatedPageWrapperProps } from '../../types/components';
+import { type AnimatedPageWrapperProps } from '@/types/components';
 
 const AnimatedPageWrapper = ({
   children,

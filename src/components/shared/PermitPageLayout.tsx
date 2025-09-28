@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
-import classNames from 'classnames';
-import { useTranslation } from 'react-i18next';
 import {
-  ProgressIndicator,
-  Navigation,
   AnimatedPageWrapper,
   Header,
-} from '../index';
-import { type PermitPageLayoutProps } from '../../types/components';
+  Navigation,
+  ProgressIndicator,
+} from '@/components';
+import { type PermitPageLayoutProps } from '@/types/components';
+import classNames from 'classnames';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const PermitPageLayout = ({
   children,

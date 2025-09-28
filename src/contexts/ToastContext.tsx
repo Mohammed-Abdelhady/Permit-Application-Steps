@@ -5,7 +5,7 @@ import {
   useMemo,
   type ReactNode,
 } from 'react';
-import type { Toast, ToastContextType } from '../types/toast';
+import type { Toast, ToastContextType } from '@/types/toast';
 
 export const ToastContext = createContext<ToastContextType | undefined>(
   undefined

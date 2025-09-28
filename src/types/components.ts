@@ -1,6 +1,6 @@
 // Common component types and interfaces
 import { type ReactNode } from 'react';
-import { type NavigationDirection } from '../contexts/NavigationTypes';
+import { type NavigationDirection } from '@/contexts/NavigationTypes';
 import { type PermitStep } from './step';
 
 // Layout component props

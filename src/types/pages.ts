@@ -1,5 +1,5 @@
 // Page-specific types and interfaces
-import { type NavigationDirection } from '../contexts/NavigationTypes';
+import { type NavigationDirection } from '@/contexts/NavigationTypes';
 import { type PermitStep } from './step';
 
 // Base page props that all permit pages share

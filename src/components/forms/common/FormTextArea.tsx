@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
 import { forwardRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTextSuggestion } from '../../../hooks/useTextSuggestion';
-import { TextSuggestionPopup } from '../../shared/TextSuggestionPopup';
+import { useTextSuggestion } from '@/hooks/useTextSuggestion';
+import { TextSuggestionPopup } from '@/components/shared/TextSuggestionPopup';
 
 interface FormTextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

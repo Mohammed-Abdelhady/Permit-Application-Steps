@@ -2,7 +2,7 @@ import type {
   PersonalInformationFormData,
   FamilyFinancialFormData,
   SituationDescriptionFormData,
-} from '../../schemas';
+} from '@/schemas';
 
 // Complete permit application data
 export interface PermitApplicationData {

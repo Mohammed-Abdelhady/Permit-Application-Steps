@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import type { Toast } from '../../types/toast';
+import type { Toast } from '@/types/toast';
 
 export const getToastStyles = (type: Toast['type']) => {
   const baseStyles = 'border-l-4 shadow-lg backdrop-blur-sm';

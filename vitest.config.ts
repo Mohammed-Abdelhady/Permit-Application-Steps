@@ -1,8 +1,9 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
+/// <reference types="@testing-library/jest-dom" />
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { defineConfig } from 'vite';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
@@ -18,6 +19,16 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
+      '@/components': resolve(__dirname, './src/components'),
+      '@/pages': resolve(__dirname, './src/pages'),
+      '@/utils': resolve(__dirname, './src/utils'),
+      '@/hooks': resolve(__dirname, './src/hooks'),
+      '@/contexts': resolve(__dirname, './src/contexts'),
+      '@/store': resolve(__dirname, './src/store'),
+      '@/types': resolve(__dirname, './src/types'),
+      '@/schemas': resolve(__dirname, './src/schemas'),
+      '@/locales': resolve(__dirname, './src/locales'),
+      '@/assets': resolve(__dirname, './src/assets'),
     },
   },
 });

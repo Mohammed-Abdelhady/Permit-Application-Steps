@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react';
+import { FamilyFinancialForm, PermitPageLayout } from '@/components';
+import { useNavigation } from '@/contexts';
+import { usePermitSteps, useRefreshWarning, useToast } from '@/hooks';
+import { type FamilyFinancialFormData } from '@/schemas';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { saveFamilyFinancial } from '@/store/slices/permitSlice';
+import { scrollToTop } from '@/utils/helpers';
+import { SEO_KEYS, useSEO } from '@/utils/seo';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { PermitPageLayout, FamilyFinancialForm } from '../../../components';
-import { usePermitSteps, useToast, useRefreshWarning } from '../../../hooks';
-import { useNavigation } from '../../../contexts';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { saveFamilyFinancial } from '../../../store/slices/permitSlice';
-import { type FamilyFinancialFormData } from '../../../schemas';
-import { scrollToTop } from '../../../utils/helpers';
 
 const FamilyFinancialInfoPage = () => {
   const { t } = useTranslation();
@@ -30,6 +31,9 @@ const FamilyFinancialInfoPage = () => {
 
   // Enable refresh warning for unsaved form data
   useRefreshWarning();
+
+  // Set SEO data
+  useSEO(SEO_KEYS.familyFinancial);
 
   const handleFormSubmit = async (data: FamilyFinancialFormData) => {
     setIsSubmitting(true);

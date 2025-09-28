@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import type { FamilyFinancialFormData } from '../../schemas';
+import type { FamilyFinancialFormData } from '@/schemas';
 
 interface FamilyFinancialSummaryProps {
   data: FamilyFinancialFormData;

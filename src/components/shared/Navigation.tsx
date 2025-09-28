@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import classNames from 'classnames';
 import { ChevronLeft, ChevronRight, Send, Loader2 } from 'lucide-react';
-import { type NavigationProps } from '../../types/components';
+import { type NavigationProps } from '@/types/components';
 
 const Navigation = ({
   onPrevious,
