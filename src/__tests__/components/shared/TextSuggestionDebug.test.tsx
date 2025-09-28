@@ -2,9 +2,9 @@
  * Simple TextSuggestionPopup Debug Test
  */
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, test, expect, vi } from 'vitest';
+import React from 'react';
+import { describe, expect, test, vi } from 'vitest';
 import { TextSuggestionPopup } from '../../../components/shared/TextSuggestionPopup';
 
 // Mock framer-motion

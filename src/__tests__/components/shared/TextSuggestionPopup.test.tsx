@@ -5,17 +5,17 @@
  * covering component structure, user interactions, state management, and business logic.
  */
 
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import React from 'react';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { TextSuggestionPopup } from '../../../components/shared/TextSuggestionPopup';
 import {
-  TEXT_SUGGESTION_TEST_IDS,
   TEXT_SUGGESTION_SCENARIOS,
+  TEXT_SUGGESTION_TEST_IDS,
   createMockTextSuggestionProps,
-  resetAllMocks,
   mockTranslation,
+  resetAllMocks,
 } from '../../mocks';
 
 // Mock framer-motion
