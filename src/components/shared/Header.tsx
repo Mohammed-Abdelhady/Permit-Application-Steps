@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Globe, Bell } from 'lucide-react';
+import { Globe } from 'lucide-react';
 
 interface HeaderProps {
   className?: string;
@@ -63,17 +63,6 @@ const Header = ({ className }: HeaderProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              {/* Notifications */}
-              <motion.button
-                data-testid="notifications-button"
-                className="relative rounded-lg p-2 text-gray-600 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Bell size={18} className="md:h-5 md:w-5" />
-                <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red-500 text-xs md:h-3 md:w-3"></span>
-              </motion.button>
-
               {/* Language Toggle */}
               <motion.button
                 data-testid="language-toggle-button"
