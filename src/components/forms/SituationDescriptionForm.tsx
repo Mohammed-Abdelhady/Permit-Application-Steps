@@ -86,14 +86,28 @@ const SituationDescriptionForm = forwardRef<
     onSubmit(data);
   };
 
+  // Handle Enter key press for form submission (but not in textarea fields)
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Only trigger on Enter if not in a textarea (which should allow line breaks)
+    if (e.key === 'Enter' && !e.shiftKey && e.target) {
+      const target = e.target as HTMLElement;
+      if (target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        handleSubmit(handleFormSubmit)();
+      }
+    }
+  };
+
   return (
     <motion.form
       data-testid="situation-description-form"
       onSubmit={handleSubmit(handleFormSubmit)}
+      onKeyDown={handleKeyDown}
       className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      aria-label={t('form.sections.situationDescription')}
     >
       {/* Financial Situation Section */}
       <motion.div

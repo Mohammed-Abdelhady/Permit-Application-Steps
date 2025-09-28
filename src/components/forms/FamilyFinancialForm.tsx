@@ -96,14 +96,24 @@ const FamilyFinancialForm = forwardRef<
     onSubmit(data);
   };
 
+  // Handle Enter key press for form submission
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(handleFormSubmit)();
+    }
+  };
+
   return (
     <motion.form
       data-testid="family-financial-form"
       onSubmit={handleSubmit(handleFormSubmit)}
+      onKeyDown={handleKeyDown}
       className="space-y-6 md:space-y-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      aria-label={t('form.sections.familyFinancial')}
     >
       {/* Family Information Section */}
       <motion.div

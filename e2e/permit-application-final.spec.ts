@@ -259,6 +259,46 @@ test.describe('Permit Application E2E Tests', () => {
     await expect(page.getByTestId('name-input')).toHaveValue(testData.name);
   });
 
+  test('should support Enter key for form submission', async ({ page }) => {
+    // Fill all required fields
+    await page.getByTestId('name-input').fill(testData.name);
+    await page.getByTestId('national-id-input').fill(testData.nationalId);
+    await page.getByTestId('date-of-birth-input').fill(testData.dateOfBirth);
+    await selectCustomOption(page, 'gender-select', testData.gender);
+    await page.getByTestId('address-input').fill(testData.address);
+    await selectCustomOption(page, 'country-select', testData.country);
+    await page.getByTestId('city-input').fill(testData.city);
+    await page.getByTestId('state-input').fill(testData.state);
+    await page.getByTestId('phone-input').fill(testData.phone);
+    await page.getByTestId('email-input').fill(testData.email);
+
+    // Focus on a form field and press Enter
+    await page.getByTestId('name-input').focus();
+    await page.keyboard.press('Enter');
+
+    // Should navigate to next page
+    await page.waitForTimeout(1000);
+    const currentUrl = page.url();
+    expect(currentUrl).toContain('/family-financial');
+  });
+
+  test('should have proper accessibility attributes', async ({ page }) => {
+    // Check form has proper label
+    const form = page.getByTestId('personal-information-form');
+    await expect(form).toHaveAttribute('aria-label');
+
+    // Check required fields have proper aria attributes
+    const nameInput = page.getByTestId('name-input');
+    await expect(nameInput).toHaveAttribute('aria-required', 'true');
+    await expect(nameInput).toHaveAttribute('aria-invalid', 'false');
+
+    // Check labels are properly associated
+    const nameLabel = page.locator('label[for]').first();
+    const labelFor = await nameLabel.getAttribute('for');
+    const inputId = await nameInput.getAttribute('id');
+    expect(labelFor).toBe(inputId);
+  });
+
   test('should support internationalization - language toggle', async ({
     page,
   }) => {
