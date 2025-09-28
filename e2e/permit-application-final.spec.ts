@@ -201,6 +201,40 @@ test.describe('Permit Application E2E Tests', () => {
     await expect(countryDisplayText).not.toHaveText('Select your country');
   });
 
+  test('should close dropdown when navigating with Tab key', async ({
+    page,
+  }) => {
+    // Open gender dropdown
+    const genderContainer = page
+      .locator('[data-testid="gender-select"]')
+      .locator('..');
+    const genderTrigger = genderContainer.locator(
+      '[data-testid="form-select-trigger"]'
+    );
+    await genderTrigger.click();
+    await page.waitForTimeout(300);
+
+    // Verify dropdown is open
+    const dropdown = page.locator('[role="listbox"]');
+    await expect(dropdown).toBeVisible();
+
+    // Use arrow keys to navigate
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+
+    // Press Tab to move to next field
+    await page.keyboard.press('Tab');
+
+    // Verify dropdown is closed
+    await expect(dropdown).not.toBeVisible();
+
+    // Verify focus moved to next field
+    const nextField = page.evaluate(() =>
+      document.activeElement?.getAttribute('data-testid')
+    );
+    expect(nextField).toBeTruthy();
+  });
+
   test('should navigate through the application flow', async ({ page }) => {
     // Fill the personal information form
     await page.getByTestId('name-input').fill(testData.name);

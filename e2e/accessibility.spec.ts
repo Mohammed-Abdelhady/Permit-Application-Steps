@@ -203,8 +203,15 @@ test.describe('Accessibility Tests', () => {
     await page.keyboard.press('Tab');
     await page.keyboard.type('1990-01-15');
 
-    // Skip complex dropdowns for this test and focus on text inputs
-    for (let i = 0; i < 6; i++) {
+    // Test dropdown navigation with keyboard
+    await page.keyboard.press('Tab'); // Focus gender dropdown
+    await page.keyboard.press('Enter'); // Open dropdown
+    await page.keyboard.press('ArrowDown'); // Navigate options
+    await page.keyboard.press('Enter'); // Select option
+    await page.keyboard.press('Tab'); // Move to next field (should close dropdown)
+
+    // Continue with remaining fields
+    for (let i = 0; i < 5; i++) {
       await page.keyboard.press('Tab');
     }
 

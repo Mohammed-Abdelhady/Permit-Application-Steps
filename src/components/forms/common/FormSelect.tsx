@@ -165,11 +165,13 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
           break;
         case 'Tab':
           setIsOpen(false);
+          setHighlightedIndex(-1);
+          // Don't prevent default - allow normal tab navigation
           break;
       }
     };
 
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside or losing focus
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -180,9 +182,23 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
         }
       };
 
+      const handleFocusOut = (event: FocusEvent) => {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(event.relatedTarget as Node)
+        ) {
+          setIsOpen(false);
+          setHighlightedIndex(-1);
+        }
+      };
+
       document.addEventListener('mousedown', handleClickOutside);
-      return () =>
+      containerRef.current?.addEventListener('focusout', handleFocusOut);
+
+      return () => {
         document.removeEventListener('mousedown', handleClickOutside);
+        containerRef.current?.removeEventListener('focusout', handleFocusOut);
+      };
     }, []);
 
     // Focus search input when dropdown opens
