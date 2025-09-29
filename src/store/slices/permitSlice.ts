@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
 import type {
-  PersonalInformationFormData,
   FamilyFinancialFormData,
+  PersonalInformationFormData,
   SituationDescriptionFormData,
 } from '@/schemas';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface Permit {
   id: string;
@@ -19,6 +19,7 @@ interface PermitState {
   permits: Permit[];
   loading: boolean;
   error: string | null;
+  isSubmitting: boolean;
   // Form data for permit application
   personalInformation: PersonalInformationFormData | null;
   familyFinancial: FamilyFinancialFormData | null;
@@ -29,6 +30,7 @@ const initialState: PermitState = {
   permits: [],
   loading: false,
   error: null,
+  isSubmitting: false,
   personalInformation: null,
   familyFinancial: null,
   situationDescription: null,
@@ -83,6 +85,10 @@ const permitSlice = createSlice({
       state.familyFinancial = null;
       state.situationDescription = null;
     },
+    // Submission state actions
+    setSubmitting: (state, action: PayloadAction<boolean>) => {
+      state.isSubmitting = action.payload;
+    },
   },
 });
 
@@ -98,6 +104,7 @@ export const {
   saveSituationDescription,
   clearSituationDescription,
   clearAllFormData,
+  setSubmitting,
 } = permitSlice.actions;
 
 export default permitSlice.reducer;

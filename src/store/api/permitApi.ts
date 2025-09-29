@@ -3,7 +3,6 @@ import { API_DELAYS } from '@/store/constants/api';
 import { ApiHelpers } from '@/store/helpers/api';
 import { AnalysisEngine } from '@/store/services/analysis';
 import { StorageUtils } from '@/store/services/storage';
-import { clearAllFormData } from '@/store/slices/permitSlice';
 import type {
   GetPermitResponse,
   PermitApplicationData,
@@ -13,6 +12,7 @@ import type {
   StoredPermitData,
 } from '@/store/types/permit';
 import { createApplicationId, generateUniqueId } from '@/utils/api';
+import { clearAllFormData } from '../slices/permitSlice';
 import { baseApi } from './baseApi';
 
 export const permitApi = baseApi.injectEndpoints({
@@ -114,10 +114,14 @@ export const permitApi = baseApi.injectEndpoints({
           },
         };
       },
-      async onQueryStarted(_arg, { queryFulfilled }) {
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
         try {
           // Wait for the submission to complete successfully
           await queryFulfilled;
+
+          // Clear all form data after successful submission
+          dispatch(clearAllFormData());
+          StorageUtils.clearFormData();
         } catch {
           // If submission failed, don't clear the form data
           console.log('Permit submission failed, keeping form data');

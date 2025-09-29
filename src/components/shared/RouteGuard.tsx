@@ -24,6 +24,7 @@ export const RouteGuard = ({ children, requiredStep }: RouteGuardProps) => {
     state => state.permit.personalInformation
   );
   const familyFinancial = useAppSelector(state => state.permit.familyFinancial);
+  const isSubmitting = useAppSelector(state => state.permit.isSubmitting);
 
   // Determine which step to redirect to based on missing data
   const getRedirectPath = (): string => {
@@ -48,7 +49,8 @@ export const RouteGuard = ({ children, requiredStep }: RouteGuardProps) => {
     return '';
   };
 
-  const redirectPath = getRedirectPath();
+  // Don't redirect if currently submitting to prevent interference
+  const redirectPath = isSubmitting ? '' : getRedirectPath();
 
   // Show toast notification when redirecting (only once per redirect)
   useEffect(() => {
@@ -75,7 +77,14 @@ export const RouteGuard = ({ children, requiredStep }: RouteGuardProps) => {
         );
       }
     }
-  }, [redirectPath, requiredStep, personalInformation, familyFinancial, toast]);
+  }, [
+    redirectPath,
+    requiredStep,
+    personalInformation,
+    familyFinancial,
+    isSubmitting,
+    toast,
+  ]);
 
   // Reset toast flag when component unmounts or when redirect path changes
   useEffect(() => {

@@ -7,10 +7,13 @@ import {
   useSubmitSituationDescriptionMutation,
 } from '@/store/api/permitApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { saveSituationDescription } from '@/store/slices/permitSlice';
+import {
+  saveSituationDescription,
+  setSubmitting,
+} from '@/store/slices/permitSlice';
 import { scrollToTop } from '@/utils/helpers';
 import { SEO_KEYS, useSEO } from '@/utils/seo';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 const SituationDescriptionPage = () => {
@@ -33,8 +36,7 @@ const SituationDescriptionPage = () => {
   const savedSituationDescription = useAppSelector(
     state => state.permit.situationDescription
   );
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const isSubmitting = useAppSelector(state => state.permit.isSubmitting);
   const formRef = useRef<{
     submitForm: () => Promise<boolean>;
     isValid: boolean;
@@ -47,7 +49,7 @@ const SituationDescriptionPage = () => {
   useSEO(SEO_KEYS.situation);
 
   const handleFormSubmit = async (data: SituationDescriptionFormData) => {
-    setIsSubmitting(true);
+    dispatch(setSubmitting(true));
     try {
       // Save form data to Redux first
       dispatch(saveSituationDescription(data));
@@ -70,14 +72,6 @@ const SituationDescriptionPage = () => {
         if (applicationResponse.success) {
           toast.success('success.form_submitted');
 
-          // Log the application details for debugging
-          console.log('Application submitted:', {
-            applicationId: applicationResponse.data.applicationId,
-            status: applicationResponse.data.status,
-            estimatedProcessingDays:
-              applicationResponse.data.estimatedProcessingDays,
-          });
-
           setDirection('forward');
           scrollToTop();
           navigate(`/permit/success/${applicationResponse.data.applicationId}`);
@@ -97,7 +91,7 @@ const SituationDescriptionPage = () => {
         'form.errors.saveFailed';
       toast.error(errorMessage, 'form.errors.tryAgain');
     } finally {
-      setIsSubmitting(false);
+      dispatch(setSubmitting(false));
     }
   };
 
