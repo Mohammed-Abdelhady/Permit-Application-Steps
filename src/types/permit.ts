@@ -14,6 +14,9 @@ export interface AnalysisResult {
 
 import type { StoredPermitData } from '@/store/types/permit';
 
+// Re-export StoredPermitData for external use
+export type { StoredPermitData };
+
 export interface GetPermitResponse {
   success: boolean;
   data: StoredPermitData;

@@ -6,8 +6,11 @@ import ErrorState from '@/components/permit/ErrorState';
 import LoadingState from '@/components/permit/LoadingState';
 import { SuccessHeader } from '@/components/permit/SuccessHeader';
 import { useGetPermitByIdQuery } from '@/store/api/permitApi';
+import { useAppDispatch } from '@/store/hooks';
+import { clearAllFormData } from '@/store/slices/permitSlice';
 import { SEO_KEYS, useSEO } from '@/utils/seo';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -15,6 +18,7 @@ const PermitSubmissionSuccessPage = () => {
   const { i18n } = useTranslation();
   const { applicationId } = useParams<{ applicationId: string }>();
   const isRTL = i18n.language === 'ar';
+  const dispatch = useAppDispatch();
 
   // Fetch permit data using the API
   const {
@@ -26,6 +30,11 @@ const PermitSubmissionSuccessPage = () => {
   });
 
   const permitData = permitResponse?.data;
+
+  // Clear form data when success page loads
+  useEffect(() => {
+    dispatch(clearAllFormData());
+  }, [dispatch]);
 
   // Set SEO data
   useSEO(SEO_KEYS.success);

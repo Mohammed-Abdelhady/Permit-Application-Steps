@@ -19,6 +19,7 @@ interface SituationDescriptionFormProps {
 export interface SituationDescriptionFormRef {
   submitForm: () => Promise<boolean>;
   isValid: boolean;
+  getCurrentFormData: () => SituationDescriptionFormData;
 }
 
 const SituationDescriptionForm = forwardRef<
@@ -62,6 +63,7 @@ const SituationDescriptionForm = forwardRef<
       return isFormValid;
     },
     isValid,
+    getCurrentFormData: () => watch(),
   }));
 
   // Reset form when initialData changes (e.g., when loaded from localStorage)
