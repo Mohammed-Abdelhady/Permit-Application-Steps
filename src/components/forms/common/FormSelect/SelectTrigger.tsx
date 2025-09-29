@@ -64,7 +64,7 @@ const SelectTrigger = ({
               onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  onClear(e as React.MouseEvent);
+                  onClear(e as unknown as React.MouseEvent);
                 }
               }}
               className="cursor-pointer rounded p-1 hover:bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"

@@ -6,8 +6,9 @@ export type {
   PermitStatusResponse,
   PermitSubmissionResponse,
   SituationDescriptionResponse,
-  StoredPermitData,
 } from '@/types/permit';
+
+export type { StoredPermitData } from '@/store/types/permit';
 
 // Re-export constants
 export {
