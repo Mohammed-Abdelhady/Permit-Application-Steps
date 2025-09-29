@@ -91,6 +91,7 @@ const SituationDescriptionPage = () => {
         'form.errors.saveFailed';
       toast.error(errorMessage, 'form.errors.tryAgain');
     } finally {
+      console.log('Setting isSubmitting to false...');
       dispatch(setSubmitting(false));
     }
   };
