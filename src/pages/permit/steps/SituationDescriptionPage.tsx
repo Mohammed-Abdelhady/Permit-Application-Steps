@@ -40,6 +40,7 @@ const SituationDescriptionPage = () => {
   const formRef = useRef<{
     submitForm: () => Promise<boolean>;
     isValid: boolean;
+    getCurrentFormData: () => SituationDescriptionFormData;
   }>(null);
 
   // Enable refresh warning for unsaved form data
@@ -106,6 +107,12 @@ const SituationDescriptionPage = () => {
   };
 
   const handlePrevious = () => {
+    // Save current form data to Redux before navigating back
+    if (formRef.current) {
+      const currentData = formRef.current.getCurrentFormData();
+      dispatch(saveSituationDescription(currentData));
+    }
+
     setDirection('backward');
     scrollToTop();
     navigate('/permit/family-financial');

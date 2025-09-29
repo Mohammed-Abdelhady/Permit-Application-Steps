@@ -21,6 +21,7 @@ interface PersonalInformationFormProps {
 export interface PersonalInformationFormRef {
   submitForm: () => Promise<boolean>;
   isValid: boolean;
+  getCurrentFormData: () => PersonalInformationFormData;
 }
 
 const PersonalInformationForm = forwardRef<
@@ -71,6 +72,7 @@ const PersonalInformationForm = forwardRef<
       return isFormValid;
     },
     isValid,
+    getCurrentFormData: () => watch(),
   }));
 
   // Reset form when initialData changes (e.g., when loaded from localStorage)

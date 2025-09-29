@@ -22,6 +22,7 @@ interface FamilyFinancialFormProps {
 export interface FamilyFinancialFormRef {
   submitForm: () => Promise<boolean>;
   isValid: boolean;
+  getCurrentFormData: () => FamilyFinancialFormData;
 }
 
 const FamilyFinancialForm = forwardRef<
@@ -67,6 +68,7 @@ const FamilyFinancialForm = forwardRef<
       return isFormValid;
     },
     isValid,
+    getCurrentFormData: () => watch(),
   }));
 
   // Reset form when initialData changes (e.g., when loaded from localStorage)

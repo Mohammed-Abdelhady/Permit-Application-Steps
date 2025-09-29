@@ -33,7 +33,6 @@ const PermitSubmissionSuccessPage = () => {
 
   // Clear form data when success page loads
   useEffect(() => {
-    console.log('Success page loaded, clearing form data...');
     dispatch(clearAllFormData());
   }, [dispatch]);
 
