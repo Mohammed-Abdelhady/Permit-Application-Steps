@@ -44,7 +44,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
 
     // Refs for managing focus and clicks
     const containerRef = useRef<HTMLDivElement>(null);
-    const blurTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const blurTimeoutRef = useRef<number | null>(null);
 
     // Filter options based on search term
     const filteredOptions = searchable
@@ -431,7 +431,7 @@ const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           filteredOptions={filteredOptions}
-          value={value}
+          value={String(value || '')}
           highlightedIndex={highlightedIndex}
           onSelect={handleSelect}
           onHighlight={setHighlightedIndex}
