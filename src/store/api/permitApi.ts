@@ -114,14 +114,10 @@ export const permitApi = baseApi.injectEndpoints({
           },
         };
       },
-      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_arg, { queryFulfilled }) {
         try {
           // Wait for the submission to complete successfully
           await queryFulfilled;
-
-          // Clear all form data after successful submission
-          dispatch(clearAllFormData());
-          StorageUtils.clearFormData();
         } catch {
           // If submission failed, don't clear the form data
           console.log('Permit submission failed, keeping form data');
