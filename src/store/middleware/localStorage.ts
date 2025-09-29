@@ -55,6 +55,7 @@ interface PersistedState {
     permits: never[];
     loading: false;
     error: null;
+    isSubmitting: false;
     personalInformation: PersonalInformationFormData | null;
     familyFinancial: FamilyFinancialFormData | null;
     situationDescription: SituationDescriptionFormData | null;
@@ -81,6 +82,7 @@ export const loadPersistedState = (): PersistedState | undefined => {
         permits: [],
         loading: false,
         error: null,
+        isSubmitting: false,
         personalInformation: parsed.personalInformation || null,
         familyFinancial: parsed.familyFinancial || null,
         situationDescription: parsed.situationDescription || null,

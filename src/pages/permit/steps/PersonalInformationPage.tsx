@@ -9,6 +9,7 @@ import { SEO_KEYS, useSEO } from '@/utils/seo';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import type { PersonalInformationFormRef } from '@/components/forms/PersonalInformationForm';
 
 const PersonalInformationPage = () => {
   const { t } = useTranslation();
@@ -24,10 +25,7 @@ const PersonalInformationPage = () => {
   );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formRef = useRef<{
-    submitForm: () => Promise<boolean>;
-    isValid: boolean;
-  }>(null);
+  const formRef = useRef<PersonalInformationFormRef>(null);
 
   // Enable refresh warning for unsaved form data
   useRefreshWarning();
