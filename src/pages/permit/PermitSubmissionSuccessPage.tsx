@@ -67,32 +67,47 @@ const PermitSubmissionSuccessPage = () => {
   // Success state
   return (
     <AnimatedPageWrapper>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-2 md:p-4 lg:p-6">
-        {/* Header */}
-        <Header className="mx-auto mb-4 flex max-w-4xl items-center justify-between md:mb-6 lg:mb-8" />
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/40">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 h-80 w-80 animate-pulse rounded-full bg-gradient-to-br from-blue-200/20 to-indigo-200/20 blur-3xl"></div>
+          <div
+            className="absolute -bottom-40 -left-40 h-80 w-80 animate-pulse rounded-full bg-gradient-to-br from-emerald-200/20 to-teal-200/20 blur-3xl"
+            style={{ animationDelay: '1s' }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 transform animate-pulse rounded-full bg-gradient-to-br from-purple-200/10 to-pink-200/10 blur-3xl"
+            style={{ animationDelay: '2s' }}
+          ></div>
+        </div>
 
-        <motion.div
-          className="mx-auto max-w-4xl px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Success Header */}
-          <SuccessHeader
-            isRTL={isRTL}
-            applicationId={applicationId}
-            submissionDate={submissionDate}
-          />
+        <div className="relative z-10 p-4 md:p-6 lg:p-8">
+          {/* Header */}
+          <Header className="mx-auto mb-6 flex max-w-5xl items-center justify-between md:mb-8 lg:mb-10" />
 
-          {/* Application Analysis */}
-          <ApplicationAnalysis permitData={permitData} isRTL={isRTL} />
+          <motion.div
+            className="mx-auto max-w-5xl space-y-8 px-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Success Header */}
+            <SuccessHeader
+              isRTL={isRTL}
+              applicationId={applicationId}
+              submissionDate={submissionDate}
+            />
 
-          {/* Application Summary */}
-          <ApplicationSummary permitData={permitData} isRTL={isRTL} />
+            {/* Application Analysis */}
+            <ApplicationAnalysis permitData={permitData} isRTL={isRTL} />
 
-          {/* Action Buttons */}
-          <ActionButtons isRTL={isRTL} />
-        </motion.div>
+            {/* Application Summary */}
+            <ApplicationSummary permitData={permitData} isRTL={isRTL} />
+
+            {/* Action Buttons */}
+            <ActionButtons isRTL={isRTL} />
+          </motion.div>
+        </div>
       </div>
     </AnimatedPageWrapper>
   );

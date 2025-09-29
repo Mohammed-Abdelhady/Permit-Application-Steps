@@ -77,6 +77,21 @@ export const AnalysisEngine = {
       recommendations.push(RECOMMENDATIONS.highScore);
     }
 
+    // Always provide at least one general recommendation
+    if (recommendations.length === 0) {
+      if (score >= 70) {
+        recommendations.push('Your application is well-prepared and complete');
+      } else if (score >= 50) {
+        recommendations.push(
+          'Consider adding more details to strengthen your application'
+        );
+      } else {
+        recommendations.push(
+          'Please review and enhance your application details'
+        );
+      }
+    }
+
     return { validationScore: Math.min(score, 100), recommendations };
   },
 };

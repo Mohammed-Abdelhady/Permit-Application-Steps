@@ -22,7 +22,7 @@ const ActionButtons = ({ isRTL }: ActionButtonsProps) => {
   return (
     <motion.div
       className={classNames(
-        'mt-8 flex gap-4',
+        'mt-12 flex gap-6',
         isRTL ? 'flex-row-reverse' : 'flex-row',
         'flex-col sm:flex-row'
       )}
@@ -32,20 +32,56 @@ const ActionButtons = ({ isRTL }: ActionButtonsProps) => {
     >
       <motion.button
         onClick={handleBackToHome}
-        className="flex-1 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white shadow-md transition-all duration-200 hover:bg-blue-700 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-        whileHover={{ scale: 1.02 }}
+        className="group relative flex-1 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+        whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
       >
-        {t('common.back_to_home')}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        <div className="relative flex items-center justify-center gap-3">
+          <svg
+            className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          {t('common.back_to_home')}
+        </div>
       </motion.button>
 
       <motion.button
         onClick={handleNewApplication}
-        className="flex-1 rounded-lg border-2 border-blue-600 bg-white px-6 py-3 font-medium text-blue-600 shadow-md transition-all duration-200 hover:bg-blue-50 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-        whileHover={{ scale: 1.02 }}
+        className="group border-gradient-to-r relative flex-1 overflow-hidden rounded-2xl border-2 bg-white from-emerald-500 to-teal-500 px-8 py-4 font-semibold text-emerald-600 shadow-lg transition-all duration-300 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 hover:shadow-xl focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none"
+        whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
+        style={{
+          background:
+            'linear-gradient(white, white) padding-box, linear-gradient(45deg, #10b981, #14b8a6) border-box',
+          border: '2px solid transparent',
+        }}
       >
-        {t('permit.new_application')}
+        <div className="relative flex items-center justify-center gap-3">
+          {t('permit.new_application')}
+          <svg
+            className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+        </div>
       </motion.button>
     </motion.div>
   );
