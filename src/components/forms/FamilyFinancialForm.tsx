@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import FormInput from './common/FormInput';
 import FormSelect from './common/FormSelect';
+import { Button } from '@/components';
 
 interface FamilyFinancialFormProps {
   onSubmit: (data: FamilyFinancialFormData) => void;
@@ -288,9 +289,17 @@ const FamilyFinancialForm = forwardRef<
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.4 }}
       >
-        <button type="submit" className="sr-only" aria-label={t('form.submit')}>
+        <Button
+          type="submit"
+          data-testid="form-submit-button"
+          className="sr-only"
+          aria-label={t('form.submit')}
+          variant="primary"
+          size="sm"
+          animated={false}
+        >
           {t('form.submit')}
-        </button>
+        </Button>
       </motion.div>
     </motion.form>
   );

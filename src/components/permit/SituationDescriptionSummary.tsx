@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import type { SituationDescriptionFormData } from '@/schemas';
+import { Button } from '@/components';
 
 interface SituationDescriptionSummaryProps {
   data: SituationDescriptionFormData;
@@ -136,36 +137,61 @@ const TextField = ({ label, content, isRTL, t }: TextFieldProps) => {
       <AnimatePresence>
         {showModal && (
           <motion.div
-            className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseModal}
           >
             <motion.div
-              className="max-h-[80vh] w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-2xl"
+              className="relative max-h-[85vh] w-full max-w-3xl overflow-hidden rounded-3xl bg-white/95 shadow-2xl ring-1 ring-gray-200 backdrop-blur-md"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
               onClick={e => e.stopPropagation()}
             >
+              {/* Decorative gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-indigo-500/5"></div>
+
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-gray-200 p-6">
-                <h3
-                  className={classNames(
-                    'text-lg font-semibold text-gray-900',
-                    isRTL ? 'text-right' : 'text-left'
-                  )}
-                >
-                  {label}
-                </h3>
-                <button
+              <div className="relative z-10 flex items-center justify-between border-b border-gray-200/50 bg-gradient-to-r from-purple-50/50 to-pink-50/50 p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-100 to-pink-100">
+                    <svg
+                      className="h-5 w-5 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h3
+                    className={classNames(
+                      'bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-xl font-bold text-transparent',
+                      isRTL ? 'text-right' : 'text-left'
+                    )}
+                  >
+                    {label}
+                  </h3>
+                </div>
+                <Button
                   onClick={handleCloseModal}
-                  className="text-gray-400 transition-colors hover:text-gray-600"
+                  data-testid="modal-close-button"
+                  variant="ghost"
+                  colorScheme="gray"
+                  size="sm"
+                  className="h-10 w-10 p-0 hover:bg-red-100 hover:text-red-600 focus:ring-red-500"
                   aria-label="Close"
                 >
                   <svg
-                    className="h-6 w-6"
+                    className="h-5 w-5 transition-transform duration-200 group-hover:rotate-90"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -177,29 +203,50 @@ const TextField = ({ label, content, isRTL, t }: TextFieldProps) => {
                       d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
-                </button>
+                </Button>
               </div>
 
               {/* Modal Content */}
-              <div className="max-h-[calc(80vh-120px)] overflow-x-hidden overflow-y-auto p-6">
-                <div
-                  className={classNames(
-                    'overflow-wrap-anywhere word-break-break-all leading-relaxed break-words whitespace-pre-wrap text-gray-800',
-                    isRTL ? 'text-right' : 'text-left'
-                  )}
-                >
-                  {content}
+              <div className="relative z-10 max-h-[calc(85vh-140px)] overflow-x-hidden overflow-y-auto">
+                <div className="p-6">
+                  <div
+                    className={classNames(
+                      'overflow-wrap-anywhere rounded-2xl bg-gradient-to-br from-gray-50/50 to-white/50 p-6 leading-relaxed break-words whitespace-pre-wrap text-gray-800 backdrop-blur-sm',
+                      isRTL ? 'text-right' : 'text-left'
+                    )}
+                  >
+                    {content}
+                  </div>
                 </div>
               </div>
 
               {/* Modal Footer */}
-              <div className="flex justify-end border-t border-gray-200 p-6">
-                <button
+              <div className="relative z-10 flex justify-end border-t border-gray-200/50 bg-gradient-to-r from-purple-50/30 to-pink-50/30 p-6 backdrop-blur-sm">
+                <Button
                   onClick={handleCloseModal}
-                  className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
+                  data-testid="modal-close-footer-button"
+                  variant="primary"
+                  colorScheme="purple"
+                  size="lg"
+                  leftIcon={
+                    <svg
+                      className="h-4 w-4 transition-transform duration-200 group-hover:rotate-12"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  }
+                  className="group"
                 >
                   {t('permit.text.close')}
-                </button>
+                </Button>
               </div>
             </motion.div>
           </motion.div>

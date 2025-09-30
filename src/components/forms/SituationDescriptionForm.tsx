@@ -8,6 +8,7 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import FormTextArea from './common/FormTextArea';
+import { Button } from '@/components';
 
 interface SituationDescriptionFormProps {
   onSubmit: (data: SituationDescriptionFormData) => void;
@@ -217,9 +218,17 @@ const SituationDescriptionForm = forwardRef<
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.4 }}
       >
-        <button type="submit" className="sr-only" aria-label={t('form.submit')}>
+        <Button
+          type="submit"
+          data-testid="form-submit-button"
+          className="sr-only"
+          aria-label={t('form.submit')}
+          variant="primary"
+          size="sm"
+          animated={false}
+        >
           {t('form.submit')}
-        </button>
+        </Button>
       </motion.div>
     </motion.form>
   );

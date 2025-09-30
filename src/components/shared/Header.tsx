@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Globe } from 'lucide-react';
+import { Button } from '@/components';
 
 interface HeaderProps {
   className?: string;
@@ -84,28 +85,26 @@ const Header = ({ className }: HeaderProps) => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               {/* Language Toggle */}
-              <motion.button
+              <Button
                 data-testid="language-toggle-button"
                 onClick={toggleLanguage}
                 aria-label={`${t('language.switch')} - ${i18n.language === 'en' ? 'Switch to Arabic' : 'Switch to English'}`}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2.5 text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative flex items-center gap-2">
+                variant="primary"
+                colorScheme="blue"
+                size="md"
+                leftIcon={
                   <Globe
                     size={18}
                     className="transition-transform duration-200 group-hover:rotate-12"
                   />
-                  <span className="hidden text-sm font-semibold sm:inline">
-                    {t('language.switch')}
-                  </span>
-                  <span className="text-sm font-semibold sm:hidden">
-                    {i18n.language === 'en' ? 'ع' : 'EN'}
-                  </span>
-                </div>
-              </motion.button>
+                }
+                className="group"
+              >
+                <span className="hidden sm:inline">{t('language.switch')}</span>
+                <span className="sm:hidden">
+                  {i18n.language === 'en' ? 'ع' : 'EN'}
+                </span>
+              </Button>
             </motion.div>
           </div>
         </div>

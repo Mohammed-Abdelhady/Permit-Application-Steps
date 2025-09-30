@@ -1,4 +1,5 @@
 // Export all shared components
+export { default as Button } from './shared/Button';
 export { default as FormInput } from './forms/common/FormInput';
 export { default as FormPlaceholder } from './forms/common/FormPlaceholder';
 export { default as FormSelect } from './forms/common/FormSelect';
