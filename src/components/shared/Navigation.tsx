@@ -24,37 +24,38 @@ const Navigation = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.5 }}
     >
-      {/* Previous Button */}
-      {showPrevious && (
-        <motion.div
-          className="order-2 sm:order-1"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.6 }}
-        >
-          <Button
-            type="button"
-            data-testid="previous-button"
-            onClick={onPrevious}
-            aria-label={t('permit.navigation.previous')}
-            variant="secondary"
-            colorScheme="gray"
-            size="lg"
-            fullWidth
-            leftIcon={
-              isRTL ? (
-                <ChevronRight className="h-5 w-5 flex-shrink-0" />
-              ) : (
-                <ChevronLeft className="h-5 w-5 flex-shrink-0" />
-              )
-            }
-            className="min-h-[48px] touch-manipulation whitespace-nowrap sm:w-auto"
-            animated={true}
+      {/* Previous Button or Spacer */}
+      <div className="order-2 sm:order-1">
+        {showPrevious && (
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.6 }}
           >
-            {t('permit.navigation.previous')}
-          </Button>
-        </motion.div>
-      )}
+            <Button
+              type="button"
+              data-testid="previous-button"
+              onClick={onPrevious}
+              aria-label={t('permit.navigation.previous')}
+              variant="secondary"
+              colorScheme="gray"
+              size="lg"
+              fullWidth
+              leftIcon={
+                isRTL ? (
+                  <ChevronRight className="h-5 w-5 flex-shrink-0" />
+                ) : (
+                  <ChevronLeft className="h-5 w-5 flex-shrink-0" />
+                )
+              }
+              className="min-h-[48px] touch-manipulation whitespace-nowrap sm:w-auto"
+              animated={true}
+            >
+              {t('permit.navigation.previous')}
+            </Button>
+          </motion.div>
+        )}
+      </div>
 
       {/* Next/Submit Buttons */}
       <div className="order-1 flex flex-col gap-3 sm:order-2 sm:flex-row sm:gap-3">
